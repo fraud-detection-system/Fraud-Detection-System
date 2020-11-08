@@ -1,0 +1,129 @@
+project=rtdpp,src=TraceSink,flink-tid=ba8d1389-39d5-4242-a2d0-612f5e2e5f52,time-spent(ms)=324,entityEvent=com.bds.datastreaming.EntityEvent@297176e0
+project=rtdpp,src=TraceSink,flink-tid=dfeaf3a9-5cfa-4573-8cfd-ae1d593a3782,time-spent(ms)=325,entityEvent=com.bds.datastreaming.EntityEvent@ac752bf
+project=rtdpp,src=TraceSink,flink-tid=d7471896-bfb6-405a-a21d-085c6f52727f,time-spent(ms)=4,entityEvent=com.bds.datastreaming.EntityEvent@31fb2ba1
+project=rtdpp,src=TraceSink,flink-tid=09f92e36-be6b-4f58-9ba5-8203667936b5,time-spent(ms)=21,entityEvent=com.bds.datastreaming.EntityEvent@26c0fb4f
+project=rtdpp,src=AlertSink,flink-tid=7570417a-4efc-4ebf-bb83-2ff71ab0e3c5,time-spent(ms)=772,entityEvent=com.bds.datastreaming.EntityEvent@29ac3e54,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=7570417a-4efc-4ebf-bb83-2ff71ab0e3c5,time-spent(ms)=849,entityEvent=com.bds.datastreaming.EntityEvent@1b12c1a9
+project=rtdpp,src=AlertSink,flink-tid=90c4e312-6a9d-4d06-861e-d3dda6b784a3,time-spent(ms)=156,entityEvent=com.bds.datastreaming.EntityEvent@717dbd11,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=90c4e312-6a9d-4d06-861e-d3dda6b784a3,time-spent(ms)=168,entityEvent=com.bds.datastreaming.EntityEvent@2b879116
+project=rtdpp,src=TraceSink,flink-tid=da7a6952-a66c-41fb-b158-19a8079cd92a,time-spent(ms)=111,entityEvent=com.bds.datastreaming.EntityEvent@7a9b5232
+project=rtdpp,src=AlertSink,flink-tid=da7a6952-a66c-41fb-b158-19a8079cd92a,time-spent(ms)=157,entityEvent=com.bds.datastreaming.EntityEvent@1819d42d,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=159bbd06-fa6f-42d3-873f-eca07dfd13ee,time-spent(ms)=180,entityEvent=com.bds.datastreaming.EntityEvent@587b5b3a
+project=rtdpp,src=AlertSink,flink-tid=159bbd06-fa6f-42d3-873f-eca07dfd13ee,time-spent(ms)=239,entityEvent=com.bds.datastreaming.EntityEvent@6cd98c2,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=BusinessMetricSink,,name=amount for transaction type ID = -1, value=-1
+project=rtdpp,src=TraceSink,flink-tid=b6f68875-1ff9-4e8c-aec9-3ab5cfc1728c,time-spent(ms)=2,entityEvent=com.bds.datastreaming.EntityEvent@68d46e1f
+project=rtdpp,src=TraceSink,flink-tid=5f92206e-9327-4fbc-94e9-46ba0f01b7ef,time-spent(ms)=2,entityEvent=com.bds.datastreaming.EntityEvent@1d3c438f
+project=rtdpp,src=TraceSink,flink-tid=70da3595-1886-4b86-99e5-33817e06bba0,time-spent(ms)=37,entityEvent=com.bds.datastreaming.EntityEvent@50230067
+project=rtdpp,src=AlertSink,flink-tid=70da3595-1886-4b86-99e5-33817e06bba0,time-spent(ms)=116,entityEvent=com.bds.datastreaming.EntityEvent@2836eb39,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=d77448e7-96a1-4efe-800c-cdffbd968c4d,time-spent(ms)=1,entityEvent=com.bds.datastreaming.EntityEvent@2aa3e70
+project=rtdpp,src=TraceSink,flink-tid=68e643bf-cde8-4ebb-a67c-ea4df802e932,time-spent(ms)=1,entityEvent=com.bds.datastreaming.EntityEvent@2e654e74
+project=rtdpp,src=TraceSink,flink-tid=2097cac2-8325-4417-a9a0-e2195ff64ffe,time-spent(ms)=14,entityEvent=com.bds.datastreaming.EntityEvent@669ad0d9
+project=rtdpp,src=TraceSink,flink-tid=2cfa3c12-27a8-41ff-8c49-135ac349367f,time-spent(ms)=13,entityEvent=com.bds.datastreaming.EntityEvent@84853cd
+project=rtdpp,src=AlertSink,flink-tid=2097cac2-8325-4417-a9a0-e2195ff64ffe,time-spent(ms)=63,entityEvent=com.bds.datastreaming.EntityEvent@475581ee,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=AlertSink,flink-tid=2cfa3c12-27a8-41ff-8c49-135ac349367f,time-spent(ms)=50,entityEvent=com.bds.datastreaming.EntityEvent@7d071e91,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=AlertSink,flink-tid=41cfa85a-13b3-43c1-8283-2670438d1128,time-spent(ms)=37,entityEvent=com.bds.datastreaming.EntityEvent@4b6094ae,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=41cfa85a-13b3-43c1-8283-2670438d1128,time-spent(ms)=48,entityEvent=com.bds.datastreaming.EntityEvent@a713255
+project=rtdpp,src=BusinessMetricSink,,name=amount for transaction type ID = -1, value=-1
+project=rtdpp,src=OperationalMetricSink,flink-tid=7570417a-4efc-4ebf-bb83-2ff71ab0e3c5,time-spent(ms)=7978,entityEvent=com.bds.datastreaming.EntityEvent@38f645c8,min(ms)=0
+rtdpp-OperationalMetric-max-time-taken:9> timeTaken(ms)=421
+project=rtdpp,src=OperationalMetricSink,flink-tid=7570417a-4efc-4ebf-bb83-2ff71ab0e3c5,time-spent(ms)=8068,entityEvent=com.bds.datastreaming.EntityEvent@76daa6e5,count/sec=42
+project=rtdpp,src=OperationalMetricSink,flink-tid=7570417a-4efc-4ebf-bb83-2ff71ab0e3c5,time-spent(ms)=8066,entityEvent=com.bds.datastreaming.EntityEvent@2ec6d36c,max(ms)=42
+project=rtdpp,src=TraceSink,flink-tid=50226a83-68df-436d-a3f4-c6caab0bc3b0,time-spent(ms)=1,entityEvent=com.bds.datastreaming.EntityEvent@f5851c6
+project=rtdpp,src=TraceSink,flink-tid=78fd2792-6094-4083-9e02-5a3b2e970f7e,time-spent(ms)=1,entityEvent=com.bds.datastreaming.EntityEvent@744a1425
+project=rtdpp,src=TraceSink,flink-tid=9bef6fb0-139e-4afa-adaa-7e31b5376c99,time-spent(ms)=21,entityEvent=com.bds.datastreaming.EntityEvent@741011bb
+project=rtdpp,src=AlertSink,flink-tid=9bef6fb0-139e-4afa-adaa-7e31b5376c99,time-spent(ms)=112,entityEvent=com.bds.datastreaming.EntityEvent@4c9cf496,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=f3f78c2c-c062-4176-a797-358f62e59525,time-spent(ms)=1,entityEvent=com.bds.datastreaming.EntityEvent@5c5f734b
+project=rtdpp,src=TraceSink,flink-tid=96d668a6-f94d-4221-bb72-b6bf698bea8a,time-spent(ms)=1,entityEvent=com.bds.datastreaming.EntityEvent@7006812b
+project=rtdpp,src=TraceSink,flink-tid=3f6f55e6-43f9-48ef-aa6f-cbf658ba3f18,time-spent(ms)=12,entityEvent=com.bds.datastreaming.EntityEvent@5a43709d
+project=rtdpp,src=TraceSink,flink-tid=76ef37b7-f12f-4e6a-8a58-0a9f3399d24a,time-spent(ms)=15,entityEvent=com.bds.datastreaming.EntityEvent@6618537f
+project=rtdpp,src=AlertSink,flink-tid=3f6f55e6-43f9-48ef-aa6f-cbf658ba3f18,time-spent(ms)=34,entityEvent=com.bds.datastreaming.EntityEvent@7bba42f1,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=AlertSink,flink-tid=76ef37b7-f12f-4e6a-8a58-0a9f3399d24a,time-spent(ms)=21,entityEvent=com.bds.datastreaming.EntityEvent@5e4b8f8e,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=e71987e0-6346-41c2-8b64-61d8cfed6db1,time-spent(ms)=43,entityEvent=com.bds.datastreaming.EntityEvent@3c1d79a9
+project=rtdpp,src=AlertSink,flink-tid=e71987e0-6346-41c2-8b64-61d8cfed6db1,time-spent(ms)=106,entityEvent=com.bds.datastreaming.EntityEvent@70dcabcb,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=OperationalMetricSink,flink-tid=9bef6fb0-139e-4afa-adaa-7e31b5376c99,time-spent(ms)=4504,entityEvent=com.bds.datastreaming.EntityEvent@6d9275da,max(ms)=1
+rtdpp-OperationalMetric-max-time-taken:10> timeTaken(ms)=11
+project=rtdpp,src=OperationalMetricSink,flink-tid=9bef6fb0-139e-4afa-adaa-7e31b5376c99,time-spent(ms)=4595,entityEvent=com.bds.datastreaming.EntityEvent@21f84e28,count/sec=0
+project=rtdpp,src=OperationalMetricSink,flink-tid=9bef6fb0-139e-4afa-adaa-7e31b5376c99,time-spent(ms)=4594,entityEvent=com.bds.datastreaming.EntityEvent@736bf06e,min(ms)=0
+project=rtdpp,src=BusinessMetricSink,,name=amount for transaction type ID = -1, value=-1
+project=rtdpp,src=TraceSink,flink-tid=83ae327a-c9ed-45a8-b265-e37798e69ff0,time-spent(ms)=1,entityEvent=com.bds.datastreaming.EntityEvent@904ba6c
+project=rtdpp,src=TraceSink,flink-tid=3b96a7a8-fd05-4c62-bc93-6e7643fef0b9,time-spent(ms)=1,entityEvent=com.bds.datastreaming.EntityEvent@3e23cc78
+project=rtdpp,src=TraceSink,flink-tid=2d5be20f-68f5-4dc5-aa86-0114399454bd,time-spent(ms)=30,entityEvent=com.bds.datastreaming.EntityEvent@499aa5d0
+project=rtdpp,src=AlertSink,flink-tid=2d5be20f-68f5-4dc5-aa86-0114399454bd,time-spent(ms)=44,entityEvent=com.bds.datastreaming.EntityEvent@4a37cb2,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=e4727f7f-6e25-4756-bd7a-28e5b349c631,time-spent(ms)=1,entityEvent=com.bds.datastreaming.EntityEvent@3c7ad61f
+project=rtdpp,src=TraceSink,flink-tid=c5f50297-d212-4ed7-89b0-cb70870d46b4,time-spent(ms)=1,entityEvent=com.bds.datastreaming.EntityEvent@7949eeb
+project=rtdpp,src=TraceSink,flink-tid=6ca25a91-5099-41b6-b1bb-2fccfa3a4e0a,time-spent(ms)=10,entityEvent=com.bds.datastreaming.EntityEvent@7293a174
+project=rtdpp,src=TraceSink,flink-tid=2782cc0b-3e88-4dc1-84ca-9373f23c6083,time-spent(ms)=10,entityEvent=com.bds.datastreaming.EntityEvent@373213c1
+project=rtdpp,src=AlertSink,flink-tid=6ca25a91-5099-41b6-b1bb-2fccfa3a4e0a,time-spent(ms)=47,entityEvent=com.bds.datastreaming.EntityEvent@4ff84539,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=AlertSink,flink-tid=2782cc0b-3e88-4dc1-84ca-9373f23c6083,time-spent(ms)=38,entityEvent=com.bds.datastreaming.EntityEvent@5bc88cdd,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=bf87c46d-2d99-438c-92e5-00c44ec4f14d,time-spent(ms)=28,entityEvent=com.bds.datastreaming.EntityEvent@461c2680
+project=rtdpp,src=AlertSink,flink-tid=bf87c46d-2d99-438c-92e5-00c44ec4f14d,time-spent(ms)=34,entityEvent=com.bds.datastreaming.EntityEvent@22ddbe1e,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+rtdpp-OperationalMetric-max-time-taken:11> timeTaken(ms)=15
+project=rtdpp,src=OperationalMetricSink,flink-tid=2d5be20f-68f5-4dc5-aa86-0114399454bd,time-spent(ms)=1571,entityEvent=com.bds.datastreaming.EntityEvent@13408b1e,count/sec=0
+project=rtdpp,src=OperationalMetricSink,flink-tid=2d5be20f-68f5-4dc5-aa86-0114399454bd,time-spent(ms)=1571,entityEvent=com.bds.datastreaming.EntityEvent@743af3ff,max(ms)=1
+project=rtdpp,src=OperationalMetricSink,flink-tid=2d5be20f-68f5-4dc5-aa86-0114399454bd,time-spent(ms)=1570,entityEvent=com.bds.datastreaming.EntityEvent@6534841b,min(ms)=0
+project=rtdpp,src=BusinessMetricSink,,name=amount for transaction type ID = -1, value=-1
+project=rtdpp,src=TraceSink,flink-tid=ec79cf03-4dfb-4796-a3c1-1a2d962cf2ad,time-spent(ms)=1,entityEvent=com.bds.datastreaming.EntityEvent@5c1ea513
+project=rtdpp,src=TraceSink,flink-tid=5a79559c-29fa-4816-ac09-45ed79f89666,time-spent(ms)=0,entityEvent=com.bds.datastreaming.EntityEvent@3ebd0116
+project=rtdpp,src=TraceSink,flink-tid=2f0238cc-4378-42a3-a92b-31d8f6c79315,time-spent(ms)=19,entityEvent=com.bds.datastreaming.EntityEvent@51a4bed1
+project=rtdpp,src=AlertSink,flink-tid=2f0238cc-4378-42a3-a92b-31d8f6c79315,time-spent(ms)=57,entityEvent=com.bds.datastreaming.EntityEvent@75ddbeaa,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=f94a60db-b1e5-425d-9201-b7e40477d1b3,time-spent(ms)=0,entityEvent=com.bds.datastreaming.EntityEvent@203bbf33
+project=rtdpp,src=TraceSink,flink-tid=a6c52cfd-d37f-413c-9b09-5b14cbb3d889,time-spent(ms)=0,entityEvent=com.bds.datastreaming.EntityEvent@13f1bcc2
+project=rtdpp,src=TraceSink,flink-tid=65af9b60-ad56-45a3-9f6d-3e42d66a397d,time-spent(ms)=75,entityEvent=com.bds.datastreaming.EntityEvent@4fcb1f9f
+project=rtdpp,src=AlertSink,flink-tid=65af9b60-ad56-45a3-9f6d-3e42d66a397d,time-spent(ms)=143,entityEvent=com.bds.datastreaming.EntityEvent@36035448,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=26917356-c2ce-4fe5-80b5-4ae6d42fb2cd,time-spent(ms)=195,entityEvent=com.bds.datastreaming.EntityEvent@27da1786
+project=rtdpp,src=AlertSink,flink-tid=26917356-c2ce-4fe5-80b5-4ae6d42fb2cd,time-spent(ms)=221,entityEvent=com.bds.datastreaming.EntityEvent@1f7915dd,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=74dae8c7-c0b5-4426-ac77-cdecb983bc68,time-spent(ms)=27,entityEvent=com.bds.datastreaming.EntityEvent@7060e664
+project=rtdpp,src=AlertSink,flink-tid=74dae8c7-c0b5-4426-ac77-cdecb983bc68,time-spent(ms)=74,entityEvent=com.bds.datastreaming.EntityEvent@513dd647,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+rtdpp-OperationalMetric-max-time-taken:12> timeTaken(ms)=13
+project=rtdpp,src=OperationalMetricSink,flink-tid=2f0238cc-4378-42a3-a92b-31d8f6c79315,time-spent(ms)=4656,entityEvent=com.bds.datastreaming.EntityEvent@17e50379,max(ms)=1
+project=rtdpp,src=BusinessMetricSink,,name=amount for transaction type ID = -1, value=-1
+project=rtdpp,src=OperationalMetricSink,flink-tid=2f0238cc-4378-42a3-a92b-31d8f6c79315,time-spent(ms)=4799,entityEvent=com.bds.datastreaming.EntityEvent@5530092d,min(ms)=0
+project=rtdpp,src=OperationalMetricSink,flink-tid=2f0238cc-4378-42a3-a92b-31d8f6c79315,time-spent(ms)=4799,entityEvent=com.bds.datastreaming.EntityEvent@1c09d510,count/sec=0
+project=rtdpp,src=TraceSink,flink-tid=bbe0f1d4-37ce-4dfe-9b8d-b38f15df3fc9,time-spent(ms)=31,entityEvent=com.bds.datastreaming.EntityEvent@3cf4baba
+project=rtdpp,src=TraceSink,flink-tid=52e2d962-6736-4827-b15a-322587bab1cb,time-spent(ms)=0,entityEvent=com.bds.datastreaming.EntityEvent@74542f12
+project=rtdpp,src=TraceSink,flink-tid=3ac1cdea-60d1-4103-9e12-4611b770c67c,time-spent(ms)=1,entityEvent=com.bds.datastreaming.EntityEvent@346b67a6
+project=rtdpp,src=TraceSink,flink-tid=0c0e1400-2081-4f4b-a552-d7e5dad74fe6,time-spent(ms)=25,entityEvent=com.bds.datastreaming.EntityEvent@17d0fd44
+project=rtdpp,src=AlertSink,flink-tid=0c0e1400-2081-4f4b-a552-d7e5dad74fe6,time-spent(ms)=36,entityEvent=com.bds.datastreaming.EntityEvent@72983c3f,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=4884b0f9-7a0e-4cb9-820b-1d3a71d03e07,time-spent(ms)=0,entityEvent=com.bds.datastreaming.EntityEvent@15958ec4
+project=rtdpp,src=TraceSink,flink-tid=25d2d17e-3ffc-48b6-b5ce-052274d89081,time-spent(ms)=9,entityEvent=com.bds.datastreaming.EntityEvent@26ded1c8
+project=rtdpp,src=TraceSink,flink-tid=4b7cd3b5-a853-45da-9706-f881178ac85b,time-spent(ms)=7,entityEvent=com.bds.datastreaming.EntityEvent@3f02884b
+project=rtdpp,src=AlertSink,flink-tid=25d2d17e-3ffc-48b6-b5ce-052274d89081,time-spent(ms)=20,entityEvent=com.bds.datastreaming.EntityEvent@165f8956,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=AlertSink,flink-tid=4b7cd3b5-a853-45da-9706-f881178ac85b,time-spent(ms)=12,entityEvent=com.bds.datastreaming.EntityEvent@449d5a9a,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=AlertSink,flink-tid=bdf06074-4d75-40b9-bf9f-f8a1be5c3a13,time-spent(ms)=145,entityEvent=com.bds.datastreaming.EntityEvent@21097cca,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=bdf06074-4d75-40b9-bf9f-f8a1be5c3a13,time-spent(ms)=271,entityEvent=com.bds.datastreaming.EntityEvent@5d701e8e
+project=rtdpp,src=BusinessMetricSink,,name=amount for transaction type ID = -1, value=-1
+project=rtdpp,src=TraceSink,flink-tid=9ed37b9b-ca1c-499e-bb3d-87cb2b1000e4,time-spent(ms)=0,entityEvent=com.bds.datastreaming.EntityEvent@2724b818
+project=rtdpp,src=TraceSink,flink-tid=070651cb-8267-4b84-9888-86f64ec9f9ce,time-spent(ms)=0,entityEvent=com.bds.datastreaming.EntityEvent@74775d31
+project=rtdpp,src=TraceSink,flink-tid=f39333d0-c708-46c3-b880-192a44147435,time-spent(ms)=20,entityEvent=com.bds.datastreaming.EntityEvent@553c905b
+project=rtdpp,src=AlertSink,flink-tid=f39333d0-c708-46c3-b880-192a44147435,time-spent(ms)=102,entityEvent=com.bds.datastreaming.EntityEvent@2825c39d,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=1ff042bb-a5b7-4764-84cd-90a6fb0d99f8,time-spent(ms)=0,entityEvent=com.bds.datastreaming.EntityEvent@41086a52
+project=rtdpp,src=TraceSink,flink-tid=d978ee9f-345e-442f-99d8-bc6a6ab517a0,time-spent(ms)=1,entityEvent=com.bds.datastreaming.EntityEvent@4514379c
+project=rtdpp,src=TraceSink,flink-tid=fec1b9b0-b1a2-482e-ac18-e6e24cc62e92,time-spent(ms)=13,entityEvent=com.bds.datastreaming.EntityEvent@7f1fcbe9
+project=rtdpp,src=TraceSink,flink-tid=453917e7-b11b-451d-9af0-1743b2dcd218,time-spent(ms)=7,entityEvent=com.bds.datastreaming.EntityEvent@58c81774
+project=rtdpp,src=AlertSink,flink-tid=fec1b9b0-b1a2-482e-ac18-e6e24cc62e92,time-spent(ms)=38,entityEvent=com.bds.datastreaming.EntityEvent@4aefb02,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=AlertSink,flink-tid=453917e7-b11b-451d-9af0-1743b2dcd218,time-spent(ms)=26,entityEvent=com.bds.datastreaming.EntityEvent@f0880fd,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=d31045a6-5165-42d6-aceb-1155bdbdbd29,time-spent(ms)=22,entityEvent=com.bds.datastreaming.EntityEvent@112814c9
+project=rtdpp,src=AlertSink,flink-tid=d31045a6-5165-42d6-aceb-1155bdbdbd29,time-spent(ms)=44,entityEvent=com.bds.datastreaming.EntityEvent@3968b487,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=OperationalMetricSink,flink-tid=0c0e1400-2081-4f4b-a552-d7e5dad74fe6,time-spent(ms)=9506,entityEvent=com.bds.datastreaming.EntityEvent@6cc482d4,count/sec=0
+rtdpp-OperationalMetric-max-time-taken:1> timeTaken(ms)=9
+project=rtdpp,src=OperationalMetricSink,flink-tid=0c0e1400-2081-4f4b-a552-d7e5dad74fe6,time-spent(ms)=9478,entityEvent=com.bds.datastreaming.EntityEvent@6e2d2e99,max(ms)=0
+project=rtdpp,src=OperationalMetricSink,flink-tid=0c0e1400-2081-4f4b-a552-d7e5dad74fe6,time-spent(ms)=9532,entityEvent=com.bds.datastreaming.EntityEvent@790b1e6b,min(ms)=0
+project=rtdpp,src=BusinessMetricSink,,name=amount for transaction type ID = -1, value=-1
+project=rtdpp,src=TraceSink,flink-tid=27775daa-6b29-40c4-b01c-23a30cea83b7,time-spent(ms)=2,entityEvent=com.bds.datastreaming.EntityEvent@ab09b23
+project=rtdpp,src=TraceSink,flink-tid=3e3f57ab-4bfe-40b5-b9fc-b003030574db,time-spent(ms)=0,entityEvent=com.bds.datastreaming.EntityEvent@338895b7
+project=rtdpp,src=TraceSink,flink-tid=93b17b20-bff6-45c0-b81d-fbb1f2790449,time-spent(ms)=19,entityEvent=com.bds.datastreaming.EntityEvent@5c82c113
+project=rtdpp,src=AlertSink,flink-tid=93b17b20-bff6-45c0-b81d-fbb1f2790449,time-spent(ms)=101,entityEvent=com.bds.datastreaming.EntityEvent@3a0d7d43,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=de5b4a7c-42b5-44c5-af38-429f123557ab,time-spent(ms)=1,entityEvent=com.bds.datastreaming.EntityEvent@2540a216
+project=rtdpp,src=TraceSink,flink-tid=8b2a6184-d15b-4c6b-9fdc-a293e90171a8,time-spent(ms)=0,entityEvent=com.bds.datastreaming.EntityEvent@4e13d865
+project=rtdpp,src=TraceSink,flink-tid=f5a47b9a-6c85-41af-a38d-f101ec8e1931,time-spent(ms)=12,entityEvent=com.bds.datastreaming.EntityEvent@43ee563
+project=rtdpp,src=TraceSink,flink-tid=252f2479-210a-4a9b-a3f0-b7f26af3f045,time-spent(ms)=8,entityEvent=com.bds.datastreaming.EntityEvent@4f36fd90
+project=rtdpp,src=AlertSink,flink-tid=f5a47b9a-6c85-41af-a38d-f101ec8e1931,time-spent(ms)=55,entityEvent=com.bds.datastreaming.EntityEvent@3867276a,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=AlertSink,flink-tid=252f2479-210a-4a9b-a3f0-b7f26af3f045,time-spent(ms)=42,entityEvent=com.bds.datastreaming.EntityEvent@479c347d,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=2d0e0677-f68a-4eb5-80b0-7ca49c4064da,time-spent(ms)=29,entityEvent=com.bds.datastreaming.EntityEvent@39a8b9f3
+project=rtdpp,src=AlertSink,flink-tid=2d0e0677-f68a-4eb5-80b0-7ca49c4064da,time-spent(ms)=44,entityEvent=com.bds.datastreaming.EntityEvent@71107e97,Start time = 9223372036854775807, name = CompanyId fraud, detail = companyId is 123147681196414
+project=rtdpp,src=TraceSink,flink-tid=7474b618-b1d5-4842-a01c-0aad1e60259b,time-spent(ms)=1,entityEvent=com.bds.datastreaming.EntityEvent@714544b6
+project=rtdpp,src=OperationalMetricSink,flink-tid=93b17b20-bff6-45c0-b81d-fbb1f2790449,time-spent(ms)=4473,entityEvent=com.bds.datastreaming.EntityEvent@13d48e73,max(ms)=1
+project=rtdpp,src=BusinessMetricSink,,name=amount for transaction type ID = -1, value=-1
+project=rtdpp,src=OperationalMetricSink,flink-tid=93b17b20-bff6-45c0-b81d-fbb1f2790449,time-spent(ms)=4560,entityEvent=com.bds.datastreaming.EntityEvent@2d42258d,count/sec=0
+rtdpp-OperationalMetric-max-time-taken:2> timeTaken(ms)=17
+project=rtdpp,src=OperationalMetricSink,flink-tid=93b17b20-bff6-45c0-b81d-fbb1f2790449,time-spent(ms)=4536,entityEvent=com.bds.datastreaming.EntityEvent@6db0b99c,min(ms)=0
