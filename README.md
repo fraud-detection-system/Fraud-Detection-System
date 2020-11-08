@@ -64,18 +64,11 @@ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic Hello-Ka
 
 	generate events from TelecomEventGenerator
 
-# Real Time Data Processing Pipeline
-
-    Detail documentation including requirements and Design document is "docs/BDS Assignment 3 - Real-Time Data Processing Pipeline.pdf"
-
 # Instructions for running
 
-    This system needs 4 sub-systems to be running.
-
-    * Flink
+    This system needs the sub-systems to be running.
     * Apache Kafka
     * Apache Zookeeper
-    * RTDPP (this particular system)
     * Flink
        * Install Flink
        * Start with ./bin/start-cluster.sh
