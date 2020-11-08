@@ -76,7 +76,5 @@ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic Hello-Ka
   
 # Details of implementation
 
-    * There are 7 pipelines
-       * These pipeline output alerts, business metrics, operational metrics and traces.
-       * Some of them are windowed and some not
-       * These workflows are in Workflow.java    
+    * There are 5 streams as shown in TelecomUsageWorkflow
+    * For building eclipse project - run ```mvn eclipse:clean eclipse:eclipse
