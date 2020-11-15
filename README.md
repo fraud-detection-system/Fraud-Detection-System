@@ -1,7 +1,8 @@
 # Local stream
 
 ## Apache Kafka and Zookeeper Installation
-####  1. Install Java
+####  1. Install Java and Maven
+These are pre-requisites for this project.
 ####  2. ZooKeeper Framework Installation
 
 2.1 Download the latest version of Apache ZooKeeper from:
