@@ -1,9 +1,11 @@
-package com.stream.telecom;
+package com.stream.telecom.operators;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.JsonNode;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.flink.util.Collector;
+
+import com.stream.telecom.model.TelecomCallRecord;
 
 public class JsonToTelecomCallRecord implements FlatMapFunction<ObjectNode, TelecomCallRecord> {
 

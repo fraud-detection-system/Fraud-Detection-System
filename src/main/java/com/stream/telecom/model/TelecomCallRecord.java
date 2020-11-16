@@ -1,4 +1,4 @@
-package com.stream.telecom;
+package com.stream.telecom.model;
 
 public class TelecomCallRecord implements Cloneable{
 	

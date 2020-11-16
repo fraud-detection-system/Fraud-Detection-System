@@ -1,7 +1,9 @@
 /**
  * 
  */
-package com.stream;
+package com.stream.telecom;
+
+import static com.stream.telecom.integration.LocalKafka.*;
 
 import java.util.Date;
 import java.util.Properties;
@@ -18,9 +20,7 @@ import org.apache.kafka.connect.json.JsonSerializer;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.stream.telecom.TelecomCallRecord;
-
-import static com.stream.integration.LocalKafka.*;
+import com.stream.telecom.model.TelecomCallRecord;
 
 /**
  * @author bdutt

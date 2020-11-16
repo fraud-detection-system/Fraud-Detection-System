@@ -1,4 +1,4 @@
-package com.stream.workflow;
+package com.stream.accounting;
 
 import org.apache.avro.generic.GenericData;
 import org.apache.flink.api.java.functions.KeySelector;
@@ -12,24 +12,7 @@ import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindo
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 
-import com.stream.accounting.AlertSink;
-import com.stream.accounting.AlertWindowFunction;
-import com.stream.accounting.AmountAggregator;
-import com.stream.accounting.AvroToEntity;
-import com.stream.accounting.AvroToEntityEvent;
-import com.stream.accounting.BusinessMetricAggregator;
-import com.stream.accounting.BusinessMetricSink;
-import com.stream.accounting.CompanyIdAndAmountFraudDetector;
-import com.stream.accounting.EntityEvent;
-import com.stream.accounting.GenerateFlinkTid;
-import com.stream.accounting.GenerateFlinkTimestamp;
-import com.stream.accounting.KafkaConsumer;
-import com.stream.accounting.Metric;
-import com.stream.accounting.MetricSource;
-import com.stream.accounting.MyTrigger;
-import com.stream.accounting.OperationalMetricSink;
-import com.stream.accounting.PostgresSink;
-import com.stream.accounting.TraceSink;
+import com.stream.Workflow;
 
 public class AccountingWorkflow extends Workflow {
 

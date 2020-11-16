@@ -1,4 +1,4 @@
-package com.stream.telecom;
+package com.stream.telecom.operators;
 
 
 import org.apache.flink.streaming.api.functions.sink.SinkFunction;

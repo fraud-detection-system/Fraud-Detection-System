@@ -1,4 +1,4 @@
-package com.stream.workflow;
+package com.stream.telecom;
 
 
 import org.apache.flink.api.java.functions.KeySelector;
@@ -15,14 +15,14 @@ import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindo
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.util.Collector;
 
-import com.stream.TelecomSystem;
-import com.stream.integration.LocalKafka;
-import com.stream.telecom.AlertSink;
-import com.stream.telecom.JsonToTelecomCallRecord;
-import com.stream.telecom.TelecomCallRecord;
-import com.stream.telecom.TelecomUsageAlert;
-import com.stream.telecom.ThresholdBasedAlerter;
-import com.stream.telecom.ValidTelecomCallRecordTrigger;
+import com.stream.Workflow;
+import com.stream.telecom.integration.LocalKafka;
+import com.stream.telecom.model.TelecomCallRecord;
+import com.stream.telecom.operators.AlertSink;
+import com.stream.telecom.operators.JsonToTelecomCallRecord;
+import com.stream.telecom.operators.TelecomUsageAlert;
+import com.stream.telecom.operators.ThresholdBasedAlerter;
+import com.stream.telecom.operators.ValidTelecomCallRecordTrigger;
 
 public class TelecomUsageWorkflow extends Workflow{
 

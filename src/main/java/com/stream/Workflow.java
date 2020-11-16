@@ -1,4 +1,4 @@
-package com.stream.workflow;
+package com.stream;
 
 public class Workflow {
 

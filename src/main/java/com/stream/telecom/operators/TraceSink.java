@@ -1,10 +1,9 @@
-package com.stream.telecom;
+package com.stream.telecom.operators;
 
 
 import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 
-import com.stream.TelecomSystem;
-import com.stream.telecom.TelecomUsageAlert;
+import com.stream.telecom.TelecomSystem;
 
 
 public class TraceSink implements SinkFunction<TelecomUsageAlert> {

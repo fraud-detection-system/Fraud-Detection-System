@@ -1,4 +1,4 @@
-package com.stream.telecom;
+package com.stream.telecom.operators;
 
 public class TelecomUsageAlert {
 	

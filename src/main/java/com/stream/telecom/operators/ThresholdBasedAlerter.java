@@ -1,10 +1,11 @@
-package com.stream.telecom;
+package com.stream.telecom.operators;
 
 import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.util.Collector;
 
-import com.stream.TelecomSystem;
+import com.stream.telecom.TelecomSystem;
+import com.stream.telecom.model.TelecomCallRecord;
 
 public class ThresholdBasedAlerter extends ProcessWindowFunction<TelecomCallRecord, TelecomUsageAlert, Object, TimeWindow> {
 	/**

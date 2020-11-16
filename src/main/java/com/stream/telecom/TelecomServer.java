@@ -1,19 +1,21 @@
-package com.stream;
+package com.stream.telecom;
 
-import com.stream.workflow.TelecomUsageWorkflow;
-import com.stream.workflow.Workflow;
+import com.stream.Server;
+import com.stream.Workflow;
 
 /**
  * Application main - start here
  *
  */
-public class TelecomServer 
+public class TelecomServer extends Server
 {
     public static void main( String[] args ) throws Exception
     {
-       run();
+       (new TelecomServer()).run();
     }
-    public static void run() throws Exception {
+    
+    @Override
+    public void run() throws Exception {
     	 System.out.println( TelecomServer.class.getCanonicalName()+" Starting!" );
          Workflow workflow = new TelecomUsageWorkflow();
          workflow.run();

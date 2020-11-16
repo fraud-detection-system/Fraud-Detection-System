@@ -1,6 +1,8 @@
-package com.stream;
+package com.stream.telecom;
 
-public class TelecomSystem {
+import com.stream.StreamProcessingSystem;
+
+public class TelecomSystem extends StreamProcessingSystem {
 	public enum MessageType { STRING, JSON};
 	public static final MessageType messageType = MessageType.JSON;
 	public static final String SYSTEM_NAME = "Telecom";

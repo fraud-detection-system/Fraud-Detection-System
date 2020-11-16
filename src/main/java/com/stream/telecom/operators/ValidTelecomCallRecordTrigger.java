@@ -1,8 +1,10 @@
-package com.stream.telecom;
+package com.stream.telecom.operators;
 
 import org.apache.flink.streaming.api.windowing.triggers.Trigger;
 import org.apache.flink.streaming.api.windowing.triggers.TriggerResult;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
+
+import com.stream.telecom.model.TelecomCallRecord;
 
 public class ValidTelecomCallRecordTrigger extends Trigger<TelecomCallRecord, TimeWindow> {
 	/**

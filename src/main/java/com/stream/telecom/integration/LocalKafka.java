@@ -1,13 +1,9 @@
-package com.stream.integration;
+package com.stream.telecom.integration;
 
 import java.util.Collections;
 import java.util.Properties;
-import java.util.UUID;
-import java.util.regex.Pattern;
 
-import org.apache.avro.generic.GenericData;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
-import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.JsonSerializer;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
@@ -16,14 +12,8 @@ import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.LongDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.apache.kafka.common.serialization.StringSerializer;
-
-import com.stream.TelecomSystem;
-import com.stream.accounting.KafkaGenericAvroDeserializationSchema;
-import com.stream.telecom.TelecomCallRecord;
 
 public class LocalKafka {
 	
