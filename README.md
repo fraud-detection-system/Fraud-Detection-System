@@ -13,8 +13,8 @@ These are pre-requisites for this project.
               
 2.2 Extract tar file using the following command
 ```$ cd opt/
-$ tar -zxf zookeeper-3.4.6.tar.gz
-$ cd zookeeper-3.4.6
+$ tar -zxf zookeeper-<version>.tar.gz
+$ cd zookeeper-<version>
 $ mkdir data
 ```
 2.3. Create Configuration File
@@ -37,20 +37,21 @@ $ mkdir data
 #### 3. Apache Kafka Installation
 
 3.1 Download Kafka
-To install Kafka on your machine, click on the below link −
+To install Kafka on your machine, start here,
 
-    https://www.apache.org/dyn/closer.cgi?path=/kafka/0.9.0.0/kafka_2.11-0.9.0.0.tgz        
+    https://kafka.apache.org/downloads       
 
 3.2 Extract the tar file
 
-```$ cd opt/ <br>
-$ tar -zxf kafka_2.11.0.9.0.0 tar.gz <br>
-$ cd kafka_2.11.0.9.0. <br>
+```$ cd opt/
+$ tar -zxf kafka_<version> tar.gz
+$ cd kafka_<version>
 ```
+
 3.3 Start Server
     $ bin/kafka-server-start.sh config/server.properties
 
-4. Try below commands to check if Kafka is installed and is running properly.
+#### 4. Try below commands to check if Kafka is installed and is running properly.
     
 ```
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic Hello-Kafka
@@ -58,6 +59,8 @@ bin/kafka-topics.sh --list --zookeeper localhost:2181
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic Hello-Kafka
 bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic Hello-Kafka --from-beginning
 ```
+
+Make sure start-local-stream.sh is updated with versions of ZooKeeper and Kafka
 
 ## How to run
 
@@ -80,7 +83,7 @@ Run following commands to bring these systems up
  
  	mvn eclipse:clean eclipse:eclipse  
   
-# Details of implementation
+## Details of implementation
 
    * Focus on com.stream.telecom package
    * There are 5 streams as shown in TelecomUsageWorkflow
