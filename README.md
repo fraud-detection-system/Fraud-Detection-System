@@ -1,6 +1,8 @@
-# Local stream
+# Streaming with Flink
 
-## Apache Kafka and Zookeeper Installation
+## Setup
+
+### Apache Kafka and Zookeeper Installation
 ####  1. Install Java and Maven
 These are pre-requisites for this project.
 ####  2. ZooKeeper Framework Installation
@@ -10,18 +12,18 @@ These are pre-requisites for this project.
                  http://zookeeper.apache.org/releases.html
               
 2.2 Extract tar file using the following command
-```$ cd opt/ <br>
-$ tar -zxf zookeeper-3.4.6.tar.gz <br>
-$ cd zookeeper-3.4.6<br>
-$ mkdir data <br>
+```$ cd opt/
+$ tar -zxf zookeeper-3.4.6.tar.gz
+$ cd zookeeper-3.4.6
+$ mkdir data
 ```
-2.3. Create Configuration File <br>
-   ``` $ vi conf/zoo.cfg <br>
-    tickTime=2000 <br>
-    dataDir=/path/to/zookeeper/data <br>
-    clientPort=2181 <br>
-    initLimit=5 <br>
-    syncLimit=2             <br>    
+2.3. Create Configuration File
+   ``` $ vi conf/zoo.cfg
+    tickTime=2000
+    dataDir=/path/to/zookeeper/data
+    clientPort=2181
+    initLimit=5
+    syncLimit=2   
 ````
 
 2.4 Start ZooKeeper Server 
@@ -48,10 +50,9 @@ $ cd kafka_2.11.0.9.0. <br>
 3.3 Start Server
     $ bin/kafka-server-start.sh config/server.properties
 
-4. Test sample code for Kafka producer:
-    https://dzone.com/articles/kafka-producer-and-consumer-example
+4. Try below commands to check if Kafka is installed and is running properly.
     
-```bin/kafka-server-start.sh config/server.properties
+```
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic Hello-Kafka
 bin/kafka-topics.sh --list --zookeeper localhost:2181
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic Hello-Kafka
@@ -59,23 +60,28 @@ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic Hello-Ka
 ```
 
 ## How to run
-	Run ./start-local-stream.sh
 
-	mvn clean install
+This system needs the sub-systems to be running.
 
-	generate events from TelecomEventGenerator
+   * Apache Kafka
+   * Apache Zookeeper
+   * Flink based Stream server
+   * Event generator to simulate real life events
+   
+Run following commands to bring these systems up
 
-# Instructions for running
+	Run ./start-local-stream.sh         -> This brings us first two
 
-    This system needs the sub-systems to be running.
-    * Apache Kafka
-    * Apache Zookeeper
-    * Flink
-       * Install Flink
-       * Start with ./bin/start-cluster.sh
-       * To stop ./bin/stop-cluster.sh
+	mvn clean install                   -> This brings up third
+
+	generate events from TelecomEventGenerator  -> For fourth component
+
+ For generating eclipse project - run
+ 
+ 	mvn eclipse:clean eclipse:eclipse  
   
 # Details of implementation
 
-    * There are 5 streams as shown in TelecomUsageWorkflow
-    * For building eclipse project - run ```mvn eclipse:clean eclipse:eclipse
+   * Focus on com.stream.telecom package
+   * There are 5 streams as shown in TelecomUsageWorkflow
+   * Look in alerts* folder for output 
