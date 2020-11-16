@@ -1,5 +1,7 @@
 # Streaming with Flink
 
+Read the medium article - [Streaming system tutorial with Flink and Kafka](https://medium.com/@bala.dutt/streaming-system-tutorial-with-flink-and-kafka-9c445e4daa6c)
+
 ## Setup
 
 ### Apache Kafka and Zookeeper Installation
