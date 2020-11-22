@@ -1,0 +1,4 @@
+{
+  "userId": "{{integer(1,10)}}",
+  "amount": {{double(0,100000,"%.2f")}}
+}

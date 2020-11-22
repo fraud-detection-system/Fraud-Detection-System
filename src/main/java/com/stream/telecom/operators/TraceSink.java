@@ -6,7 +6,7 @@ import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 import com.stream.telecom.TelecomSystem;
 
 
-public class TraceSink implements SinkFunction<TelecomUsageAlert> {
+public class TraceSink<T> implements SinkFunction<T> {
 
     /**
 	 * 
@@ -17,16 +17,16 @@ public class TraceSink implements SinkFunction<TelecomUsageAlert> {
     }
 
     @Override
-    public void invoke(TelecomUsageAlert Alert, Context context) throws Exception {
+    public void invoke(T Alert, Context context) throws Exception {
     	log(Alert, TraceSink.class.getSimpleName());
     }
     
-    public static void log(TelecomUsageAlert Alert, String logSource) {
+    public void log(T Alert, String logSource) {
     	log(Alert, logSource, null);
     	
     }
 
-	public static void log(TelecomUsageAlert Alert, String logSource, String msg) {
+	public void log(T Alert, String logSource, String msg) {
 		StringBuffer sb = new StringBuffer();
     	sb
     	   .append("--------     system=")
