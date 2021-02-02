@@ -1,0 +1,12 @@
+{
+  "normalActor" : {
+  	"count": 9,
+  	"startAt": 0,
+  	"sleepAfterEveryActionInSeconds" : 10
+  },
+  "abnormalActor" : {
+  	"count": 1,
+  	"startAt": 10,
+  	"sleepAfterEveryActionInSeconds" : 50
+  }
+}

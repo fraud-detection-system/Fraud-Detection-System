@@ -1,0 +1,11 @@
+{
+  "starting" : "login",
+  "login": {
+  	"createInvoice" : 80,
+  	"logout" : 20
+  },
+  "createInvoice" : {
+  	"createInvoice" : 70,
+  	"logout" : 30
+  }
+}
