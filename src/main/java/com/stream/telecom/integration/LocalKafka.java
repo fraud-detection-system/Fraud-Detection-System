@@ -21,11 +21,11 @@ public class LocalKafka {
 	
 	public static Integer MESSAGE_COUNT=1000;
 	
-	public static String CLIENT_ID="client1";
+	public static String CLIENT_ID="client2";
 	
-	public static String TOPIC_NAME="telecom-callrecords";
+	public static String TOPIC_NAME="txnevents";
 	
-	public static String GROUP_ID_CONFIG="consumerGroup10";
+	public static String GROUP_ID_CONFIG="consumerGroup";
 	
 	public static Integer MAX_NO_MESSAGE_FOUND_COUNT=100;
 	

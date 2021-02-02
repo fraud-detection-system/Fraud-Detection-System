@@ -1,0 +1,3082 @@
+{
+  "isIncrementalDefinition": true,
+  "preCollapseFixUp": "balsheet_ca",
+  "axesDef": {
+    "rowAxis": {
+      "isTAxis": true,
+      "extends": "NONE",
+      "name": "qbo.reports.axis.balsheet.in.BalanceSheetTFormatAccountRowAxis",
+      "nodesDef": {
+        "nodes": [
+          {
+            "amountSignFlip": false,
+            "tBreak": true,
+            "footer": "Total of Liabilities",
+            "children": [
+              {
+                "amountSignFlip": true,
+                "footer": "Total of Equity",
+                "children": [
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Accumulated adjustment",
+                    "name": "AccumulatedAdjustment",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "3010"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Accumulated adjustment",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Capital Reserves",
+                    "name": "CapitalReserves",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7720"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Capital Reserves",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Dividend disbursed",
+                    "name": "DividendDisbursed",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7460"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Dividend disbursed",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Equity in earnings of subsidiaries",
+                    "name": "EquityInEarningsOfSubsidiaries",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7430"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Equity in earnings of subsidiaries",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Funds",
+                    "name": "Funds",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7730"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Funds",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Money Received Against Share Warrants",
+                    "name": "MoneyReceivedAgainstShareWarrants",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7740"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Money Received Against Share Warrants",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Opening Balance Equity",
+                    "name": "OpeningBalanceEquity",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "3040"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Opening Balance Equity",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Ordinary shares",
+                    "name": "OrdinaryShares",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "3020"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Ordinary shares",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Other Free Reserves",
+                    "name": "OtherFreeReserves",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7710"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Other Free Reserves",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Other comprehensive income",
+                    "name": "OtherComprehensiveIncome",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7540"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Other comprehensive income",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Owner’s Equity",
+                    "name": "OwnersEquity",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "3050"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Owner’s Equity",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Paid-in capital or surplus",
+                    "name": "PaidInCapitalOrSurplus",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "3028"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Paid-in capital or surplus",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Partner Contributions",
+                    "name": "PartnerContributions",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "3062"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Partner Contributions",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Partner Distributions",
+                    "name": "PartnerDistributions",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "3064"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Partner Distributions",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Partner’s Equity",
+                    "name": "PartnersEquity",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "3060"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Partner’s Equity",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Preferred shares",
+                    "name": "PreferredShares",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "3025"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Preferred shares",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "qzURLOverride": "reports/ProfitAndLossReport?token=PANDL&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                    "criteria": [
+                      {
+                        "expression": "AccountType",
+                        "valueType": "alphanumeric",
+                        "value": "10,11,12,13,14,15"
+                      },
+                      {
+                        "evaluationPhase": "runtime",
+                        "valueType": "date",
+                        "dbFieldRef": "txDate",
+                        "value": "currFY"
+                      }
+                    ],
+                    "name": "Profit for the year",
+                    "dbFieldRef": "txDate",
+                    "id": "ProfitForTheYear",
+                    "nodeType": "DetailNode"
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "qzDisabled": true,
+                    "criteria": [
+                      {
+                        "expression": "AccountType",
+                        "valueType": "alphanumeric",
+                        "value": "10,11,12,13,14,15"
+                      },
+                      {
+                        "expression": "DetailAccountType",
+                        "valueType": "alphanumeric",
+                        "value": "3070"
+                      },
+                      {
+                        "evaluationPhase": "runtime",
+                        "valueType": "date",
+                        "dbFieldRef": "txDate",
+                        "value": "prevFY"
+                      }
+                    ],
+                    "name": "Retained Earnings",
+                    "dbFieldRef": "txDate",
+                    "id": "RetainedEarnings",
+                    "nodeType": "DetailNode"
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Share Application Money Pending Allotment",
+                    "name": "ShareApplicationMoneyPendingAllotment",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7750"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Share Application Money Pending Allotment",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Share capital",
+                    "name": "ShareCapital",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7260"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Share capital",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Treasury Shares",
+                    "name": "TreasuryShares",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "3029"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Treasury Shares",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  }
+                ],
+                "name": "Equity",
+                "header": "Equity",
+                "formula": "{SumChildren}",
+                "nodeType": "TotalNode",
+                "isTotalNode": true,
+                "collapsible": true
+              },
+              {
+                "amountSignFlip": true,
+                "footer": "Total of Non-Current Liabilities",
+                "children": [
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Accrued holiday payable",
+                    "name": "AccruedHolidayPayable",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7330"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Accrued holiday payable",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Accrued non-current liabilities",
+                    "name": "AccruedNonCurrentLiabilities",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7320"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Accrued non-current liabilities",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Deferred Tax Liabilities",
+                    "name": "DeferredTaxLiabilities",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7760"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Deferred Tax Liabilities",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Liabilities related to assets held for sale",
+                    "name": "LiabilitiesRelatedToAssetsHeldForSale",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7410"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Liabilities related to assets held for sale",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Long Term Borrowings from Related Parties",
+                    "name": "LongTermBorrowingsFromRelatedParties",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7080"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Long Term Borrowings from Related Parties",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Long Term Provisions for Employee Benefits",
+                    "name": "LongTermProvisionsForEmployeeBenefits",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7200"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Long Term Provisions for Employee Benefits",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Long-term debt",
+                    "name": "LongTermDebt",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7420"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Long-term debt",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Notes Payable",
+                    "name": "NotesPayable",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2810"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Notes Payable",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Other Long Term Provisions",
+                    "name": "OtherLongTermProvisions",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7770"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Other Long Term Provisions",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Other non-current liabilities",
+                    "name": "OtherNonCurrentLiabilities",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2830"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Other non-current liabilities",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Shareholder Notes Payable",
+                    "name": "ShareholderNotesPayable",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2820"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Shareholder Notes Payable",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  }
+                ],
+                "name": "NonCurrentLiabilities",
+                "header": "Non-Current Liabilities",
+                "formula": "{SumChildren}",
+                "nodeType": "TotalNode",
+                "isTotalNode": true,
+                "collapsible": true
+              },
+              {
+                "amountSignFlip": true,
+                "footer": "Total of Credit Card",
+                "children": [
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Credit Card",
+                    "name": "CreditCard",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2015"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Credit Card",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  }
+                ],
+                "name": "CreditCard",
+                "header": "Credit Card",
+                "formula": "{SumChildren}",
+                "nodeType": "TotalNode",
+                "isTotalNode": true,
+                "collapsible": true
+              },
+              {
+                "amountSignFlip": true,
+                "footer": "Total of Current Liabilities",
+                "children": [
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Accrued liabilities",
+                    "name": "AccruedLiabilities",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7310"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Accrued liabilities",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Client Trust Account – Liabilities",
+                    "name": "ClientTrustAccountLiabilities",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2060"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Client Trust Account – Liabilities",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Current Liabilities",
+                    "name": "CurrentLiabilities",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2530"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Current Liabilities",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Current portion of obligations under finance leases",
+                    "name": "CurrentPortionOfObligationsUnderFinanceLeases",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7270"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Current portion of obligations under finance leases",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Dividends payable",
+                    "name": "DividendsPayable",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7600"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Dividends payable",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Duties and Taxes",
+                    "name": "DutiesAndTaxes",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7880"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Duties and Taxes",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Income tax payable",
+                    "name": "IncomeTaxPayable",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7370"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Income tax payable",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Insurance Payable",
+                    "name": "InsurancePayable",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2020"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Insurance Payable",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Line of Credit",
+                    "name": "LineOfCredit",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2505"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Line of Credit",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Loan Payable",
+                    "name": "LoanPayable",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2510"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Loan Payable",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Other current liabilities",
+                    "name": "OtherCurrentLiabilities",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7630"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Other current liabilities",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Payroll liabilities",
+                    "name": "PayrollLiabilities",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2040"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Payroll liabilities",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Prepaid Expenses Payable",
+                    "name": "PrepaidExpensesPayable",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2520"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Prepaid Expenses Payable",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Rents in trust – Liability",
+                    "name": "RentsInTrustLiability",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2061"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Rents in trust – Liability",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Short Term Borrowings from Related Parties",
+                    "name": "ShortTermBorrowingsFromRelatedParties",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7110"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Short Term Borrowings from Related Parties",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Short Term Provisions for Employee Benefits",
+                    "name": "ShortTermProvisionsForEmployeeBenefits",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7190"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Short Term Provisions for Employee Benefits",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Short-term provisions",
+                    "name": "ShortTermProvisions",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2540"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Short-term provisions",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Sales and service tax payable",
+                    "name": "SalesAndServiceTaxPayable",
+                    "header": "Sales and service tax payable",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2070"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Tax Suspense",
+                    "name": "TaxSuspense",
+                    "header": "Tax Suspense",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2071"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  }
+                ],
+                "name": "CurrentLiabilities",
+                "header": "Current Liabilities",
+                "formula": "{SumChildren}",
+                "nodeType": "TotalNode",
+                "isTotalNode": true,
+                "collapsible": true
+              },
+              {
+                "amountSignFlip": true,
+                "footer": "Total of Accounts Payable (Creditors)",
+                "children": [
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Accounts Payable (Creditors)",
+                    "name": "AccountsPayableCreditors",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2010"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Accounts Payable (Creditors)",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of MSME Payables",
+                    "name": "MSMEPayables",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2011"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "MSME Payables",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": true,
+                    "footer": "Total of Non - MSME Payables",
+                    "name": "NonMSMEPayables",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2012"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Non - MSME Payables",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  }
+                ],
+                "name": "AccountsPayable",
+                "header": "Accounts Payable (Creditors)",
+                "formula": "{SumChildren}",
+                "nodeType": "TotalNode",
+                "isTotalNode": true,
+                "collapsible": true
+              },
+              {
+                "amountSignFlip": true,
+                "criteria": [
+                  {
+                    "expression": "AccountType",
+                    "valueType": "String",
+                    "value": "5,6,7,8,9"
+                  }
+                ],
+                "name": "Other Liabilities",
+                "id": "OtherLiabilities",
+                "nodeType": "DetailNode",
+                "isFallbackNode": true
+              }
+            ],
+            "name": "Liabilities",
+            "header": "Liabilities",
+            "formula": "{SumChildren}",
+            "isGrandTotal": true,
+            "nodeType": "TotalNode",
+            "isTotalNode": true,
+            "collapsible": false,
+            "qzDisabled": true
+          },
+          {
+            "amountSignFlip": false,
+            "footer": "Total of Assets",
+            "children": [
+              {
+                "amountSignFlip": false,
+                "footer": "Total of Fixed Assets",
+                "children": [
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Accumulated Depreciation",
+                    "name": "AccumulatedDepreciation",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1455"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Accumulated Depreciation",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Accumulated depletion",
+                    "name": "AccumulatedDepletion",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1465"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Accumulated depletion",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Buildings",
+                    "name": "Buildings",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1410"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Buildings",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Capital Work-in-Progress",
+                    "name": "CapitalWorkInProgress",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7780"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Capital Work-in-Progress",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Depletable Assets",
+                    "name": "DepletableAssets",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1460"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Depletable Assets",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Furniture and Fixtures",
+                    "name": "FurnitureAndFixtures",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1420"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Furniture and Fixtures",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Intangible Assets Under Development",
+                    "name": "IntangibleAssetsUnderDevelopment",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7790"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Intangible Assets Under Development",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Land",
+                    "name": "Land",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7570"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Land",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Leasehold Improvements",
+                    "name": "LeaseholdImprovements",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1430"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Leasehold Improvements",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Machinery and equipment",
+                    "name": "MachineryAndEquipment",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1440"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Machinery and equipment",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Other fixed assets",
+                    "name": "OtherFixedAssets",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1445"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Other fixed assets",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Other Intangible assets",
+                    "name": "OtherIntangibleAssets",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1470"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Other Intangible assets",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Vehicles",
+                    "name": "Vehicles",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1450"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Vehicles",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  }
+                ],
+                "name": "FixedAssets",
+                "header": "Fixed Assets",
+                "formula": "{SumChildren}",
+                "nodeType": "TotalNode",
+                "isTotalNode": true,
+                "collapsible": true
+              },
+              {
+                "amountSignFlip": false,
+                "footer": "Total of Non-Current Assets",
+                "children": [
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Accumulated amortization of non-current assets",
+                    "name": "AccumulatedAmortizationOfNonCurrentAssets",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1700"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Accumulated amortization of non-current assets",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Assets held for sale",
+                    "name": "AssetsHeldForSale",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7300"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Assets held for sale",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Deferred Tax Asset",
+                    "name": "DeferredTaxAsset",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7020"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Deferred Tax Asset",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Goodwill",
+                    "name": "Goodwill",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1610"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Goodwill",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Intangible Assets",
+                    "name": "IntangibleAssets",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7060"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Intangible Assets",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Lease Buyout",
+                    "name": "LeaseBuyout",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1620"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Lease Buyout",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Licenses",
+                    "name": "Licenses",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1630"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Licenses",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Long Term Loans and Advances to Related Parties",
+                    "name": "LongTermLoansAndAdvancesToRelatedParties",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7810"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Long Term Loans and Advances to Related Parties",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Long-term investments in related entities",
+                    "name": "LongTermInvestmentsInRelatedEntities",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7590"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Long-term investments in related entities",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Organisational Costs",
+                    "name": "OrganisationalCosts",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1640"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Organisational Costs",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Other Long Term Investments",
+                    "name": "OtherLongTermInvestments",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7800"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Other Long Term Investments",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Other Long Term Loans and Advances",
+                    "name": "OtherLongTermLoansAndAdvances",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7820"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Other Long Term Loans and Advances",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Other Long-term Assets",
+                    "name": "OtherLongTermAssets",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1660"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Other Long-term Assets",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Security Deposits",
+                    "name": "SecurityDeposits",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1650"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Security Deposits",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  }
+                ],
+                "name": "NonCurrentAssets",
+                "header": "Non-Current Assets",
+                "formula": "{SumChildren}",
+                "nodeType": "TotalNode",
+                "isTotalNode": true,
+                "collapsible": true
+              },
+              {
+                "amountSignFlip": false,
+                "footer": "Total of Current Assets",
+                "children": [
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Allowance for bad debts",
+                    "name": "AllowanceForBadDebts",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1041"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Allowance for bad debts",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Assets available for sale",
+                    "name": "AssetsAvailableForSale",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7550"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Assets available for sale",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Balance with Government Authorities",
+                    "name": "BalanceWithGovernmentAuthorities",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7890"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Balance with Government Authorities",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Deferred Service Tax Input Credit",
+                    "name": "DeferredServiceTaxInputCredit",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2073"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Deferred Service Tax Input Credit",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Development Costs",
+                    "name": "DevelopmentCosts",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1210"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Development Costs",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Employee Cash Advances",
+                    "name": "EmployeeCashAdvances",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1032"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Employee Cash Advances",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Inventory",
+                    "name": "Inventory",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1220"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Inventory",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Investments - Other",
+                    "name": "InvestmentsOther",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1340"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Investments - Other",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Service Tax Refund",
+                    "name": "ServiceTaxRefund",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "2072"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Service Tax Refund",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Loans To Officers",
+                    "name": "LoansToOfficers",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1250"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Loans To Officers",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Loans to Others",
+                    "name": "LoansToOthers",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1260"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Loans to Others",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Loans to Shareholders",
+                    "name": "LoansToShareholders",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1255"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Loans to Shareholders",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Other current assets",
+                    "name": "OtherCurrentAssets",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1270"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Other current assets",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Prepaid Expenses",
+                    "name": "PrepaidExpenses",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1050"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Prepaid Expenses",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Retainage",
+                    "name": "Retainage",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1055"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Retainage",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Short Term Investment in Related Parties",
+                    "name": "ShortTermInvestmentInRelatedParties",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7830"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Short Term Investment in Related Parties",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Short Term Loans and Advances to Related Parties",
+                    "name": "ShortTermLoansAndAdvancesToRelatedParties",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7850"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Short Term Loans and Advances to Related Parties",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Undeposited Funds",
+                    "name": "UndepositedFunds",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1060"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Undeposited Funds",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  }
+                ],
+                "name": "CurrentAssets",
+                "header": "Current Assets",
+                "formula": "{SumChildren}",
+                "nodeType": "TotalNode",
+                "isTotalNode": true,
+                "collapsible": true
+              },
+              {
+                "amountSignFlip": false,
+                "footer": "Total of Bank",
+                "children": [
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Cash and cash equivalents",
+                    "name": "CashAndCashEquivalents",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7340"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Cash and cash equivalents",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Cash on hand",
+                    "name": "CashOnHand",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1020"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Cash on hand",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Client trust account",
+                    "name": "ClientTrustAccount",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1030"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Client trust account",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Current",
+                    "name": "Current",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1010"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Current",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Money Market",
+                    "name": "MoneyMarket",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1014"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Money Market",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Other Earmarked Bank Accounts",
+                    "name": "OtherEarmarkedBankAccounts",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "7840"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Other Earmarked Bank Accounts",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Rents Held in Trust",
+                    "name": "RentsHeldInTrust",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1031"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Rents Held in Trust",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  },
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Savings",
+                    "name": "Savings",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1012"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Savings",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  }
+                ],
+                "name": "Bank",
+                "header": "Bank",
+                "formula": "{SumChildren}",
+                "nodeType": "TotalNode",
+                "isTotalNode": true,
+                "collapsible": true
+              },
+              {
+                "amountSignFlip": false,
+                "footer": "Total of Accounts Receivable (Debtors)",
+                "children": [
+                  {
+                    "amountSignFlip": false,
+                    "footer": "Total of Accounts Receivable (Debtors)",
+                    "name": "AccountsReceivableDebtors",
+                    "formula": "{SumChildren}",
+                    "autoNodeDef": {
+                      "showTotalNode": false,
+                      "criteria": [
+                        {
+                          "expression": "DetailAccountType",
+                          "valueType": "alphanumeric",
+                          "value": "1040"
+                        }
+                      ],
+                      "qzInfo": {
+                        "qzURLOverride": "txreports/QZReport?token=GENERIC_QZREPORT&groupby=(Account/AccountTypeID,Account/OrderName&collapse_subs=false&parenttoken=BAL_SHEET_T_FORMAT_IN",
+                        "qzDisabled": false
+                      },
+                      "showFallbackNode": false,
+                      "labelExpression": "name"
+                    },
+                    "header": "Accounts Receivable (Debtors)",
+                    "nodeType": "TotalNode",
+                    "collapsible": true,
+                    "isTotalNode": true
+                  }
+                ],
+                "name": "AccountsReceivable",
+                "header": "Accounts Receivable (Debtors)",
+                "formula": "{SumChildren}",
+                "nodeType": "TotalNode",
+                "isTotalNode": true,
+                "collapsible": true
+              },
+              {
+                "amountSignFlip": false,
+                "criteria": [
+                  {
+                    "expression": "AccountType",
+                    "valueType": "String",
+                    "value": "0,1,2,3,4"
+                  }
+                ],
+                "name": "Other Assets",
+                "id": "OtherAssets",
+                "nodeType": "DetailNode",
+                "isFallbackNode": true
+              }
+            ],
+            "name": "Assets",
+            "header": "Assets",
+            "formula": "{SumChildren}",
+            "isGrandTotal": true,
+            "nodeType": "TotalNode",
+            "isTotalNode": true,
+            "collapsible": false,
+            "qzDisabled": true
+          }
+        ],
+        "dataSource": {
+          "cachedListType": "Account",
+          "sourceType": "cachedList"
+        }
+      },
+      "axisType": "ROW_AXIS",
+      "totalKey": "Assets"
+    }
+  },
+  "name": "qbo.reports.summary.balsheet.in.BalanceSheetTFormatReport",
+  "title": "Balance Sheet",
+  "type": "SUMMARY",
+  "reportOptions": [
+    {
+      "optName": "SHOW_ROWS",
+      "optArgs": [
+        {
+          "valueDataType": "string",
+          "value": "active"
+        }
+      ]
+    }
+  ],
+  "isCumulativeReport": true,
+  "dataAcquisition": {
+    "dbCrits": [
+      {
+        "valueDataType": "boolean",
+        "value": "false",
+        "key": "nopost"
+      },
+      {
+        "valueDataType": "string",
+        "value": "*",
+        "key": "account"
+      }
+    ],
+    "dbFields": [
+      {
+        "field": "Account/AccountID",
+        "toBeDisplayed": false,
+        "id": "accountId",
+        "isSummary": false
+      },
+      {
+        "field": "Account/AccountTypeID",
+        "toBeDisplayed": false,
+        "id": "accountTypeId",
+        "isSummary": false
+      },
+      {
+        "field": "Account/DetailAccountType",
+        "toBeDisplayed": false,
+        "id": "detailAccountType",
+        "isSummary": false
+      },
+      {
+        "fieldMacro": "contextHighDate",
+        "toBeDisplayed": false,
+        "id": "txDate",
+        "isSummary": false
+      }
+    ]
+  }
+}

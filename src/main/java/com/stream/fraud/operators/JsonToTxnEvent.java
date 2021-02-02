@@ -19,6 +19,8 @@ public class JsonToTxnEvent implements FlatMapFunction<ObjectNode, TxnEvent> {
         JsonNode jsonNode = jsonObj.get("value");
         fraudEvent.setUserId(jsonNode.get("userId").textValue());
         fraudEvent.setAmount(jsonNode.get("amount").doubleValue());
+        fraudEvent.setMilesFromLastTxn(jsonNode.get("milesFromLastTxn").intValue());
+        fraudEvent.setHoursFromLastTxn(jsonNode.get("hoursFromLastTxn").intValue());
 
         collector.collect(fraudEvent);
     }

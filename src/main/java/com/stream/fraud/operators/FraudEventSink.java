@@ -22,6 +22,6 @@ public class FraudEventSink implements SinkFunction<FraudTxn> {
 
     @Override
     public void invoke(FraudTxn alert, Context context) throws Exception {
-		traceSink.log(alert, FraudEventSink.class.getSimpleName(), "Stream Name="+this.streamName +", userId = "+alert.getUserId());
+		traceSink.log(alert, FraudEventSink.class.getSimpleName(), "Stream Name="+this.streamName +", FRAUD!!! = "+alert.toString());
     }
 }

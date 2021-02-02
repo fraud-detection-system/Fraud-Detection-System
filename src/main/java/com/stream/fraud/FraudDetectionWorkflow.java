@@ -1,12 +1,14 @@
 package com.stream.fraud;
 
 
+import com.ml.classifier.AnomalyDetector;
 import com.stream.Workflow;
 
 import com.stream.fraud.model.FraudTxn;
 import com.stream.fraud.model.TxnEvent;
 import com.stream.fraud.operators.FraudEventSink;
 import com.stream.fraud.operators.JsonToTxnEvent;
+import com.stream.fraud.operators.TxnFraudAlerter;
 import com.stream.fraud.operators.TxnThresholdBasedAlerter;
 import com.stream.fraud.operators.ValidTxnRecordTrigger;
 import com.stream.telecom.integration.LocalKafka;
@@ -18,12 +20,16 @@ import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
+import org.apache.flink.streaming.api.windowing.assigners.GlobalWindows;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
+
+import java.util.Arrays;
 
 public class FraudDetectionWorkflow extends Workflow {
 
     private static final int WINDOW_SIZE=5;
+    private static final String TRAINING_FILE_NAME = "data.txt";
 
     @SuppressWarnings("deprecation")
     public void run() throws Exception {
@@ -43,6 +49,8 @@ public class FraudDetectionWorkflow extends Workflow {
         DataStream<TxnEvent> stream = env.addSource(kafkaSource)
                 .returns(ObjectNode.class)
                 .flatMap(new JsonToTxnEvent());
+
+		AnomalyDetector anomalyDetector = new AnomalyDetector(TRAINING_FILE_NAME, Arrays.asList("userId", "amount", "milesFromLastTxn", "hoursFromLastTxn"));
 
         //stream.print();
 
@@ -83,9 +91,9 @@ public class FraudDetectionWorkflow extends Workflow {
 				});
 
 		SingleOutputStreamOperator<FraudTxn> fraudDetectionStream =  txnKeyedStream
-			.window(TumblingEventTimeWindows.of(Time.seconds(WINDOW_SIZE)))
+			.window(GlobalWindows.create())
 			.trigger(new ValidTxnRecordTrigger())
-			.process(new TxnThresholdBasedAlerter());
+			.process(new TxnFraudAlerter(anomalyDetector));
 
 		fraudDetectionStream
 			.addSink(new FraudEventSink("from current location alert"));
