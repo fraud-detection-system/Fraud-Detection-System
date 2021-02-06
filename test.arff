@@ -1,0 +1,7 @@
+@relation ./ressources/ARFF/2014_05_13_10_10_17.arff
+
+@attribute One numeric
+@attribute two numeric
+
+@data
+-11,-22
