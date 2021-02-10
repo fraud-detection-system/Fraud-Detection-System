@@ -104,7 +104,8 @@
 		<dependency>
 			<groupId>nz.ac.waikato.cms.weka</groupId>
 			<artifactId>isolationForest</artifactId>
-			<version>1.0.3-SNAPSHOT</version>
+			<!--<version>1.0.3-SNAPSHOT</version>-->
+			<version>1.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.chen0040</groupId>
@@ -123,6 +124,17 @@
 			<id>my-repo2</id>
 			<name>your custom repo</name>
 			<url>https://packages.confluent.io/maven/</url>
+		</repository>
+		<repository>
+			<id>my-repo3</id>
+			<name>maven public repo</name>
+			<url>https://repo.maven.apache.org/maven2/</url>
+		</repository>
+		<!-- https://mvnrepository.com/artifact/nz.ac.waikato.cms.weka/isolationForest -->
+		<repository>
+			<id>my-repo4</id>
+			<name>maven public repo</name>
+			<url>https://mvnrepository.com/artifact/</url>
 		</repository>
 	</repositories>
 </project>

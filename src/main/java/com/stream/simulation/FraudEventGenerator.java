@@ -31,7 +31,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class FraudEventGenerator {
 
-    private static final String eventGeneratorFile = "/Users/anagaraj/Downloads/streaming-with-flink-main/src/main/resources/txnEventGenerator.json";
+    //private static final String eventGeneratorFile = "/Users/anagaraj/Downloads/streaming-with-flink-main/src/main/resources/txnEventGenerator.json";
+    private static final String eventGeneratorFile = "/Users/bdutt/dev/bds/flink/streaming-with-flink/src/main/resources/txnEventGenerator.json";
 
 
 //    public static Producer createProducer() {
