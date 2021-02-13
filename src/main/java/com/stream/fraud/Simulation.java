@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.script.Invocable;
 import javax.script.ScriptContext;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineFactory;
@@ -69,11 +68,14 @@ public class Simulation {
 			   logger.info(engineAlias + " ");
 		   }
 		}
+		logger.info("--------------------------------------------");
+		logger.info("            Starting simulation");
+		logger.info("--------------------------------------------");
 		
 		Simulation simulation = new Simulation();
 		HashMap inputParameters = new HashMap();
 		inputParameters.put("logger", logger);
-		Object result = simulation.run("simulation.js", "result", inputParameters);
+		Object result = simulation.run("src/main/resources/simulation.js", "result", inputParameters); //TODO: read from classpath
 		System.out.println(result);
 	}
 

@@ -14,10 +14,11 @@ import com.stream.fraud.model.Subject;
  */
 
 public class AccessEvent extends Event{
-	private Subject subject;
-	private Resource resource;
-	private Action action;
-	private Environment environment;
+	private Subject subject = new Subject();
+	private Resource resource = new Resource();
+	private Action action = new Action();
+	private Environment environment = new Environment();
+	
 	public Subject getSubject() {
 		return subject;
 	}
@@ -41,6 +42,10 @@ public class AccessEvent extends Event{
 	}
 	public void setEnvironment(Environment environment) {
 		this.environment = environment;
+	}
+	
+	public String toString() {
+		return "resource="+this.resource.getAttributes()+", action="+action.getAttributes()+", subject="+subject.getAttributes()+", environment="+environment.getAttributes();
 	}
 
 }

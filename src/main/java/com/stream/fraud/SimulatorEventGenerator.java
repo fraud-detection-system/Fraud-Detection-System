@@ -33,6 +33,8 @@ import com.stream.simulation.AccessEvent;
  */
 public class SimulatorEventGenerator {
 	
+	private static Producer producer = null;
+	
 	
 	public static Producer createProducer() {
 		Properties props = new Properties();
@@ -95,6 +97,35 @@ public class SimulatorEventGenerator {
 				System.out.println("Error in sending record");
 				System.out.println(e);
 			}
+		}
+	}
+	
+	public static void fireAccessEvent(AccessEvent accessEvent) {
+		if (null == producer) {
+			synchronized (SimulatorEventGenerator.class) {
+				if (null == producer) {
+					producer = createProducer();
+				}
+			}
+		}
+
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		ProducerRecord record = null;
+		JsonNode jsonNode = objectMapper.valueToTree(accessEvent);
+
+		record = new ProducerRecord<Long, JsonNode>(TOPIC_NAME, jsonNode);
+
+		try {
+			RecordMetadata metadata = (RecordMetadata) producer.send(record).get();
+			System.out.println("Record sent with key " + " to partition " + metadata.partition() + " with offset "
+					+ metadata.offset() +", "+accessEvent);
+		} catch (ExecutionException e) {
+			System.out.println("Error in sending record");
+			System.out.println(e);
+		} catch (InterruptedException e) {
+			System.out.println("Error in sending record");
+			System.out.println(e);
 		}
 	}
 
