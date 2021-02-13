@@ -10,3 +10,21 @@
   	"sleepAfterEveryActionInSeconds" : 50
   }
 }
+
+
+"scenario": {
+			"name" : "GoodActors",
+			"setup" :
+		
+		{
+		"numberOfResources", "100",
+		"numberofSubjects"  "100",
+		"recipie": [
+		            "access": {
+					
+					},
+		            "sleep" : 100
+		            ]
+		}
+	
+	}

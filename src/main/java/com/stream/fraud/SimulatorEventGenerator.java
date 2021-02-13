@@ -21,11 +21,11 @@ import org.apache.kafka.connect.json.JsonSerializer;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.Action;
 import com.stream.fraud.model.Resource;
 import com.stream.fraud.model.Subject;
 import com.stream.fraud.model.TxnEvent;
+import com.stream.simulation.AccessEvent;
 
 /**
  * @author bdutt

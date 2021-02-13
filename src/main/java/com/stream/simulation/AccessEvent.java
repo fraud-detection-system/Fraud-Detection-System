@@ -1,4 +1,10 @@
-package com.stream.fraud.model;
+package com.stream.simulation;
+
+import com.stream.fraud.model.Action;
+import com.stream.fraud.model.Environment;
+import com.stream.fraud.model.Event;
+import com.stream.fraud.model.Resource;
+import com.stream.fraud.model.Subject;
 
 /**
  * Represents an access of Resource by a Subject
