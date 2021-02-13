@@ -3,9 +3,11 @@
  */
 package com.stream.fraud;
 
-import static com.stream.telecom.integration.LocalKafka.*;
+import static com.stream.telecom.integration.LocalKafka.CLIENT_ID;
+import static com.stream.telecom.integration.LocalKafka.KAFKA_BROKERS;
+import static com.stream.telecom.integration.LocalKafka.MESSAGE_COUNT;
+import static com.stream.telecom.integration.LocalKafka.TOPIC_NAME;
 
-import java.util.Date;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
@@ -15,13 +17,15 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.LongSerializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.connect.json.JsonSerializer;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.stream.fraud.model.AccessEvent;
+import com.stream.fraud.model.Action;
+import com.stream.fraud.model.Resource;
+import com.stream.fraud.model.Subject;
 import com.stream.fraud.model.TxnEvent;
-import com.stream.telecom.model.TelecomCallRecord;
 
 /**
  * @author bdutt
@@ -39,6 +43,31 @@ public class SimulatorEventGenerator {
 		return new KafkaProducer<>(props);
 	}
 	
+	static AccessEvent generateAccess() {
+		AccessEvent access = new AccessEvent();
+		Subject subject = new Subject();
+		subject.setAttribute("id", 1234);
+		Resource resource = new Resource();
+		resource.setAttribute("id", 567);
+		resource.setAttribute("type", "bankAccount");
+		resource.setAttribute("bank", "abc");
+		Action action = new Action();
+		action.setAttribute("id", "readBalance");
+		access.setAction(action);
+		access.setResource(resource);
+		access.setSubject(subject);
+		return access;
+	}
+	
+	static TxnEvent generateTxnEvent() {
+		TxnEvent txnEvent = new TxnEvent();
+		txnEvent.setAmount(10.0);
+		txnEvent.setUserId("123");
+		txnEvent.setHoursFromLastTxn(100);
+		txnEvent.setMilesFromLastTxn(100);
+		return txnEvent;
+	}
+	
 	static void runProducer() {
 		Producer producer = createProducer();
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -46,12 +75,9 @@ public class SimulatorEventGenerator {
 		for (int index = 0; index < MESSAGE_COUNT; index++) {
 			ProducerRecord record =  null;
 
-				TxnEvent txnEvent = new TxnEvent();
-				txnEvent.setAmount(10.0);
-				txnEvent.setUserId("123");
-				txnEvent.setHoursFromLastTxn(100);
-				txnEvent.setMilesFromLastTxn(100);
-				JsonNode  jsonNode = objectMapper.valueToTree(txnEvent);
+				
+				//JsonNode  jsonNode = objectMapper.valueToTree(generateTxnEvent());
+				JsonNode  jsonNode = objectMapper.valueToTree(generateAccess());
 				
 				record = new ProducerRecord<Long, JsonNode>(TOPIC_NAME,
 						jsonNode);

@@ -1,6 +1,6 @@
 {
   "userId": "{{integer(1,10)}}",
-  "amount": "{{double(0,100000,\"%.2f\")}}",
+  "amount": "{{double(0,100000,`%.2f`)}}",
   "milesFromLastTxn": "{{double(0,100)}}",
   "hoursFromLastTxn": "{{double(0,2)}}"
 }

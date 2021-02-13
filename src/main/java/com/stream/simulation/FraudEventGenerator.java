@@ -7,23 +7,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.Properties;
-import java.util.concurrent.ExecutionException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.github.vincentrussell.json.datagenerator.JsonDataGeneratorException;
-import com.github.vincentrussell.json.datagenerator.impl.JsonDataGeneratorImpl;
-import com.stream.telecom.integration.LocalKafka;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.Producer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
-import org.apache.kafka.common.serialization.LongSerializer;
-import org.apache.kafka.connect.json.JsonSerializer;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.vincentrussell.json.datagenerator.JsonDataGeneratorException;
+import com.github.vincentrussell.json.datagenerator.impl.JsonDataGeneratorImpl;
 
 /**
  * @author anagaraj
