@@ -6,6 +6,7 @@ public class ActorInstance implements Runnable{
 	
 	private Actor actor;
 	private Simulator simulator;
+	private State state;
 	
 	public ActorInstance() {
 		
@@ -25,28 +26,33 @@ public class ActorInstance implements Runnable{
 	}
 
 	public void run() {
-		String startStateName = actor.getStartStateName();
-		State state = simulator.getState(startStateName);
-		do {
-			if (state == null) {
-				continue;
-			}
-			AccessEvent accessEvent = state.getAccessEvent();
-			SimulatorEventGenerator.fireAccessEvent(accessEvent);
+		if (state == null) {
+			String startStateName = actor.getStartStateName();
+			state = simulator.getState(startStateName);
+		}
 
-			//go through state transitions and find the next transition
-			State fromState = state;
-			state = null;
-			for (StateTransition stateTransition : actor.getStateTransitions()) {
-				if (stateTransition.fromState.equals(fromState.getStateName())) {
-					if (Math.random() <= stateTransition.getProbability()) {
-						state = simulator.getState(stateTransition.getToState());
-						break;
-					}
+		if (state == null) {
+			return;
+		}
+		AccessEvent accessEvent = state.getAccessEvent();
+		accessEvent = actor.ehanceAccessEvent(accessEvent);
+		SimulatorEventGenerator.fireAccessEvent(accessEvent);
+
+		// go through state transitions and find the next transition
+		State fromState = state;
+		state = null;
+		for (StateTransition stateTransition : actor.getStateTransitions()) {
+			if (stateTransition.fromState.equals(fromState.getStateName())) {
+				if (Math.random() <= stateTransition.getProbability()) {
+					state = simulator.getState(stateTransition.getToState());
+					simulator.schedule(this, stateTransition.getDelayInMillis());
+					break;
 				}
 			}
-		}while(state!=null);
-		//TODO: see how to add sleep
+		}
+		
+		//Done, nothing to do
+
 	}
 
 }

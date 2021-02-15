@@ -2,14 +2,15 @@ package com.stream.simulation;
 
 public class StateTransition {
 	
-	public StateTransition(String fromState,
-	String toState,
-	
-	double probability) {
+	public StateTransition(
+			String fromState,
+			String toState,
+			double probability,
+			int delayInMillis) {
 		setFromState(fromState);
 		setToState(toState);
 		setProbability(probability);
-		
+		setDelayInMillis(delayInMillis);
 	}
 	/**
 	 * @return the fromState
@@ -47,9 +48,16 @@ public class StateTransition {
 	public void setProbability(double probability) {
 		this.probability = probability;
 	}
+	public int getDelayInMillis() {
+		return delayInMillis;
+	}
+	public void setDelayInMillis(int delayInMillis) {
+		this.delayInMillis = delayInMillis;
+	}
 	String fromState;
 	String toState;
 	double probability;
+	private int delayInMillis;
 	
 
 }

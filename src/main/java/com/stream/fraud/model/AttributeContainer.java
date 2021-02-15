@@ -20,8 +20,9 @@ public class AttributeContainer {
 		this.attributes = attributes;
 	}
 
-	public void setAttribute(String key, Object value) {
+	public AttributeContainer setAttribute(String key, Object value) {
 		attributes.put(key, value);
+		return this;
 	}
 	
 	public Object getAttribute(String key) {

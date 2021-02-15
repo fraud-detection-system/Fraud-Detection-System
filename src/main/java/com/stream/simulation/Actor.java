@@ -1,6 +1,10 @@
 package com.stream.simulation;
 
 import java.util.Map;
+import java.util.Map.Entry;
+
+import com.stream.fraud.model.Resource;
+import com.stream.fraud.model.Subject;
 
 public class Actor {
 	
@@ -36,6 +40,8 @@ public class Actor {
 	private Map<String, String> properties;
 	private String startStateName;
 	private StateTransition [] stateTransitions;
+	private Resource resource;
+	private Subject subject;
 	
 	public Actor() {
 		
@@ -66,6 +72,28 @@ public class Actor {
 
 	public void setStartStateName(String startStateName) {
 		this.startStateName = startStateName;
+	}
+
+	public void setResource(Object object) {
+		this.resource = (Resource)object;
+	}
+	
+	public void setSubject(Object object) {
+		this.subject = (Subject)object;
+	}
+
+	public AccessEvent ehanceAccessEvent(AccessEvent accessEvent) {
+		if(resource != null ) {
+			for(Entry<String, Object> entry: resource.getAttributes().entrySet()) {
+				accessEvent.getResource().setAttribute(entry.getKey(), entry.getValue());
+			}
+		}
+		if(subject != null ) {
+			for(Entry<String, Object> entry: subject.getAttributes().entrySet()) {
+				accessEvent.getSubject().setAttribute(entry.getKey(), entry.getValue());
+			}
+		}
+		return accessEvent;
 	}
 
 }
