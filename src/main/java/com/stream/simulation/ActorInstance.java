@@ -1,5 +1,8 @@
 package com.stream.simulation;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.stream.fraud.SimulatorEventGenerator;
 
 public class ActorInstance implements Runnable{
@@ -7,6 +10,10 @@ public class ActorInstance implements Runnable{
 	private Actor actor;
 	private Simulator simulator;
 	private State state;
+	AccessEvent accessEvent;
+	
+	private final static Logger logger = LoggerFactory.getLogger(
+			ActorInstance.class.getName());
 	
 	public ActorInstance() {
 		
@@ -26,6 +33,10 @@ public class ActorInstance implements Runnable{
 	}
 
 	public void run() {
+		if(accessEvent ==  null) {
+			accessEvent = new AccessEvent();
+			accessEvent = actor.ehanceAccessEvent(accessEvent);
+		}
 		if (state == null) {
 			String startStateName = actor.getStartStateName();
 			state = simulator.getState(startStateName);
@@ -34,9 +45,15 @@ public class ActorInstance implements Runnable{
 		if (state == null) {
 			return;
 		}
-		AccessEvent accessEvent = state.getAccessEvent();
-		accessEvent = actor.ehanceAccessEvent(accessEvent);
-		SimulatorEventGenerator.fireAccessEvent(accessEvent);
+		
+		accessEvent = state.ehanceAccessEvent(accessEvent);
+		if(accessEvent.getResource().getAttribute("id") != null) {
+			SimulatorEventGenerator.fireAccessEvent(accessEvent);
+			logger.info(accessEvent.toString());
+		}else {
+			logger.info("Just a state change : "+accessEvent);
+		}
+		
 
 		// go through state transitions and find the next transition
 		State fromState = state;

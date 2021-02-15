@@ -40,6 +40,7 @@ public class Actor {
 	private Map<String, String> properties;
 	private String startStateName;
 	private StateTransition [] stateTransitions;
+	
 	private Resource resource;
 	private Subject subject;
 	

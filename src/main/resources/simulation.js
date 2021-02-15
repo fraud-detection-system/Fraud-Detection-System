@@ -13,19 +13,23 @@ with (importIt) {
   	.addResource("id", "account")
 	.addAction("id", "logout");
   simulator.defineState("checkBalance")
-  	.addResource("id", "balance")
-	.addAction("id", "read");
+  	.addResource("id", "account")
+	.addAction("id", "readBalance");
   simulator.defineState("transferMoney")
   	.addResource("id", "account")
-  	.addResource("accountId","")
 	.addResource("payee", "abc")
-	.addAction("id", "transfer");
+	.addAction("id", "transferMoney");
   simulator.defineState("movePhysically")
-	.addSubject("physicalLocation", "(new java.util.Random()).nextInt(10000-0) + 0")
-	.addSubject("time", "(new java.util.Random()).nextInt(10000-0) + 0");
+  	.addResource("id", null)
+  	.addAction("id", null)
+	.addSubject("physicalLocationX", "subject.getAttribute(\"physicalLocationX\")+(new java.util.Random()).nextInt(10000-0) + 0")
+	.addSubject("physicalLocationY", "subject.getAttribute(\"physicalLocationX\")+(new java.util.Random()).nextInt(10000-0) + 0")
+	.addSubject("time", "subject.getAttribute(\"time\") + (new java.util.Random()).nextInt(10000-0) + 0");
   simulator.defineState("moveVirtually")
-	.addSubject("virtualLocation", "(new java.util.Random()).nextInt(10000-0) + 0")
-	.addSubject("time", "(new java.util.Random()).nextInt(10000-0) + 0");
+  	.addResource("id", null)
+  	.addAction("id", null)
+	.addSubject("virtualLocation", "subject.getAttribute(\"virtualLocation\") + (new java.util.Random()).nextInt(10000-0) + 0")
+	.addSubject("time", "subject.getAttribute(\"time\") + (new java.util.Random()).nextInt(10000-0) + 0");
 
 
   var stateTransitions = [
@@ -41,12 +45,12 @@ with (importIt) {
   ];
 
   var resourceTemplate = new Resource();
-  resourceTemplate.setAttribute("id","(new java.util.Random()).nextInt(10000-0) + 0");
+  resourceTemplate.setAttribute("accountId","(new java.util.Random()).nextInt(10000-0) + 0");
   var resourcePool = simulator.definePool(100, resourceTemplate);
   var subjectTemplate = new Subject();
   subjectTemplate.setAttribute("id","(new java.util.Random()).nextInt(10000-0) + 0")
 		 .setAttribute("physicalLocationX", "(new java.util.Random()).nextInt(10000-0) + 0")
-		 .setAttribute("physicalLocationX", "(new java.util.Random()).nextInt(10000-0) + 0")
+		 .setAttribute("physicalLocationY", "(new java.util.Random()).nextInt(10000-0) + 0")
 	         .setAttribute("virtualLocation","(new java.util.Random()).nextInt(10000-0) + 0")
 	         .setAttribute("currentTime","(new java.util.Random()).nextInt(10000-0) + 0");
   var subjectPool = simulator.definePool(100, subjectTemplate);
@@ -58,7 +62,7 @@ with (importIt) {
 
   simulator.startActors("normalActor", subjectResourcePool, 9);
   simulator.sleepInMilliSecs(10);
-  simulator.startActors("fraudActor", subjectResourcePool, 1);
+  simulator.startActors("fraudActor", subjectResourcePool, 0);
   simulator.sleepInMilliSecs(300000);
   simulator.end()
 }  

@@ -76,7 +76,7 @@ public class Simulation {
 		HashMap inputParameters = new HashMap();
 		inputParameters.put("logger", logger);
 		Object result = simulation.run("src/main/resources/simulation.js", "result", inputParameters); //TODO: read from classpath
-		System.out.println(result);
+		logger.info(result.toString());
 	}
 
 }
