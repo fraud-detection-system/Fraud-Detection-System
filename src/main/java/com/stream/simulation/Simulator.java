@@ -84,12 +84,19 @@ public class Simulator {
 
 	}
 
-	public ActorInstance[] startActors(String nameOfActor, Object [] pool, int count) {
+	public ActorInstance[] startActors(String nameOfActor, Object [] pool, double percentActive, double percentConcurrent) {
 		logger.info("started");
 		Actor actor = actorRegistry.get(nameOfActor);
 		if(actor == null) {
 			return null;
 		}
+		
+		if(percentActive> 100 || percentConcurrent > 100) {
+			logger.info("Wrong percentages given, they should be less than 100. Given: active="+percentActive+", concurrent="+percentConcurrent);
+			return null;
+		}
+		
+		int count = (int) (pool.length*percentActive*percentConcurrent/(100.0*100.0));
 		ActorInstance [] actorInstances = new ActorInstance[count];
 		
 		for(int i=0; i<count; i++) {
@@ -130,6 +137,11 @@ public class Simulator {
 	public State getState(String startStateName) {
 		return stateRegistry.get(startStateName);
 		
+	}
+	
+	public void pauseAndPrompt(String msg) {
+		logger.info(msg+": press enter to continue");
+		System.console().readLine();
 	}
 
 }
