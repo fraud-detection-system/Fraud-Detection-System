@@ -3,8 +3,6 @@ package com.stream.simulation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.stream.fraud.SimulatorEventGenerator;
-
 public class ActorInstance implements Runnable{
 	
 	private Actor actor;
@@ -48,8 +46,8 @@ public class ActorInstance implements Runnable{
 		
 		accessEvent = state.ehanceAccessEvent(accessEvent);
 		if(accessEvent.getResource().getAttribute("id") != null) {
-			SimulatorEventGenerator.fireAccessEvent(accessEvent);
-			logger.info(accessEvent.toString());
+			Publisher.fireAccessEvent(accessEvent);
+			logger.info(state.getStateName()+ ": "+accessEvent.toString());
 		}else {
 			logger.info("Just a state change : "+accessEvent);
 		}
@@ -58,9 +56,12 @@ public class ActorInstance implements Runnable{
 		// go through state transitions and find the next transition
 		State fromState = state;
 		state = null;
+		double coinToss = Math.random();
+		
 		for (StateTransition stateTransition : actor.getStateTransitions()) {
 			if (stateTransition.fromState.equals(fromState.getStateName())) {
-				if (Math.random() <= stateTransition.getProbability()) {
+				coinToss -= stateTransition.getProbability();
+				if (coinToss <= 0) {
 					state = simulator.getState(stateTransition.getToState());
 					simulator.schedule(this, stateTransition.getDelayInMillis());
 					break;

@@ -38,6 +38,7 @@ public class Simulation {
 	               engine.put(parameter.getKey(), parameter.getValue());
 	            }
 	         }
+	         logger.info("Running simulation script : "+jsFileName);
 	         engine.eval(new FileReader(jsFileName)); 
 	         result = engine.getBindings(ScriptContext.GLOBAL_SCOPE).get(nameOfOutput);
 	         //result = engine.get(nameOfOutput);
@@ -75,8 +76,10 @@ public class Simulation {
 		Simulation simulation = new Simulation();
 		HashMap inputParameters = new HashMap();
 		inputParameters.put("logger", logger);
-		Object result = simulation.run("src/main/resources/simulation.js", "result", inputParameters); //TODO: read from classpath
-		logger.info(result.toString());
+		for(String arg: args) {
+			Object result = simulation.run(arg, "result", inputParameters); //TODO: read from classpath
+			logger.info(result.toString());
+		}
 	}
 
 }

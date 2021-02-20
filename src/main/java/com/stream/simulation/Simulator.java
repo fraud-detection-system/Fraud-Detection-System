@@ -1,5 +1,6 @@
 package com.stream.simulation;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -85,7 +86,6 @@ public class Simulator {
 	}
 
 	public ActorInstance[] startActors(String nameOfActor, Object [] pool, double percentActive, double percentConcurrent) {
-		logger.info("started");
 		Actor actor = actorRegistry.get(nameOfActor);
 		if(actor == null) {
 			return null;
@@ -116,6 +116,7 @@ public class Simulator {
 			scheduledExecutorService.schedule(actorInstance, 0, TimeUnit.MILLISECONDS);
 			actorInstances[i] = actorInstance;
 		}
+		logger.info("started "+count+" actor instances");
 		return actorInstances;
 	}
 
@@ -139,9 +140,10 @@ public class Simulator {
 		
 	}
 	
-	public void pauseAndPrompt(String msg) {
+	public void pauseAndPrompt(String msg) throws IOException {
 		logger.info(msg+": press enter to continue");
-		System.console().readLine();
+		System.in.read();
+		//System.console().readLine();
 	}
 
 }

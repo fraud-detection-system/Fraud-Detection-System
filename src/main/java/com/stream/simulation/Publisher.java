@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.stream.fraud;
+package com.stream.simulation;
 
 import static com.stream.telecom.integration.LocalKafka.CLIENT_ID;
 import static com.stream.telecom.integration.LocalKafka.KAFKA_BROKERS;
@@ -18,6 +18,8 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.LongSerializer;
 import org.apache.kafka.connect.json.JsonSerializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,13 +27,14 @@ import com.stream.fraud.model.Action;
 import com.stream.fraud.model.Resource;
 import com.stream.fraud.model.Subject;
 import com.stream.fraud.model.TxnEvent;
-import com.stream.simulation.AccessEvent;
 
 /**
  * @author bdutt
  *
  */
-public class SimulatorEventGenerator {
+public class Publisher {
+	private final static Logger logger = LoggerFactory.getLogger(
+			Publisher.class.getName());
 	
 	private static Producer producer = null;
 	
@@ -102,7 +105,7 @@ public class SimulatorEventGenerator {
 	
 	public static void fireAccessEvent(AccessEvent accessEvent) {
 		if (null == producer) {
-			synchronized (SimulatorEventGenerator.class) {
+			synchronized (Publisher.class) {
 				if (null == producer) {
 					producer = createProducer();
 				}
@@ -118,14 +121,12 @@ public class SimulatorEventGenerator {
 
 		try {
 			RecordMetadata metadata = (RecordMetadata) producer.send(record).get();
-			System.out.println("Record sent with key " + " to partition " + metadata.partition() + " with offset "
+			logger.info("Published AccessEvent - Record sent with key " + " to partition " + metadata.partition() + " with offset "
 					+ metadata.offset() +", "+accessEvent);
 		} catch (ExecutionException e) {
-			System.out.println("Error in sending record");
-			System.out.println(e);
+			logger.error("Error in sending record", e);
 		} catch (InterruptedException e) {
-			System.out.println("Error in sending record");
-			System.out.println(e);
+			logger.error("Error in sending record", e);
 		}
 	}
 
