@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.Action;
 import com.stream.fraud.model.Resource;
 import com.stream.fraud.model.Subject;

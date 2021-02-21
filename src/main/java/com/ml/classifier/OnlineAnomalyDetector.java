@@ -17,8 +17,8 @@ import com.github.chen0040.data.frame.BasicDataRow;
 import com.github.chen0040.data.frame.DataFrame;
 import com.github.chen0040.data.frame.DataRow;
 import com.github.chen0040.trees.isolation.IsolationForest;
+import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.AttributeContainer;
-import com.stream.simulation.AccessEvent;
 
 public class OnlineAnomalyDetector implements Serializable {
 	
@@ -33,7 +33,7 @@ public class OnlineAnomalyDetector implements Serializable {
 
     private static final String ANOMALY_COLUMN_NAME = "anomaly";
 
-    public transient IsolationForest algorithm;
+    public transient IsolationForest isolationForest;
 
     private List<String[]> attributes;
 
@@ -80,18 +80,21 @@ public class OnlineAnomalyDetector implements Serializable {
 	        dataFrame.addRow(row);
         }
         
-		if (null == algorithm) {
+		if (null == isolationForest) {
 			synchronized (OnlineAnomalyDetector.class) {
-				if (algorithm == null) {
-					algorithm = new IsolationForest();
-					algorithm.setThreshold(THRESHOLD);
+				if (isolationForest == null) {
+					isolationForest = new IsolationForest();
+					isolationForest.setThreshold(THRESHOLD);
 				}
 			}
 		}
-        algorithm.incrementalFit(dataFrame);
+        isolationForest.incrementalFit(dataFrame);
     }
     
     public boolean isAnomaly(AccessEvent accessEvent) {
+    	if(null == isolationForest) {
+    		return true;
+    	}
     	DataRow row = convertToDataRow(accessEvent);
     	Map<String, List<String>> levels = new HashMap<>();
         ArrayList list = new ArrayList();
@@ -99,8 +102,22 @@ public class OnlineAnomalyDetector implements Serializable {
         list.add("onlineShopping");
         levels.put("action.id", list);
         row.setLevels(levels);
-    	logger.info("evalulate: "+algorithm.evaluate(row));
-    	return algorithm.isAnomaly(row);
+    	logger.info("evalulate: "+isolationForest.evaluate(row));
+    	return isolationForest.isAnomaly(row);
+    }
+    
+    public double evaluate(AccessEvent accessEvent) {
+    	if(null == isolationForest) {
+    		return -1;
+    	}
+    	DataRow row = convertToDataRow(accessEvent);
+    	Map<String, List<String>> levels = new HashMap<>();
+        ArrayList list = new ArrayList();
+        list.add("atmWithdrawal");
+        list.add("onlineShopping");
+        levels.put("action.id", list);
+        row.setLevels(levels);
+    	return isolationForest.evaluate(row);
     }
 
    public static void main(String[] args) throws IOException, FileNotFoundException {
@@ -122,7 +139,7 @@ public class OnlineAnomalyDetector implements Serializable {
        }
        //algorithm.onlineFit(accessEvents);
        
-       System.out.println("Algorithm: treecount="+algorithm.algorithm.getTreeCount()+", rowcount="+algorithm.algorithm.getRowCount());
+       System.out.println("Algorithm: treecount="+algorithm.isolationForest.getTreeCount()+", rowcount="+algorithm.isolationForest.getRowCount());
 
        //Test
        //With last normal access event added

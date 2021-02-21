@@ -3,6 +3,8 @@ package com.stream.simulation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.stream.fraud.model.AccessEvent;
+
 public class ActorInstance implements Runnable{
 	
 	private Actor actor;

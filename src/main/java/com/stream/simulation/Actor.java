@@ -3,6 +3,7 @@ package com.stream.simulation;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.Resource;
 import com.stream.fraud.model.Subject;
 
