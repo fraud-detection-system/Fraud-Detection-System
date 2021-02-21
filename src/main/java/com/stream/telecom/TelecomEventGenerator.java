@@ -63,11 +63,11 @@ public class TelecomEventGenerator {
 				telecomCallRecord.setStartTime( ""+(new Date()).getTime());
 				JsonNode  jsonNode = objectMapper.valueToTree(telecomCallRecord);
 				
-				record = new ProducerRecord<Long, JsonNode>(TOPIC_NAME,
+				record = new ProducerRecord<Long, JsonNode>(ACCESS_EVENTS_IN_TOPIC_NAME,
 						jsonNode);
 				break;
 			case STRING:
-				record = new ProducerRecord<Long, String>(TOPIC_NAME,
+				record = new ProducerRecord<Long, String>(ACCESS_EVENTS_IN_TOPIC_NAME,
 						"{'type': 'Telecom Call Record', 'from' : '123', 'to' : '456', 'startTime': '" + index+"'");
 				break;
 			}

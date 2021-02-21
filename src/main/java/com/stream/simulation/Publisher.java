@@ -6,7 +6,8 @@ package com.stream.simulation;
 import static com.stream.telecom.integration.LocalKafka.CLIENT_ID;
 import static com.stream.telecom.integration.LocalKafka.KAFKA_BROKERS;
 import static com.stream.telecom.integration.LocalKafka.MESSAGE_COUNT;
-import static com.stream.telecom.integration.LocalKafka.TOPIC_NAME;
+import static com.stream.telecom.integration.LocalKafka.ACCESS_EVENTS_IN_TOPIC_NAME;
+import static com.stream.telecom.integration.LocalKafka.FRAUD_ACCESS_EVENTS_OUT_TOPIC_NAME;
 
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
@@ -25,6 +26,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.Action;
+import com.stream.fraud.model.FraudAccessEvent;
 import com.stream.fraud.model.Resource;
 import com.stream.fraud.model.Subject;
 import com.stream.fraud.model.TxnEvent;
@@ -85,7 +87,7 @@ public class Publisher {
 				//JsonNode  jsonNode = objectMapper.valueToTree(generateTxnEvent());
 				JsonNode  jsonNode = objectMapper.valueToTree(generateAccess());
 				
-				record = new ProducerRecord<Long, JsonNode>(TOPIC_NAME,
+				record = new ProducerRecord<Long, JsonNode>(ACCESS_EVENTS_IN_TOPIC_NAME,
 						jsonNode);
 				
 			
@@ -118,12 +120,39 @@ public class Publisher {
 		ProducerRecord record = null;
 		JsonNode jsonNode = objectMapper.valueToTree(accessEvent);
 
-		record = new ProducerRecord<Long, JsonNode>(TOPIC_NAME, jsonNode);
+		record = new ProducerRecord<Long, JsonNode>(ACCESS_EVENTS_IN_TOPIC_NAME, jsonNode);
 
 		try {
 			RecordMetadata metadata = (RecordMetadata) producer.send(record).get();
 			logger.info("Published AccessEvent - Record sent with key " + " to partition " + metadata.partition() + " with offset "
 					+ metadata.offset() +", "+accessEvent);
+		} catch (ExecutionException e) {
+			logger.error("Error in sending record", e);
+		} catch (InterruptedException e) {
+			logger.error("Error in sending record", e);
+		}
+	}
+	
+	public static void fireFraudAccessEvent(FraudAccessEvent fraudAccessEvent) {
+		if (null == producer) {
+			synchronized (Publisher.class) {
+				if (null == producer) {
+					producer = createProducer();
+				}
+			}
+		}
+
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		ProducerRecord record = null;
+		JsonNode jsonNode = objectMapper.valueToTree(fraudAccessEvent);
+
+		record = new ProducerRecord<Long, JsonNode>(FRAUD_ACCESS_EVENTS_OUT_TOPIC_NAME, jsonNode);
+
+		try {
+			RecordMetadata metadata = (RecordMetadata) producer.send(record).get();
+			logger.info("Published FraudAccessEvent - Record sent with key " + " to partition " + metadata.partition() + " with offset "
+					+ metadata.offset() +", "+fraudAccessEvent);
 		} catch (ExecutionException e) {
 			logger.error("Error in sending record", e);
 		} catch (InterruptedException e) {

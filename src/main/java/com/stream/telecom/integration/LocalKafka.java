@@ -7,6 +7,7 @@ import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
 import org.apache.flink.streaming.util.serialization.JSONKeyValueDeserializationSchema;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -23,7 +24,11 @@ public class LocalKafka {
 	
 	public static String CLIENT_ID="client2";
 	
-	public static String TOPIC_NAME="txnevents";
+	public static String TOPIC_NAME="txnevents"; //Not used
+	
+	public static String ACCESS_EVENTS_IN_TOPIC_NAME="accessEvents";
+	
+	public static String FRAUD_ACCESS_EVENTS_OUT_TOPIC_NAME="fraudAccessEvents";
 	
 	public static String GROUP_ID_CONFIG="consumerGroup";
 	
@@ -39,7 +44,7 @@ public class LocalKafka {
 	public SourceFunction<String> getSource() throws Exception {
 
 		@SuppressWarnings({ "unchecked", "rawtypes" })
-		FlinkKafkaConsumer<String> consumer = new FlinkKafkaConsumer(TOPIC_NAME,
+		FlinkKafkaConsumer<String> consumer = new FlinkKafkaConsumer(ACCESS_EVENTS_IN_TOPIC_NAME,
 				// new
 				// KafkaGenericAvroDeserializationSchema("https://schema-registry.bdpd.ppd.a.intuit.com:9090"),
 				new SimpleStringSchema(), getProps());
@@ -50,9 +55,20 @@ public class LocalKafka {
 		return consumer;
 	}
 	
+	public FlinkKafkaProducer<String> getSink() {
+		@SuppressWarnings("deprecation")
+		FlinkKafkaProducer<String> producer = new FlinkKafkaProducer<>(FRAUD_ACCESS_EVENTS_OUT_TOPIC_NAME,
+				// new
+				// KafkaGenericAvroDeserializationSchema("https://schema-registry.bdpd.ppd.a.intuit.com:9090"),
+				new SimpleStringSchema(), getProps());
+		
+		return producer;
+		
+	}
+	
 	public SourceFunction<ObjectNode> getSourceAsJson() throws Exception {
 		@SuppressWarnings({ "unchecked", "rawtypes" })
-		FlinkKafkaConsumer<ObjectNode> consumer = new FlinkKafkaConsumer(TOPIC_NAME,
+		FlinkKafkaConsumer<ObjectNode> consumer = new FlinkKafkaConsumer(ACCESS_EVENTS_IN_TOPIC_NAME,
 				new JSONKeyValueDeserializationSchema(true), getProps());
 
 		// consumer.setStartFromEarliest();
@@ -77,7 +93,7 @@ public class LocalKafka {
 		
 
 		final Consumer<Long, String> consumer = new KafkaConsumer<>(getProps());
-		consumer.subscribe(Collections.singletonList(TOPIC_NAME));
+		consumer.subscribe(Collections.singletonList(ACCESS_EVENTS_IN_TOPIC_NAME));
 		return consumer;
 	}
 	

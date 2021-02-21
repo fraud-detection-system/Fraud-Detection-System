@@ -2,6 +2,7 @@ package com.stream.fraud.operators;
 
 
 import com.stream.fraud.model.FraudAccessEvent;
+import com.stream.simulation.Publisher;
 import com.stream.telecom.operators.TraceSink;
 import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 
@@ -21,7 +22,8 @@ public class FraudAccessEventSink implements SinkFunction<FraudAccessEvent> {
     }
 
     @Override
-    public void invoke(FraudAccessEvent alert, Context context) throws Exception {
-		traceSink.log(alert, FraudAccessEventSink.class.getSimpleName(), "Stream Name="+this.streamName +", FRAUD!!! = "+alert.toString());
+    public void invoke(FraudAccessEvent fraudAccessEvent, Context context) throws Exception {
+		traceSink.log(fraudAccessEvent, FraudAccessEventSink.class.getSimpleName(), "Stream Name="+this.streamName +", FRAUD!!! = "+fraudAccessEvent.toString());
+		Publisher.fireFraudAccessEvent(fraudAccessEvent);
     }
 }
