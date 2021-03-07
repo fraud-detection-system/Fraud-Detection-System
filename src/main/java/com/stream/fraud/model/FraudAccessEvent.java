@@ -15,5 +15,13 @@ public class FraudAccessEvent extends AccessEvent {
 		this.setEnvironment(accessEvent.getEnvironment());
 		this.message = message;
 	}
+	
+	public String getMessage() {
+		return this.message;
+	}
+	
+	public String toString() {
+		return this.message+super.toString();
+	}
 
 }

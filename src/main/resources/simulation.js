@@ -66,16 +66,16 @@ with (importIt) {
 
   var resourceTemplate = new Resource();
   resourceTemplate.setAttribute("accountId","(new java.util.Random()).nextInt(10000-0) + 0");
-  //var resourcePool = simulator.definePool(1000000, resourceTemplate);
-  var resourcePool = simulator.definePool(1000, resourceTemplate);
+  var resourcePool = simulator.definePool(1000000, resourceTemplate);
+  //var resourcePool = simulator.definePool(1000, resourceTemplate);
   var subjectTemplate = new Subject();
   subjectTemplate.setAttribute("id","(new java.util.Random()).nextInt(10000-0) + 0")
 		 .setAttribute("physicalLocationX", "(new java.util.Random()).nextInt(10000-0) + 0")
 		 .setAttribute("physicalLocationY", "(new java.util.Random()).nextInt(10000-0) + 0")
 	         .setAttribute("virtualLocation","(new java.util.Random()).nextInt(10000-0) + 0")
 	         .setAttribute("currentTime","(new java.util.Random()).nextInt(10000-0) + 0");
-  //var subjectPool = simulator.definePool(1000000, subjectTemplate);
-  var subjectPool = simulator.definePool(1000, subjectTemplate);
+  var subjectPool = simulator.definePool(1000000, subjectTemplate);
+  //var subjectPool = simulator.definePool(1000, subjectTemplate);
   var subjectResourcePool = simulator.pair(resourcePool,subjectPool);
   var normalActorProperties = new HashMap();
   var fraudActorProperties = new HashMap();

@@ -1,5 +1,7 @@
 package com.stream.fraud.model;
 
+import java.util.UUID;
+
 /**
  * Represents an access of Resource by a Subject
  * 
@@ -8,10 +10,16 @@ package com.stream.fraud.model;
  */
 
 public class AccessEvent extends Event{
+	private String eventId = null;
+	
 	private Subject subject = new Subject();
 	private Resource resource = new Resource();
 	private Action action = new Action();
 	private Environment environment = new Environment();
+	
+	public AccessEvent() {
+		eventId = UUID.randomUUID().toString();
+	}
 	
 	public Subject getSubject() {
 		return subject;
@@ -40,6 +48,12 @@ public class AccessEvent extends Event{
 	
 	public String toString() {
 		return "resource="+this.resource.getAttributes()+", action="+action.getAttributes()+", subject="+subject.getAttributes()+", environment="+environment.getAttributes();
+	}
+	public String getEventId() {
+		return eventId;
+	}
+	public void setEventId(String eventId) {
+		this.eventId = eventId;
 	}
 
 }

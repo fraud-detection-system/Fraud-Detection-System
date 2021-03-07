@@ -4,9 +4,9 @@ import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
 import org.apache.flink.streaming.api.windowing.windows.GlobalWindow;
 import org.apache.flink.util.Collector;
 
-import com.ml.classifier.OnlineAnomalyDetector;
 import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.FraudAccessEvent;
+import com.stream.ml.classifier.OnlineAnomalyDetector;
 
 public class AccessEventFraudAlerter extends ProcessWindowFunction<AccessEvent, FraudAccessEvent, Object, GlobalWindow> {
 	/**

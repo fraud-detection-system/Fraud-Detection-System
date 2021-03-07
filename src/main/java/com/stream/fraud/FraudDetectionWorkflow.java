@@ -1,7 +1,6 @@
 package com.stream.fraud;
 
 
-import com.ml.classifier.AnomalyDetector;
 import com.stream.Workflow;
 
 import com.stream.fraud.model.FraudTxn;
@@ -11,6 +10,7 @@ import com.stream.fraud.operators.JsonToTxnEvent;
 import com.stream.fraud.operators.TxnFraudAlerter;
 import com.stream.fraud.operators.TxnThresholdBasedAlerter;
 import com.stream.fraud.operators.ValidTxnRecordTrigger;
+import com.stream.ml.classifier.AnomalyDetector;
 import com.stream.telecom.integration.LocalKafka;
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode;

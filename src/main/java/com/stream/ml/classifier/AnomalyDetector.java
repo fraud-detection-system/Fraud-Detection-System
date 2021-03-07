@@ -1,4 +1,4 @@
-package com.ml.classifier;
+package com.stream.ml.classifier;
 
 import com.github.chen0040.data.frame.BasicDataRow;
 import com.github.chen0040.data.frame.DataFrame;

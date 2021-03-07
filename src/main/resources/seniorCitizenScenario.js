@@ -18,16 +18,17 @@ with (importIt) {
 	.addAction("id", "readBalance");
   simulator.defineState("transferMoney")
   	.addResource("id", "account")
+	.addResource("amount", "(new java.util.Random()).nextInt(10000-0) + 0")
 	.addResource("payee", "abc")
 	.addAction("id", "transferMoney");
   simulator.defineState("debitMoney")
   	.addResource("id", "account")
-	.addResource("amount", "(new java.util.Random()).nextInt(10000-0) + 0")
+	.addResource("amount", "(new java.util.Random()).nextInt(10-0) + 500")
 	.addResource("desc", "from xyz")
 	.addAction("id", "debit");
   simulator.defineState("debitInterest")
   	.addResource("id", "account")
-	.addResource("amount", "(new java.util.Random()).nextInt(10000-0) + 0")
+	.addResource("amount", "(new java.util.Random()).nextInt(10-0) + 500")
 	.addResource("desc", "Interest on FD")
 	.addAction("id", "debit");
 

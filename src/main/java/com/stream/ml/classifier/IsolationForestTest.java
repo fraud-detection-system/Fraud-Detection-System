@@ -1,4 +1,4 @@
-package com.ml.classifier;
+package com.stream.ml.classifier;
 
 import weka.classifiers.Classifier;
 import weka.classifiers.evaluation.Evaluation;

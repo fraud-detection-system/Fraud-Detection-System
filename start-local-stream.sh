@@ -24,3 +24,6 @@ $KAFKA_HOME/bin/kafka-topics.sh --list --zookeeper localhost:2181
 
 #kafkacat -b localhost:9092 -t txnevents -p 0 -o -10 -e
 #kafkacat -b localhost:9092 -t txnevents -o -100
+
+#kafkacat -b localhost:9092 -t accessEvents -o -100
+#kafkacat -b localhost:9092 -t fraudAccessEvents -o -100

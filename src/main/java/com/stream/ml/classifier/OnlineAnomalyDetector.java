@@ -1,4 +1,4 @@
-package com.ml.classifier;
+package com.stream.ml.classifier;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,9 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.TextNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.esotericsoftware.minlog.Log;
 import com.github.chen0040.data.frame.BasicDataFrame;
 import com.github.chen0040.data.frame.BasicDataRow;
 import com.github.chen0040.data.frame.DataFrame;
@@ -62,11 +64,46 @@ public class OnlineAnomalyDetector implements Serializable {
 	        		break;
 	        	}
 	        	Object val = attributeContainer.getAttribute(attribute[1]);
-	        	if(val instanceof Double) {
-	        		row.setCell(attribute[0]+"."+attribute[1], (Double)attributeContainer.getAttribute(attribute[1]));
+	        	if(attribute.length > 2) {
+	        		if(attribute[2].equals("double")) {
+	        			if(val instanceof Double) {
+	    	        		row.setCell(attribute[0]+"."+attribute[1], (Double)val);
+	    	        	}
+	        			else if(val == null){
+    	        			row.setCell(attribute[0]+"."+attribute[1], 0);
+    	        		}
+	    	        	else {
+	    	        		String strValue = null;
+	    	        		if(val instanceof String) {
+	    	        			strValue = (String)val;
+	    	        		}
+	    	        		else if(val instanceof TextNode) {
+	    	        			strValue = ((TextNode)val).asText();
+	    	        		
+	    	        		}
+	    	        		if(strValue == null){
+	    	        			row.setCell(attribute[0]+"."+attribute[1], 0);
+	    	        		}else {
+	    	        			row.setCell(attribute[0]+"."+attribute[1], Double.parseDouble(strValue));
+	    	        		}
+	    	        	}
+	        			continue;
+	        		}
 	        	}
-	        	if(val instanceof String) {
-	        		row.setCategoricalCell(attribute[0]+"."+attribute[1], (String)attributeContainer.getAttribute(attribute[1]));
+	        	if(val instanceof Double) {
+	        		row.setCell(attribute[0]+"."+attribute[1], (Double)val);
+	        	}
+	        	else if(val instanceof String) {
+	        		row.setCategoricalCell(attribute[0]+"."+attribute[1], (String)val);
+	        	}
+	        	else if(val instanceof TextNode) {
+	        		row.setCategoricalCell(attribute[0]+"."+attribute[1], ((TextNode)val).asText());
+	        		
+	        	}else if(val != null){
+	        		Log.error("ERROR ERROR ERRROR : Did not understand value");
+	        	}else {
+	        		//NULL is set as 0
+	        		row.setCell(attribute[0]+"."+attribute[1], 0);
 	        	}
 	        }
 	        return row;
@@ -101,8 +138,11 @@ public class OnlineAnomalyDetector implements Serializable {
         list.add("atmWithdrawal");
         list.add("onlineShopping");
         levels.put("action.id", list);
+        list = new ArrayList();
+        list.add("account");
+        levels.put("resource.id", list);
         row.setLevels(levels);
-    	logger.info("evalulate: "+isolationForest.evaluate(row));
+    	logger.info("evalulate: "+isolationForest.evaluate(row)+", event: "+accessEvent+", tensor : "+(row==null? "" : Arrays.toString(row.toArray())) );
     	return isolationForest.isAnomaly(row);
     }
     
@@ -116,6 +156,9 @@ public class OnlineAnomalyDetector implements Serializable {
         list.add("atmWithdrawal");
         list.add("onlineShopping");
         levels.put("action.id", list);
+        list = new ArrayList();
+        list.add("account");
+        levels.put("resource.id", list);
         row.setLevels(levels);
     	return isolationForest.evaluate(row);
     }

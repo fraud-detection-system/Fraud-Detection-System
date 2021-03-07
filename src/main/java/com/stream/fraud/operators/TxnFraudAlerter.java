@@ -1,8 +1,9 @@
 package com.stream.fraud.operators;
 
-import com.ml.classifier.AnomalyDetector;
 import com.stream.fraud.model.FraudTxn;
 import com.stream.fraud.model.TxnEvent;
+import com.stream.ml.classifier.AnomalyDetector;
+
 import org.apache.flink.api.common.functions.RuntimeContext;
 import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
 import org.apache.flink.streaming.api.windowing.windows.GlobalWindow;

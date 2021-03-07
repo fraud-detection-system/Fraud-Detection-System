@@ -14,7 +14,6 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 import org.apache.flink.streaming.api.windowing.assigners.GlobalWindows;
 
-import com.ml.classifier.OnlineAnomalyDetector;
 import com.stream.Workflow;
 import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.FraudAccessEvent;
@@ -22,19 +21,17 @@ import com.stream.fraud.operators.AccessEventFraudAlerter;
 import com.stream.fraud.operators.FraudAccessEventSink;
 import com.stream.fraud.operators.JsonToAccessEvent;
 import com.stream.fraud.operators.ValidAccessEventTrigger;
+import com.stream.ml.classifier.OnlineAnomalyDetector;
 import com.stream.telecom.integration.LocalKafka;
 
 public class OnlineFraudDetectionWorkflow extends Workflow {
 
     private static final int WINDOW_SIZE=5;
-    private static final String TRAINING_FILE_NAME = "data.txt";
-
     @SuppressWarnings("deprecation")
     public void run() throws Exception {
 
 
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-
 
         /**
          * Definition of workflows
@@ -49,7 +46,13 @@ public class OnlineFraudDetectionWorkflow extends Workflow {
                 .flatMap(new JsonToAccessEvent());
 
         List<String []> attributes = Arrays.asList(
-     		   new String[] {"subject","id"}, new String[] {"resource","id"}, new String[] {"action","id"});
+     		   new String[] {"subject", "id", "categorical"}, 
+     		   new String[] {"resource", "id", "categorical"}, 
+     		   new String[] {"action","id", "categorical"},
+     		  //new String[] {"resource","desc", "categorical"},
+     		  new String[] {"resource","amount", "double"}
+     		 
+     		   );
         OnlineAnomalyDetector anomalyDetector = new OnlineAnomalyDetector(attributes);
 
         //stream.print();
