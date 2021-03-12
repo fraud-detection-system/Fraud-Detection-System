@@ -10,7 +10,9 @@ import java.util.UUID;
  */
 
 public class AccessEvent extends Event{
-	private String eventId = null;
+	private String eventId = UUID.randomUUID().toString();
+	
+	//TODO: put time here
 	
 	private Subject subject = new Subject();
 	private Resource resource = new Resource();
@@ -18,7 +20,6 @@ public class AccessEvent extends Event{
 	private Environment environment = new Environment();
 	
 	public AccessEvent() {
-		eventId = UUID.randomUUID().toString();
 	}
 	
 	public Subject getSubject() {
@@ -47,7 +48,7 @@ public class AccessEvent extends Event{
 	}
 	
 	public String toString() {
-		return "resource="+this.resource.getAttributes()+", action="+action.getAttributes()+", subject="+subject.getAttributes()+", environment="+environment.getAttributes();
+		return "resource="+this.resource.getAttributes()+", action="+action.getAttributes()+", subject="+subject.getAttributes()+", environment="+environment.getAttributes()+", eventId="+getEventId();
 	}
 	public String getEventId() {
 		return eventId;

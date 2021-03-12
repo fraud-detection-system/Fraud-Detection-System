@@ -16,7 +16,7 @@ import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.util.Collector;
 
 import com.stream.Workflow;
-import com.stream.telecom.integration.LocalKafka;
+import com.stream.integration.LocalKafka;
 import com.stream.telecom.model.TelecomCallRecord;
 import com.stream.telecom.operators.AlertSink;
 import com.stream.telecom.operators.JsonToTelecomCallRecord;

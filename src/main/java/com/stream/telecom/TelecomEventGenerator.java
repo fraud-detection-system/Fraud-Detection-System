@@ -3,7 +3,7 @@
  */
 package com.stream.telecom;
 
-import static com.stream.telecom.integration.LocalKafka.*;
+import static com.stream.integration.LocalKafka.*;
 
 import java.util.Date;
 import java.util.Properties;

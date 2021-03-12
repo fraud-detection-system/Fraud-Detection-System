@@ -24,6 +24,7 @@ public class FraudAccessEventSink implements SinkFunction<FraudAccessEvent> {
     @Override
     public void invoke(FraudAccessEvent fraudAccessEvent, Context context) throws Exception {
 		traceSink.log(fraudAccessEvent, FraudAccessEventSink.class.getSimpleName(), "Stream Name="+this.streamName +", FRAUD!!! = "+fraudAccessEvent.toString());
+		fraudAccessEvent.getEnvironment().setAttribute("detectionTime", new java.util.Date());
 		Publisher.fireFraudAccessEvent(fraudAccessEvent);
     }
 }

@@ -1,4 +1,4 @@
-package com.stream.telecom.integration;
+package com.stream.integration;
 
 import java.util.Collections;
 import java.util.Properties;

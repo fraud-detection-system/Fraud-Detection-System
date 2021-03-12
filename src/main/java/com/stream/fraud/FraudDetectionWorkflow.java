@@ -10,8 +10,9 @@ import com.stream.fraud.operators.JsonToTxnEvent;
 import com.stream.fraud.operators.TxnFraudAlerter;
 import com.stream.fraud.operators.TxnThresholdBasedAlerter;
 import com.stream.fraud.operators.ValidTxnRecordTrigger;
+import com.stream.integration.LocalKafka;
 import com.stream.ml.classifier.AnomalyDetector;
-import com.stream.telecom.integration.LocalKafka;
+
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.flink.streaming.api.TimeCharacteristic;

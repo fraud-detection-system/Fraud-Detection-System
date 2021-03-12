@@ -3,11 +3,11 @@
  */
 package com.stream.simulation;
 
-import static com.stream.telecom.integration.LocalKafka.CLIENT_ID;
-import static com.stream.telecom.integration.LocalKafka.KAFKA_BROKERS;
-import static com.stream.telecom.integration.LocalKafka.MESSAGE_COUNT;
-import static com.stream.telecom.integration.LocalKafka.ACCESS_EVENTS_IN_TOPIC_NAME;
-import static com.stream.telecom.integration.LocalKafka.FRAUD_ACCESS_EVENTS_OUT_TOPIC_NAME;
+import static com.stream.integration.LocalKafka.ACCESS_EVENTS_IN_TOPIC_NAME;
+import static com.stream.integration.LocalKafka.CLIENT_ID;
+import static com.stream.integration.LocalKafka.FRAUD_ACCESS_EVENTS_OUT_TOPIC_NAME;
+import static com.stream.integration.LocalKafka.KAFKA_BROKERS;
+import static com.stream.integration.LocalKafka.MESSAGE_COUNT;
 
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;

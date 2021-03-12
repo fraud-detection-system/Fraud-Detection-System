@@ -1,35 +1,49 @@
 logger.info("Running the Alice GrandMa simulation")
 
-var importIt = new JavaImporter(java.lang.String,java.util,java.io,com.stream.simulation,com.stream.fraud.model);  
+var importIt = new JavaImporter(java.lang.String,java.util,java.io,java.time,com.stream.simulation,com.stream.fraud.model);  
 with (importIt) {  
   var simulator = new Simulator();
 
   simulator.defineState("atmWithdrawal")
   	.addResource("id", "account")
+	.addResource("desc", "atm")
+	.addResource("creationTime", "new java.util.Date()")
 	.addAction("id", "atmWithdrawal");
   simulator.defineState("login")
   	.addResource("id", "account")
+	.addResource("desc", "login")
+	.addResource("creationTime", "new java.util.Date()")
 	.addAction("id", "login");
   simulator.defineState("logout")
   	.addResource("id", "account")
+	.addResource("desc", "logout")
+	.addResource("creationTime", "new java.util.Date()")
 	.addAction("id", "logout");
   simulator.defineState("checkBalance")
   	.addResource("id", "account")
+	.addResource("desc", "check balance")
+	.addResource("creationTime", "new java.util.Date()")
 	.addAction("id", "readBalance");
   simulator.defineState("transferMoney")
   	.addResource("id", "account")
+	.addResource("desc", "transfer money")
 	.addResource("amount", "(new java.util.Random()).nextInt(10000-0) + 0")
 	.addResource("payee", "abc")
+	.addResource("creationTime", "new java.util.Date()")
 	.addAction("id", "transferMoney");
   simulator.defineState("debitMoney")
   	.addResource("id", "account")
+	.addResource("desc", "debit money")
 	.addResource("amount", "(new java.util.Random()).nextInt(10-0) + 500")
 	.addResource("desc", "from xyz")
+	.addResource("creationTime", "new java.util.Date()")
 	.addAction("id", "debit");
   simulator.defineState("debitInterest")
   	.addResource("id", "account")
+	.addResource("desc", "debit interest")
 	.addResource("amount", "(new java.util.Random()).nextInt(10-0) + 500")
 	.addResource("desc", "Interest on FD")
+	.addResource("creationTime", "new java.util.Date()")
 	.addAction("id", "debit");
 
 

@@ -21,8 +21,9 @@ import com.stream.fraud.operators.AccessEventFraudAlerter;
 import com.stream.fraud.operators.FraudAccessEventSink;
 import com.stream.fraud.operators.JsonToAccessEvent;
 import com.stream.fraud.operators.ValidAccessEventTrigger;
+import com.stream.integration.LocalKafka;
+import com.stream.ml.classifier.MoAOnlineAnomalyDetector;
 import com.stream.ml.classifier.OnlineAnomalyDetector;
-import com.stream.telecom.integration.LocalKafka;
 
 public class OnlineFraudDetectionWorkflow extends Workflow {
 
@@ -53,7 +54,8 @@ public class OnlineFraudDetectionWorkflow extends Workflow {
      		  new String[] {"resource","amount", "double"}
      		 
      		   );
-        OnlineAnomalyDetector anomalyDetector = new OnlineAnomalyDetector(attributes);
+        //OnlineAnomalyDetector anomalyDetector = new OnlineAnomalyDetector(attributes);
+        OnlineAnomalyDetector anomalyDetector = new MoAOnlineAnomalyDetector(attributes);
 
         //stream.print();
 
