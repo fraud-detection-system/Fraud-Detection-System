@@ -6,10 +6,32 @@ import java.util.List;
 import com.stream.fraud.model.AccessEvent;
 
 public abstract class OnlineAnomalyDetector implements Serializable {
+	private static final long serialVersionUID = -2247083247745434666L;
+
+	public class MultiClassAnomalyOutput {
+    	String classifierName;
+    	boolean isAnomaly;
+    	MultiClassAnomalyOutput (String classifierName, boolean isAnomaly){
+    		this.classifierName = classifierName;
+    		this.isAnomaly = isAnomaly;
+    	}
+    	public String getClassifierName() {
+    		return classifierName;
+    	}
+    	
+    	public boolean getIsAnomaly() {
+    		return this.isAnomaly;
+    	}
+    	
+    	public String toString() {
+    		return this.classifierName+" : "+isAnomaly;
+    	}
+    }
+	
     public OnlineAnomalyDetector(List<String[]> attributes) {
     }
     
     public abstract void onlineFit(AccessEvent accessEvent, boolean isAnamoly) ;
     
-    public abstract boolean isAnomaly(AccessEvent accessEvent);
+    public abstract MultiClassAnomalyOutput[] isAnomaly(AccessEvent accessEvent);
 }

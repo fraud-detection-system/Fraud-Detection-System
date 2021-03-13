@@ -2,10 +2,13 @@ package com.stream.ml.classifier;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Vector;
 
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.TextNode;
 import org.slf4j.Logger;
@@ -20,7 +23,19 @@ import com.yahoo.labs.samoa.instances.Instance;
 import com.yahoo.labs.samoa.instances.InstancesHeader;
 
 import moa.classifiers.Classifier;
+import moa.classifiers.bayes.NaiveBayes;
+import moa.classifiers.trees.AdaHoeffdingOptionTree;
+import moa.classifiers.trees.DecisionStump;
+import moa.classifiers.trees.HoeffdingAdaptiveTree;
 import moa.classifiers.trees.HoeffdingTree;
+import moa.clusterers.Clusterer;
+import moa.clusterers.outliers.MyBaseOutlierDetector;
+import moa.clusterers.outliers.MyBaseOutlierDetector.Outlier;
+import moa.clusterers.outliers.AbstractC.AbstractC;
+import moa.clusterers.outliers.Angiulli.ApproxSTORM;
+import moa.clusterers.outliers.Angiulli.ExactSTORM;
+import moa.clusterers.outliers.MCOD.MCOD;
+import moa.clusterers.outliers.SimpleCOD.SimpleCOD;
 
 public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 	
@@ -31,8 +46,9 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 	private static final double THRESHOLD = 0.01;
 
     private static final String ANOMALY_COLUMN_NAME = "anomaly";
-
-    public transient Classifier learner = null;
+    
+    public transient Map<String, Classifier> classifiers = null;
+    public transient Map<String, Clusterer> clusterers = null;
 
     private List<String[]> attributes;
 
@@ -167,28 +183,119 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
     public void onlineFit(AccessEvent accessEvent, boolean isAnamoly) {
 
 		Instance instance = convertToInstance(accessEvent, isAnamoly? 1: 0);
-		if (null == learner) {
+		if (null == classifiers) {
 			synchronized (MoAOnlineAnomalyDetector.class) {
-				if (learner == null) {
-					learner = new HoeffdingTree();
-					learner.setModelContext(getHeader());
-		            learner.prepareForUse();
+				if (classifiers == null) {
+					classifiers = new HashMap<>();
+					clusterers = new HashMap<>();
+					
+					Classifier classifier = new HoeffdingTree();
+					classifier.setModelContext(getHeader());
+					classifier.prepareForUse();
+					classifiers.put("HoeffdingTree", classifier);
+					classifier = new HoeffdingAdaptiveTree();
+					classifier.setModelContext(getHeader());
+					classifier.prepareForUse();
+					classifiers.put("HoeffdingAdaptiveTree", classifier);
+					classifier = new NaiveBayes();
+					classifier.setModelContext(getHeader());
+					classifier.prepareForUse();
+					classifiers.put("NaiveBayes", classifier);
+					classifier = new DecisionStump();
+					classifier.setModelContext(getHeader());
+					classifier.prepareForUse();
+					classifiers.put("DecisionStump", classifier);
+					classifier = new AdaHoeffdingOptionTree();
+					classifier.setModelContext(getHeader());
+					classifier.prepareForUse();
+					classifiers.put("AdaHoeffdingOptionTree", classifier);
+					classifier = new RandomBinaryClassifier();
+					classifier.setModelContext(getHeader());
+					classifier.prepareForUse();
+					classifiers.put("RandomBinaryClassifier", classifier);
+
+					ExactSTORM myOutlierDetector= new ExactSTORM();
+			        myOutlierDetector.queryFreqOption.setValue(1);
+			        myOutlierDetector.setModelContext(getHeader());
+			        myOutlierDetector.prepareForUse();
+			        clusterers.put("ExactSTORM", myOutlierDetector);
+			        ApproxSTORM myOutlierDetector1= new ApproxSTORM();
+			        myOutlierDetector1.queryFreqOption.setValue(1);
+			        myOutlierDetector1.setModelContext(getHeader());
+			        myOutlierDetector1.prepareForUse();
+			        clusterers.put("ApproxSTORM", myOutlierDetector1);
+			        MCOD mcod = new MCOD();
+			        mcod.setModelContext(getHeader());
+			        mcod.prepareForUse();
+			        clusterers.put("MCOD", mcod);
+			        SimpleCOD simplecod = new SimpleCOD();
+			        simplecod.setModelContext(getHeader());
+			        simplecod.prepareForUse();
+			        clusterers.put("SimpleCOD", simplecod);
+			        AbstractC abstractC = new AbstractC();
+			        abstractC.setModelContext(getHeader());
+			        abstractC.prepareForUse();
+			        clusterers.put("AbstractC", abstractC);
+			           
+					// we removed this one because of license issues
+					// classifier = new HoeffdingTreeNG();
 				}
 			}
 		}
-		learner.trainOnInstance(instance);
+		for(Entry<String, Classifier> classifierEntry: classifiers.entrySet()) {
+			classifierEntry.getValue().trainOnInstance(instance);
+		}
+		for(Entry<String, Clusterer> clustererEntry: clusterers.entrySet()) {
+			clustererEntry.getValue().trainOnInstance(instance);
+		}
     }
     
-    public boolean isAnomaly(AccessEvent accessEvent) {
-    	if(null == learner) {
-    		return true;
+    public MultiClassAnomalyOutput [] isAnomaly(AccessEvent accessEvent) {
+    	if(null == classifiers && null == clusterers) {
+    		MultiClassAnomalyOutput [] result = new MultiClassAnomalyOutput[] {
+    				new MultiClassAnomalyOutput("Null Classifier", true)
+    		};
+    		return result;
     	}
     	Instance instance = convertToInstance(accessEvent, 0);
-    	
-    	double []votes = learner.getVotesForInstance(instance);
-    	
-    	logger.info("evalulate: "+String.format("%,.4f", votes[0])+", event: "+accessEvent+", tensor : "+instance.toString() );
-    	return votes[0] < THRESHOLD;
+    	MultiClassAnomalyOutput [] result = new MultiClassAnomalyOutput[classifiers.size()+clusterers.size()];
+    	int index = 0;
+    	StringBuffer sb = new StringBuffer();
+    	sb.append("isAnamoly: ");
+    	for(Entry<String, Classifier> classifierEntry: classifiers.entrySet()) {
+			double []votes = classifierEntry.getValue().getVotesForInstance(instance);
+			MultiClassAnomalyOutput multiClassAnomalyOutput = new MultiClassAnomalyOutput(classifierEntry.getKey(), votes[0] < THRESHOLD);
+	    	sb.append(multiClassAnomalyOutput + " : "+String.format("%,.4f", votes[0])+", ");
+	    	//result[index++] = multiClassAnomalyOutput;
+		}
+    	for(Entry<String, Clusterer> clustererEntry: clusterers.entrySet()) {
+			double []votes = clustererEntry.getValue().getVotesForInstance(instance);
+			
+			if(votes == null) {
+				if(clustererEntry.getValue() instanceof MyBaseOutlierDetector) {
+					MyBaseOutlierDetector myBaseOutlierDetector = (MyBaseOutlierDetector)clustererEntry.getValue();
+					myBaseOutlierDetector.processNewInstanceImpl(instance);
+					Vector<Outlier> outlierVector = myBaseOutlierDetector.getOutliersResult();
+					boolean isOutlier = false;
+					for(Outlier outlier: outlierVector) {
+						if(outlier.inst.equals(instance)) {
+							isOutlier = true;
+							break;
+						}
+					}
+					MultiClassAnomalyOutput multiClassAnomalyOutput = new MultiClassAnomalyOutput(clustererEntry.getKey(), isOutlier);
+				    sb.append(multiClassAnomalyOutput +", ");
+				    result[index++] = multiClassAnomalyOutput;
+				}
+			}else {
+				MultiClassAnomalyOutput multiClassAnomalyOutput = new MultiClassAnomalyOutput(clustererEntry.getKey(), votes[0] < THRESHOLD);
+				sb.append(multiClassAnomalyOutput + " : "+String.format("%,.4f", votes[0])+", ");
+				result[index++] = multiClassAnomalyOutput;
+			}
+		}
+    	sb.append(" event: "+accessEvent+", tensor : "+instance.toString() );
+    	logger.info(sb.toString());
+    	return result;	
     }
 
    public static void main(String[] args) throws IOException, FileNotFoundException {
