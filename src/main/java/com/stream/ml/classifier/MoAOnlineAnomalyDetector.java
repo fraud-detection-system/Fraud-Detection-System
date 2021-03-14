@@ -266,7 +266,7 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 			double []votes = classifierEntry.getValue().getVotesForInstance(instance);
 			MultiClassAnomalyOutput multiClassAnomalyOutput = new MultiClassAnomalyOutput(classifierEntry.getKey(), votes[0] < THRESHOLD);
 	    	sb.append(multiClassAnomalyOutput + " : "+String.format("%,.4f", votes[0])+", ");
-	    	//result[index++] = multiClassAnomalyOutput;
+	    	result[index++] = multiClassAnomalyOutput;
 		}
     	for(Entry<String, Clusterer> clustererEntry: clusterers.entrySet()) {
 			double []votes = clustererEntry.getValue().getVotesForInstance(instance);

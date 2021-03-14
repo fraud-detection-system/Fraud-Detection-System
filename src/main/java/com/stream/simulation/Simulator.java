@@ -2,7 +2,6 @@ package com.stream.simulation;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -12,7 +11,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
 
+import com.stream.fraud.model.AccessEvent;
+import com.stream.fraud.model.AttributeContainer;
 import com.stream.fraud.model.Resource;
 import com.stream.fraud.model.Subject;
 
@@ -31,21 +33,32 @@ public class Simulator {
 		return state;
 	}
 
-	public Actor defineActor(String nameOfActor, Map<String, String> properties) {
+	public Actor defineActor(String nameOfActor) {
 		logger.info("defined");
-		Actor actor = new Actor(nameOfActor, properties);
+		Actor actor = new Actor(nameOfActor);
 		actorRegistry.put(nameOfActor, actor);
 		return actor;
 
 	}
 	
+	private static Object eval(Object value, AttributeContainer attributeContainer) {
+		try {
+			ExpressionParser parser = new SpelExpressionParser();
+			StandardEvaluationContext context=new StandardEvaluationContext(attributeContainer);
+			return parser.parseExpression(value.toString()).getValue(context);
+		}catch(Exception e) {
+			//TODO: log error
+			//e.printStackTrace();
+			return value;
+		}
+	}
+	
 	public Resource[] definePool(int count, Resource resourceTemplate) {
-		Resource [] resourcePool = new Resource[count];
-		ExpressionParser parser = new SpelExpressionParser();  
+		Resource [] resourcePool = new Resource[count]; 
 		for(int i=0; i<count; i++) {
 			Resource resource = new Resource();
 			for(Entry<String, Object> entry: resourceTemplate.getAttributes().entrySet()) {
-				resource.setAttribute(entry.getKey(), parser.parseExpression(entry.getValue().toString()).getValue());
+				resource.setAttribute(entry.getKey(), eval(entry.getValue().toString(), resourceTemplate));
 			}
 			resourcePool[i]=resource;
 		}
@@ -54,12 +67,11 @@ public class Simulator {
 	}
 	
 	public Subject[] definePool(int count, Subject subjectTemplate) {
-		Subject [] subjectPool = new Subject[count];
-		ExpressionParser parser = new SpelExpressionParser();  
+		Subject [] subjectPool = new Subject[count]; 
 		for(int i=0; i<count; i++) {
 			Subject subject = new Subject();
 			for(Entry<String, Object> entry: subjectTemplate.getAttributes().entrySet()) {
-				subject.setAttribute(entry.getKey(), parser.parseExpression(entry.getValue().toString()).getValue());
+				subject.setAttribute(entry.getKey(), eval(entry.getValue().toString(), subjectTemplate));
 			}
 			subjectPool[i]=subject;
 		}
@@ -101,7 +113,7 @@ public class Simulator {
 		
 		for(int i=0; i<count; i++) {
 			ActorInstance actorInstance = new ActorInstance(actor, this);
-			if(pool != null && pool.length > count) {
+			if(pool != null && pool.length > i) {
 				
 				Object obj = pool[i];
 				if(obj.getClass().isArray()) {

@@ -70,15 +70,16 @@ with (importIt) {
 
   var resourceTemplate = new Resource();
   resourceTemplate.setAttribute("accountId","(new java.util.Random()).nextInt(10000-0) + 0");
+  resourceTemplate.setAttribute("simulation","srCitizen");
   var resourcePool = simulator.definePool(1, resourceTemplate);
   var subjectTemplate = new Subject();
   subjectTemplate.setAttribute("id","(new java.util.Random()).nextInt(10000-0) + 0");
+  subjectTemplate.setAttribute("simulation","srCitizen");
+  subjectTemplate.setAttribute("startTime", "new java.util.Date()")
   var subjectPool = simulator.definePool(1, subjectTemplate);
   var subjectResourcePool = simulator.pair(resourcePool,subjectPool);
-  var normalActorProperties = new HashMap();
-  var fraudActorProperties = new HashMap();
-  simulator.defineActor("aliceGrandMa", normalActorProperties).stateTransition("atmWithdrawal", aliceGrandMaMarkovChain);
-  simulator.defineActor("trudy", fraudActorProperties).stateTransition("login", trudyMarkovChain);
+  simulator.defineActor("aliceGrandMa").stateTransition("atmWithdrawal", aliceGrandMaMarkovChain);
+  simulator.defineActor("trudy").stateTransition("login", trudyMarkovChain);
 
   simulator.startActors("aliceGrandMa", subjectResourcePool, 100, 100);
   simulator.pauseAndPrompt("Start trudy?");

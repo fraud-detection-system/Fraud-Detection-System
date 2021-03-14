@@ -77,10 +77,8 @@ with (importIt) {
   var subjectPool = simulator.definePool(1000000, subjectTemplate);
   //var subjectPool = simulator.definePool(1000, subjectTemplate);
   var subjectResourcePool = simulator.pair(resourcePool,subjectPool);
-  var normalActorProperties = new HashMap();
-  var fraudActorProperties = new HashMap();
-  simulator.defineActor("normalActor", normalActorProperties).stateTransition("login", stateTransitions);
-  simulator.defineActor("fraudActor", fraudActorProperties).stateTransition("login", stateTransitions1);
+  simulator.defineActor("normalActor").stateTransition("login", stateTransitions);
+  simulator.defineActor("fraudActor").stateTransition("login", stateTransitions1);
 
   //1mn accounts, 1mn account owners, 10% of them active, 10% of them firing request at same point - 1% of users
   //

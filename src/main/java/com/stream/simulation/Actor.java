@@ -1,6 +1,5 @@
 package com.stream.simulation;
 
-import java.util.Map;
 import java.util.Map.Entry;
 
 import com.stream.fraud.model.AccessEvent;
@@ -23,22 +22,7 @@ public class Actor {
 		this.nameOfActor = nameOfActor;
 	}
 
-	/**
-	 * @return the properties
-	 */
-	public Map<String, String> getProperties() {
-		return properties;
-	}
-
-	/**
-	 * @param properties the properties to set
-	 */
-	public void setProperties(Map<String, String> properties) {
-		this.properties = properties;
-	}
-
 	private String nameOfActor;
-	private Map<String, String> properties;
 	private String startStateName;
 	private StateTransition [] stateTransitions;
 	
@@ -49,9 +33,8 @@ public class Actor {
 		
 	}
 	
-	public Actor(String nameOfActor, Map<String, String> properties) {
+	public Actor(String nameOfActor) {
 		this.nameOfActor = nameOfActor;
-		this.properties = properties;
 	}
 
 	public void stateTransition(String startStateName, StateTransition [] stateTransitions) {
