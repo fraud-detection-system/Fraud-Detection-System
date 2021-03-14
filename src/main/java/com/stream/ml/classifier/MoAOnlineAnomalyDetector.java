@@ -216,23 +216,33 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 
 					ExactSTORM myOutlierDetector= new ExactSTORM();
 			        myOutlierDetector.queryFreqOption.setValue(1);
+			        myOutlierDetector.kOption.setValue(2);
+			        myOutlierDetector.radiusOption.setValue(100);
 			        myOutlierDetector.setModelContext(getHeader());
 			        myOutlierDetector.prepareForUse();
 			        clusterers.put("ExactSTORM", myOutlierDetector);
 			        ApproxSTORM myOutlierDetector1= new ApproxSTORM();
 			        myOutlierDetector1.queryFreqOption.setValue(1);
+			        myOutlierDetector1.kOption.setValue(2);
+			        myOutlierDetector1.radiusOption.setValue(100);
 			        myOutlierDetector1.setModelContext(getHeader());
 			        myOutlierDetector1.prepareForUse();
 			        clusterers.put("ApproxSTORM", myOutlierDetector1);
 			        MCOD mcod = new MCOD();
+			        mcod.kOption.setValue(2);
+			        mcod.radiusOption.setValue(100);
 			        mcod.setModelContext(getHeader());
 			        mcod.prepareForUse();
 			        clusterers.put("MCOD", mcod);
 			        SimpleCOD simplecod = new SimpleCOD();
+			        simplecod.kOption.setValue(2);
+			        simplecod.radiusOption.setValue(100);
 			        simplecod.setModelContext(getHeader());
 			        simplecod.prepareForUse();
 			        clusterers.put("SimpleCOD", simplecod);
 			        AbstractC abstractC = new AbstractC();
+			        abstractC.kOption.setValue(2);
+			        abstractC.radiusOption.setValue(100);
 			        abstractC.setModelContext(getHeader());
 			        abstractC.prepareForUse();
 			        clusterers.put("AbstractC", abstractC);
@@ -243,10 +253,18 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 			}
 		}
 		for(Entry<String, Classifier> classifierEntry: classifiers.entrySet()) {
-			classifierEntry.getValue().trainOnInstance(instance);
+			try {
+				classifierEntry.getValue().trainOnInstance(instance);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		for(Entry<String, Clusterer> clustererEntry: clusterers.entrySet()) {
-			clustererEntry.getValue().trainOnInstance(instance);
+			try {
+				clustererEntry.getValue().trainOnInstance(instance);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
     }
     
@@ -264,6 +282,9 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
     	sb.append("isAnamoly: ");
     	for(Entry<String, Classifier> classifierEntry: classifiers.entrySet()) {
 			double []votes = classifierEntry.getValue().getVotesForInstance(instance);
+			if(votes == null || votes.length <1) {
+				continue;
+			}
 			MultiClassAnomalyOutput multiClassAnomalyOutput = new MultiClassAnomalyOutput(classifierEntry.getKey(), votes[0] < THRESHOLD);
 	    	sb.append(multiClassAnomalyOutput + " : "+String.format("%,.4f", votes[0])+", ");
 	    	result[index++] = multiClassAnomalyOutput;
@@ -271,7 +292,7 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
     	for(Entry<String, Clusterer> clustererEntry: clusterers.entrySet()) {
 			double []votes = clustererEntry.getValue().getVotesForInstance(instance);
 			
-			if(votes == null) {
+			if(votes == null || votes.length < 1) {
 				if(clustererEntry.getValue() instanceof MyBaseOutlierDetector) {
 					MyBaseOutlierDetector myBaseOutlierDetector = (MyBaseOutlierDetector)clustererEntry.getValue();
 					myBaseOutlierDetector.processNewInstanceImpl(instance);

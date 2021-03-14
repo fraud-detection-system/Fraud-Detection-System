@@ -47,7 +47,7 @@ public class OnlineFraudDetectionWorkflow extends Workflow {
                 .flatMap(new JsonToAccessEvent());
 
         List<String []> attributes = Arrays.asList(
-     		   new String[] {"subject", "id", "categorical"}, 
+     		   //new String[] {"subject", "id", "categorical"}, 
      		   new String[] {"resource", "id", "categorical"}, 
      		   new String[] {"action","id", "categorical"},
      		  //new String[] {"resource","desc", "categorical"},
