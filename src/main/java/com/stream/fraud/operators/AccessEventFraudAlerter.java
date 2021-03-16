@@ -7,6 +7,7 @@ import org.apache.flink.util.Collector;
 import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.FraudAccessEvent;
 import com.stream.ml.classifier.OnlineAnomalyDetector;
+import com.stream.ml.classifier.OnlineAnomalyDetector.FRAUD_CLASS;
 import com.stream.ml.classifier.OnlineAnomalyDetector.MultiClassAnomalyOutput;
 
 public class AccessEventFraudAlerter extends ProcessWindowFunction<AccessEvent, FraudAccessEvent, Object, GlobalWindow> {
@@ -26,10 +27,20 @@ public class AccessEventFraudAlerter extends ProcessWindowFunction<AccessEvent, 
 					if(null != multiClassAnomalyOutput && multiClassAnomalyOutput.getIsAnomaly()) {
 						FraudAccessEvent fraudAccessEvent = new FraudAccessEvent(accessEvent);
 						fraudAccessEvent.getEnvironment().setAttribute("nameOfClassfierThatDetectedAnomaly", multiClassAnomalyOutput.getClassifierName());
+						fraudAccessEvent.getEnvironment().setAttribute("fraud", "true");
 						out.collect(fraudAccessEvent);
 					}
 				}
-				anomalyDetector.onlineFit(accessEvent, false);
+				Object obj = accessEvent.getEnvironment().getAttribute("fraud");
+				FRAUD_CLASS fraudClass = FRAUD_CLASS.UNKNOWN;
+				if(obj != null) {
+					if(obj.equals("true")) {
+						fraudClass = FRAUD_CLASS.ANOMALY;
+					}else {
+						fraudClass = FRAUD_CLASS.NORMAL;
+					}
+				}
+				anomalyDetector.onlineFit(accessEvent, fraudClass);
 			}catch (Exception e){
 				e.printStackTrace();
 			}

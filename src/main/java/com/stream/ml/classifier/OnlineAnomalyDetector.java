@@ -7,6 +7,8 @@ import com.stream.fraud.model.AccessEvent;
 
 public abstract class OnlineAnomalyDetector implements Serializable {
 	private static final long serialVersionUID = -2247083247745434666L;
+	
+	public enum FRAUD_CLASS { NORMAL, ANOMALY, UNKNOWN};
 
 	public class MultiClassAnomalyOutput {
     	String classifierName;
@@ -31,7 +33,7 @@ public abstract class OnlineAnomalyDetector implements Serializable {
     public OnlineAnomalyDetector(List<String[]> attributes) {
     }
     
-    public abstract void onlineFit(AccessEvent accessEvent, boolean isAnamoly) ;
+    public abstract void onlineFit(AccessEvent accessEvent, FRAUD_CLASS fraudClass) ;
     
     public abstract MultiClassAnomalyOutput[] isAnomaly(AccessEvent accessEvent);
 }

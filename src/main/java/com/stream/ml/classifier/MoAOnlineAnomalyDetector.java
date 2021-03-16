@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import com.esotericsoftware.minlog.Log;
 import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.AttributeContainer;
+import com.stream.ml.classifier.OnlineAnomalyDetector.FRAUD_CLASS;
 import com.yahoo.labs.samoa.instances.Attribute;
 import com.yahoo.labs.samoa.instances.DenseInstance;
 import com.yahoo.labs.samoa.instances.Instance;
@@ -180,9 +181,9 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 	        return inst;
     }
     
-    public void onlineFit(AccessEvent accessEvent, boolean isAnamoly) {
+    public void onlineFit(AccessEvent accessEvent, FRAUD_CLASS fraudClass) {
 
-		Instance instance = convertToInstance(accessEvent, isAnamoly? 1: 0);
+	
 		if (null == classifiers) {
 			synchronized (MoAOnlineAnomalyDetector.class) {
 				if (classifiers == null) {
@@ -252,11 +253,15 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 				}
 			}
 		}
-		for(Entry<String, Classifier> classifierEntry: classifiers.entrySet()) {
-			try {
-				classifierEntry.getValue().trainOnInstance(instance);
-			}catch(Exception e) {
-				e.printStackTrace();
+		
+		Instance instance = convertToInstance(accessEvent, fraudClass == FRAUD_CLASS.ANOMALY? 1: 0);
+		if(FRAUD_CLASS.UNKNOWN != fraudClass) {
+			for(Entry<String, Classifier> classifierEntry: classifiers.entrySet()) {
+				try {
+					classifierEntry.getValue().trainOnInstance(instance);
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		for(Entry<String, Clusterer> clustererEntry: clusterers.entrySet()) {
@@ -275,7 +280,7 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
     		};
     		return result;
     	}
-    	Instance instance = convertToInstance(accessEvent, 0);
+    	Instance instance = convertToInstance(accessEvent, 1);
     	MultiClassAnomalyOutput [] result = new MultiClassAnomalyOutput[classifiers.size()+clusterers.size()];
     	int index = 0;
     	StringBuffer sb = new StringBuffer();
@@ -285,7 +290,12 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 			if(votes == null || votes.length <1) {
 				continue;
 			}
-			MultiClassAnomalyOutput multiClassAnomalyOutput = new MultiClassAnomalyOutput(classifierEntry.getKey(), votes[0] < THRESHOLD);
+			MultiClassAnomalyOutput multiClassAnomalyOutput = null;
+			if(votes.length == 2) {
+				multiClassAnomalyOutput = new MultiClassAnomalyOutput(classifierEntry.getKey(), votes[0] < votes[1]);
+			} else {
+				multiClassAnomalyOutput = new MultiClassAnomalyOutput(classifierEntry.getKey(), votes[0] < THRESHOLD);
+			}
 	    	sb.append(multiClassAnomalyOutput + " : "+String.format("%,.4f", votes[0])+", ");
 	    	result[index++] = multiClassAnomalyOutput;
 		}
@@ -332,7 +342,7 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 	       accessEvent.getSubject().setAttribute("id", 10*Math.random());
 	       accessEvent.getResource().setAttribute("id", "account");
 	       accessEvent.getAction().setAttribute("id", "atmWithdrawal");
-	       detector.onlineFit(accessEvent, false);
+	       detector.onlineFit(accessEvent, FRAUD_CLASS.NORMAL);
        }
        
        /*for(int i=0; i<100; i++) {

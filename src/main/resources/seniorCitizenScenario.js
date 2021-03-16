@@ -8,11 +8,13 @@ with (importIt) {
   	.addResource("id", "account")
 	.addResource("desc", "atm")
 	.addResource("creationTime", "new java.util.Date()")
+  	//.addEnvironment("fraud", "false")
 	.addAction("id", "atmWithdrawal");
   simulator.defineState("login")
   	.addResource("id", "account")
 	.addResource("desc", "login")
 	.addResource("creationTime", "new java.util.Date()")
+  	//.addEnvironment("fraud", "true")
 	.addAction("id", "login");
   simulator.defineState("logout")
   	.addResource("id", "account")
