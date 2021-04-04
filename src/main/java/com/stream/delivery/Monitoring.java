@@ -53,8 +53,8 @@ public class Monitoring {
 		
 		try {
 			pg.pushAdd(registry, "streaming-with-flink");
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			//e.printStackTrace();
 		}
 	}
 

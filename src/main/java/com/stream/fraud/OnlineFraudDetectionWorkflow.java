@@ -18,6 +18,7 @@ import com.stream.Workflow;
 import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.FraudAccessEvent;
 import com.stream.fraud.operators.AccessEventFraudAlerter;
+import com.stream.fraud.operators.EnrichWithReferenceData;
 import com.stream.fraud.operators.FraudAccessEventSink;
 import com.stream.fraud.operators.JsonToAccessEvent;
 import com.stream.fraud.operators.ValidAccessEventTrigger;
@@ -45,6 +46,9 @@ public class OnlineFraudDetectionWorkflow extends Workflow {
         DataStream<AccessEvent> stream = env.addSource(kafkaSource)
                 .returns(ObjectNode.class)
                 .flatMap(new JsonToAccessEvent());
+        
+        //Enrich the object
+        stream = stream.process(new EnrichWithReferenceData());
 
         List<String []> attributes = Arrays.asList(
      		   //new String[] {"subject", "id", "categorical"}, 

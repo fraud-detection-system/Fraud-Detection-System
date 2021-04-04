@@ -1,11 +1,12 @@
 package com.stream.fraud.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.JsonNode;
 
-public class AttributeContainer {
+public class AttributeContainer implements Serializable{
 	
 	private HashMap<String, Object> attributes = new HashMap<>();
 	
