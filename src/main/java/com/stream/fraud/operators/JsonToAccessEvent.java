@@ -5,6 +5,7 @@ import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.JsonNode;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.flink.util.Collector;
 
+import com.stream.delivery.Monitoring;
 import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.AttributeContainer;
 
@@ -25,6 +26,7 @@ public class JsonToAccessEvent implements FlatMapFunction<ObjectNode, AccessEven
         fillAttributeContainer(jsonNode.get("environment"), accessEvent.getEnvironment());
 
         collector.collect(accessEvent);
+        Monitoring.register(accessEvent);
     }
     
     private void fillAttributeContainer(JsonNode jsonNode, AttributeContainer attributeContainer) {

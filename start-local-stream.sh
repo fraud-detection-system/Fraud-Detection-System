@@ -9,11 +9,19 @@ ZOOKEEPER_HOME=$ROOTDIR/../apache-zookeeper-3.6.2-bin
 KAFKA_HOME=$ROOTDIR/../kafka_2.13-2.6.0/
 $ZOOKEEPER_HOME/bin/zkServer.sh start
 
+OLDKAFKA_OPTS="$KAFKA_OPTS"
+#export KAFKA_OPTS="$KAFKA_OPTS -javaagent:/Users/bdutt/.m2/repository/io/prometheus/jmx/jmx_prometheus_javaagent/0.15.0/jmx_prometheus_javaagent-0.15.0.jar=7072:$PWD/kafka-2_0_0.yml"
+
 $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &
+export KAFKA_OPTS="$OLDKAFKA_OPTS"
 
 sleep 10
 
 $KAFKA_HOME/bin/kafka-topics.sh --list --zookeeper localhost:2181
+
+
+$ROOTDIR/../pushgateway-1.4.0.darwin-amd64/pushgateway &
+$ROOTDIR/../prometheus-2.26.0.darwin-amd64/prometheus &
 
 #../kafka_2.13-2.6.0/bin/kafka-server-stop.sh
 #../kafka_2.13-2.6.0/bin/kafka-topics.sh --zookeeper localhost:2181 --alter --topic txnevents --config retention.ms=600000

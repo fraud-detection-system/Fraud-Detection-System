@@ -1,0 +1,11 @@
+http://localhost:9091/metrics
+http://localhost:9090/targets
+
+https://github.com/prometheus/pushgateway
+https://prometheus.github.io/client_java/io/prometheus/client/exporter/PushGateway.html
+
+https://github.com/prometheus/jmx_exporter
+
+https://streamingwithflink.grafana.net/d/8QSD1AlGz/streaming-with-flink?orgId=1&from=now-30m&to=now&refresh=30s&kiosk
+
+https://www.robustperception.io/monitoring-kafka-with-prometheus

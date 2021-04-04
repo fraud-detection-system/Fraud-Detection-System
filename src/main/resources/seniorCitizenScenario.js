@@ -1,21 +1,35 @@
+//----------------------------------------------
+//Configuration
+//----------------------------------------------
+
+//mode = "training";
+mode = "evaluation";
+
+
+//----------------------------------------------
+
 logger.info("Running the Alice GrandMa simulation")
 
 var importIt = new JavaImporter(java.lang.String,java.util,java.io,java.time,com.stream.simulation,com.stream.fraud.model);  
 with (importIt) {  
   var simulator = new Simulator();
 
-  simulator.defineState("atmWithdrawal")
+  var state = simulator.defineState("atmWithdrawal")
   	.addResource("id", "account")
 	.addResource("desc", "atm")
 	.addResource("creationTime", "new java.util.Date()")
-  	//.addEnvironment("fraud", "false")
 	.addAction("id", "atmWithdrawal");
-  simulator.defineState("login")
+  if(mode == "training"){
+  	state.addEnvironment("fraud", "false");
+  }
+  state = simulator.defineState("login")
   	.addResource("id", "account")
 	.addResource("desc", "login")
 	.addResource("creationTime", "new java.util.Date()")
-  	//.addEnvironment("fraud", "true")
 	.addAction("id", "login");
+  if(mode == "training"){
+  	state.addEnvironment("fraud", "false");
+  }
   simulator.defineState("logout")
   	.addResource("id", "account")
 	.addResource("desc", "logout")
