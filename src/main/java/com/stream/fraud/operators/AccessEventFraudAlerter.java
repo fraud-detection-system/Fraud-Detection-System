@@ -4,6 +4,7 @@ import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
 import org.apache.flink.streaming.api.windowing.windows.GlobalWindow;
 import org.apache.flink.util.Collector;
 
+import com.stream.delivery.Monitoring;
 import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.FraudAccessEvent;
 import com.stream.ml.classifier.OnlineAnomalyDetector;
@@ -23,14 +24,19 @@ public class AccessEventFraudAlerter extends ProcessWindowFunction<AccessEvent, 
 	public void process(Object key, Context context, Iterable<AccessEvent> accessEvents, Collector<FraudAccessEvent> out) {
 		for(AccessEvent accessEvent: accessEvents) {
 			try {
+				FraudAccessEvent fraudAccessEvent = null;
 				for(MultiClassAnomalyOutput multiClassAnomalyOutput : anomalyDetector.isAnomaly(accessEvent)) {
 					if(null != multiClassAnomalyOutput && multiClassAnomalyOutput.getIsAnomaly()) {
-						FraudAccessEvent fraudAccessEvent = new FraudAccessEvent(accessEvent);
+						fraudAccessEvent = new FraudAccessEvent(accessEvent);
 						fraudAccessEvent.getEnvironment().setAttribute("nameOfClassfierThatDetectedAnomaly", multiClassAnomalyOutput.getClassifierName());
 						fraudAccessEvent.getEnvironment().setAttribute("fraud", "true");
 						out.collect(fraudAccessEvent);
 					}
 				}
+				if(null != fraudAccessEvent) {
+					Monitoring.register(fraudAccessEvent);
+				}
+				
 				Object obj = accessEvent.getEnvironment().getAttribute("fraud");
 				FRAUD_CLASS fraudClass = FRAUD_CLASS.UNKNOWN;
 				if(obj != null) {

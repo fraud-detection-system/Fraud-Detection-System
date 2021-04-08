@@ -21,11 +21,12 @@ with (importIt) {
   ];
 
   var resourceTemplate = new Resource();
-  resourceTemplate.setAttribute("accountId","(new java.util.Random()).nextInt(10000-0) + 0");
+  resourceTemplate.setAttribute("accountId","420");
   resourceTemplate.setAttribute("simulation","denyUser");
   var resourcePool = simulator.definePool(1, resourceTemplate);
   var subjectTemplate = new Subject();
   subjectTemplate.setAttribute("id","420");
+  subjectTemplate.setAttribute("IPAddress","172.1.1.1");
   subjectTemplate.setAttribute("simulation","denyUser");
   var subjectPool = simulator.definePool(1, subjectTemplate);
   var subjectResourcePool = simulator.pair(resourcePool,subjectPool);

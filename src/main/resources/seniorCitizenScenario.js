@@ -75,13 +75,13 @@ with (importIt) {
 	new StateTransition("logout", "login", 1, timeForAnOperation)
   ];
   var aliceGrandMaMarkovChain = [
-  	new StateTransition("atmWithdrawal", "atmWithdrawal", 0.2 , 10000),
-  	new StateTransition("atmWithdrawal", "debitMoney", 0.4 , 10000),
-  	new StateTransition("atmWithdrawal", "debitInterest", 0.4 , 10000),
-  	new StateTransition( "debitMoney", "atmWithdrawal", 0.5 , 10000),
-  	new StateTransition( "debitMoney", "debitInterest", 0.5 , 10000),
-  	new StateTransition("debitInterest", "atmWithdrawal", 0.5 , 10000),
-  	new StateTransition("debitInterest", "debitMoney", 0.5 , 10000)
+  	new StateTransition("atmWithdrawal", "atmWithdrawal", 0.2 , 1000),
+  	new StateTransition("atmWithdrawal", "debitMoney", 0.4 , 1000),
+  	new StateTransition("atmWithdrawal", "debitInterest", 0.4 , 1000),
+  	new StateTransition( "debitMoney", "atmWithdrawal", 0.5 , 1000),
+  	new StateTransition( "debitMoney", "debitInterest", 0.5 , 1000),
+  	new StateTransition("debitInterest", "atmWithdrawal", 0.5 , 1000),
+  	new StateTransition("debitInterest", "debitMoney", 0.5 , 1000)
   ];
 
   var resourceTemplate = new Resource();
@@ -96,14 +96,6 @@ with (importIt) {
   var subjectResourcePool = simulator.pair(resourcePool,subjectPool);
   simulator.defineActor("aliceGrandMa").stateTransition("atmWithdrawal", aliceGrandMaMarkovChain);
   simulator.defineActor("trudy").stateTransition("login", trudyMarkovChain);
-
-  simulator.startActors("aliceGrandMa", subjectResourcePool, 100, 100);
-  simulator.pauseAndPrompt("Start trudy?");
-  simulator.startActors("trudy", subjectResourcePool, 100, 100);
-
-  simulator.sleepInMilliSecs(300000);
-  simulator.pauseAndPrompt("End the simulation?");
-  simulator.end()
 }  
 result=simulator;
 logger.info("Done - simulation script")

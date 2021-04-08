@@ -213,7 +213,7 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 					classifier = new RandomBinaryClassifier();
 					classifier.setModelContext(getHeader());
 					classifier.prepareForUse();
-					classifiers.put("RandomBinaryClassifier", classifier);
+					//classifiers.put("RandomBinaryClassifier", classifier);
 
 					ExactSTORM myOutlierDetector= new ExactSTORM();
 			        myOutlierDetector.queryFreqOption.setValue(1);
@@ -281,7 +281,9 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
     		return result;
     	}
     	Instance instance = convertToInstance(accessEvent, 1);
-    	MultiClassAnomalyOutput [] result = new MultiClassAnomalyOutput[classifiers.size()+clusterers.size()];
+    	int ruleBasedML = 1;
+    	
+    	MultiClassAnomalyOutput [] result = new MultiClassAnomalyOutput[classifiers.size()+clusterers.size()+ruleBasedML];
     	int index = 0;
     	StringBuffer sb = new StringBuffer();
     	sb.append("isAnamoly: ");
@@ -324,6 +326,12 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 				result[index++] = multiClassAnomalyOutput;
 			}
 		}
+    	
+    	Object denyUser = accessEvent.getSubject().getAttribute("denyUsers");
+    	MultiClassAnomalyOutput multiClassAnomalyOutput = new MultiClassAnomalyOutput("DenyUsers", null!=denyUser && "true".equalsIgnoreCase((String) denyUser) );
+    	sb.append(multiClassAnomalyOutput +", ");
+    	result[index++] = multiClassAnomalyOutput;
+    	
     	sb.append(" event: "+accessEvent+", tensor : "+instance.toString() );
     	logger.info(sb.toString());
     	return result;	

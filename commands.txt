@@ -7,5 +7,8 @@ https://prometheus.github.io/client_java/io/prometheus/client/exporter/PushGatew
 https://github.com/prometheus/jmx_exporter
 
 https://streamingwithflink.grafana.net/d/8QSD1AlGz/streaming-with-flink?orgId=1&from=now-30m&to=now&refresh=30s&kiosk
+https://streamingwithflink.grafana.net/d/8QSD1AlGz/streaming-with-flink?orgId=1&from=now-15m&to=now&refresh=10s
 
 https://www.robustperception.io/monitoring-kafka-with-prometheus
+
+https://levelup.gitconnected.com/using-rocksdb-with-spring-boot-and-java-99cb1c43a834

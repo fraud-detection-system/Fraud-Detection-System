@@ -27,6 +27,5 @@ public class FraudAccessEventSink implements SinkFunction<FraudAccessEvent> {
 		traceSink.log(fraudAccessEvent, FraudAccessEventSink.class.getSimpleName(), "Stream Name="+this.streamName +", FRAUD!!! = "+fraudAccessEvent.toString());
 		fraudAccessEvent.getEnvironment().setAttribute("detectionTime", new java.util.Date());
 		Publisher.fireFraudAccessEvent(fraudAccessEvent);
-		Monitoring.register(fraudAccessEvent);
     }
 }
