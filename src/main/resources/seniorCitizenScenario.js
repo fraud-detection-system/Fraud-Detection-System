@@ -1,13 +1,3 @@
-//----------------------------------------------
-//Configuration
-//----------------------------------------------
-
-//mode = "training";
-mode = "evaluation";
-
-
-//----------------------------------------------
-
 logger.info("Running the Alice GrandMa simulation")
 
 var importIt = new JavaImporter(java.lang.String,java.util,java.io,java.time,com.stream.simulation,com.stream.fraud.model);  
