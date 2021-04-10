@@ -11,14 +11,16 @@ import com.stream.fraud.model.Entity;
 import com.stream.referencedata.ReferenceData;
 
 public class EnrichWithReferenceData extends ProcessFunction<AccessEvent, AccessEvent> {
-	transient ReferenceData referenceData = null;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2865413824127954515L;
 
 	@Override
 	public void processElement(AccessEvent accessEvent, ProcessFunction<AccessEvent, AccessEvent>.Context context,
 			Collector<AccessEvent> collector) throws Exception {
-		if (referenceData == null) {
-			referenceData = new ReferenceData();
-		}
+		ReferenceData referenceData = ReferenceData.getReferenceData();
 
 		String id = (String) accessEvent.getSubject().getAttribute("id");
 		Entity entity = null;

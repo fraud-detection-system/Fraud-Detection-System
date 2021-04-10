@@ -15,8 +15,10 @@ import org.springframework.expression.spel.support.StandardEvaluationContext;
 
 import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.AttributeContainer;
+import com.stream.fraud.model.Entity;
 import com.stream.fraud.model.Resource;
 import com.stream.fraud.model.Subject;
+import com.stream.referencedata.ReferenceData;
 
 public class Simulator {
 	private final static Logger logger = LoggerFactory.getLogger(Simulator.class.getName());
@@ -156,6 +158,11 @@ public class Simulator {
 		logger.info(msg+": press enter to continue");
 		System.in.read();
 		//System.console().readLine();
+	}
+	
+	public void newReferenceData(Entity entity) {
+		Publisher.fireNewReferenceData(entity);
+		//ReferenceData.getReferenceData().save(entity);
 	}
 
 }

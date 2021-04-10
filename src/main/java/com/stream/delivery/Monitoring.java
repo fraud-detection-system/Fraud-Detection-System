@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.stream.fraud.model.AccessEvent;
+import com.stream.fraud.model.Entity;
 import com.stream.fraud.model.FraudAccessEvent;
 
 import io.prometheus.client.CollectorRegistry;
@@ -64,6 +65,11 @@ public class Monitoring {
 	
 	public static void register(AccessEvent accessEvent) {
 		run(accessEvent);	
+	}
+
+	public static void register(Entity entity) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

@@ -37,7 +37,7 @@ public class TelecomUsageWorkflow extends Workflow{
 		 * Definition of workflows
 		 */
 		LocalKafka kafkaConsumer = new LocalKafka();
-	    SourceFunction<ObjectNode> kafkaSource = kafkaConsumer.getSourceAsJson();
+	    SourceFunction<ObjectNode> kafkaSource = kafkaConsumer.getAccessEventSourceAsJson();
 	   
 	    env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
 		

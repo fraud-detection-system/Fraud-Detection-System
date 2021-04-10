@@ -11,6 +11,22 @@ public class ReferenceData {
 		entityRepository.initialize();
 	}
 	
+	private transient static ReferenceData referenceData = null;
+	
+	private ReferenceData() {
+	}
+	
+	public static ReferenceData getReferenceData() {
+		if (referenceData == null) {
+			synchronized(ReferenceData.class) {
+				if (referenceData == null) {
+					referenceData = new ReferenceData();
+				}
+			}
+		}
+		return referenceData;
+	}
+	
 	public Entity find(String entityType, String key) {
 		Optional<Object> value = entityRepository.find(entityType+":"+key);
 		if(value.isPresent() && value.get() instanceof Entity) {

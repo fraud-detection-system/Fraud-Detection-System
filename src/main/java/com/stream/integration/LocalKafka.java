@@ -30,6 +30,10 @@ public class LocalKafka {
 	
 	public static String FRAUD_ACCESS_EVENTS_OUT_TOPIC_NAME="fraudAccessEvents";
 	
+	public static String REFERENCE_DATA_IN_TOPIC_NAME="referenceData";
+	
+	public static String DELIVERY_OUT_TOPIC_NAME="deliveryAccessEvent";
+	
 	public static String GROUP_ID_CONFIG="consumerGroup";
 	
 	public static Integer MAX_NO_MESSAGE_FOUND_COUNT=100;
@@ -66,7 +70,7 @@ public class LocalKafka {
 		
 	}
 	
-	public SourceFunction<ObjectNode> getSourceAsJson() throws Exception {
+	public SourceFunction<ObjectNode> getAccessEventSourceAsJson() throws Exception {
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		FlinkKafkaConsumer<ObjectNode> consumer = new FlinkKafkaConsumer(ACCESS_EVENTS_IN_TOPIC_NAME,
 				new JSONKeyValueDeserializationSchema(true), getProps());
@@ -76,6 +80,19 @@ public class LocalKafka {
 
 		return consumer;
 	}
+	
+	public SourceFunction<ObjectNode> getReferenceDataSourceAsJson() throws Exception {
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		FlinkKafkaConsumer<ObjectNode> consumer = new FlinkKafkaConsumer(REFERENCE_DATA_IN_TOPIC_NAME,
+				new JSONKeyValueDeserializationSchema(true), getProps());
+
+		// consumer.setStartFromEarliest();
+		consumer.setStartFromLatest();
+
+		return consumer;
+	}
+	
+	
 	
 	private static Properties getProps() {
 		final Properties props = new Properties();

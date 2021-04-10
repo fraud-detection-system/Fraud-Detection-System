@@ -8,6 +8,7 @@ import static com.stream.integration.LocalKafka.CLIENT_ID;
 import static com.stream.integration.LocalKafka.FRAUD_ACCESS_EVENTS_OUT_TOPIC_NAME;
 import static com.stream.integration.LocalKafka.KAFKA_BROKERS;
 import static com.stream.integration.LocalKafka.MESSAGE_COUNT;
+import static com.stream.integration.LocalKafka.REFERENCE_DATA_IN_TOPIC_NAME;
 
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
@@ -26,6 +27,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.Action;
+import com.stream.fraud.model.Entity;
 import com.stream.fraud.model.FraudAccessEvent;
 import com.stream.fraud.model.Resource;
 import com.stream.fraud.model.Subject;
@@ -153,6 +155,33 @@ public class Publisher {
 			RecordMetadata metadata = (RecordMetadata) producer.send(record).get();
 			logger.info("Published FraudAccessEvent - Record sent with key " + " to partition " + metadata.partition() + " with offset "
 					+ metadata.offset() +", "+fraudAccessEvent);
+		} catch (ExecutionException e) {
+			logger.error("Error in sending record", e);
+		} catch (InterruptedException e) {
+			logger.error("Error in sending record", e);
+		}
+	}
+	
+	public static void fireNewReferenceData(Entity entity) {
+		if (null == producer) {
+			synchronized (Publisher.class) {
+				if (null == producer) {
+					producer = createProducer();
+				}
+			}
+		}
+
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		ProducerRecord record = null;
+		JsonNode jsonNode = objectMapper.valueToTree(entity);
+
+		record = new ProducerRecord<Long, JsonNode>(REFERENCE_DATA_IN_TOPIC_NAME, jsonNode);
+
+		try {
+			RecordMetadata metadata = (RecordMetadata) producer.send(record).get();
+			logger.info("Published newReferenceData - Record sent with key " + " to partition " + metadata.partition() + " with offset "
+					+ metadata.offset() +", "+entity);
 		} catch (ExecutionException e) {
 			logger.error("Error in sending record", e);
 		} catch (InterruptedException e) {
