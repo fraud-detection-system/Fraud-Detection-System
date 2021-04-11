@@ -25,25 +25,30 @@ public class AccessEventFraudAlerter extends ProcessWindowFunction<AccessEvent, 
 		for(AccessEvent accessEvent: accessEvents) {
 			try {
 				FraudAccessEvent fraudAccessEvent = null;
-				for(MultiClassAnomalyOutput multiClassAnomalyOutput : anomalyDetector.isAnomaly(accessEvent)) {
-					if(null != multiClassAnomalyOutput && multiClassAnomalyOutput.getIsAnomaly()) {
-						fraudAccessEvent = new FraudAccessEvent(accessEvent);
-						fraudAccessEvent.getEnvironment().setAttribute("nameOfClassfierThatDetectedAnomaly", multiClassAnomalyOutput.getClassifierName());
-						fraudAccessEvent.getEnvironment().setAttribute("fraud", "true");
-						out.collect(fraudAccessEvent);
-					}
-				}
-				if(null != fraudAccessEvent) {
-					Monitoring.register(fraudAccessEvent);
-				}
-				
-				Object obj = accessEvent.getEnvironment().getAttribute("fraud");
+				Object isTraining = accessEvent.getEnvironment().getAttribute("training");
 				FRAUD_CLASS fraudClass = FRAUD_CLASS.UNKNOWN;
-				if(obj != null) {
-					if(obj.equals("true")) {
-						fraudClass = FRAUD_CLASS.ANOMALY;
-					}else {
-						fraudClass = FRAUD_CLASS.NORMAL;
+				
+				if(isTraining == null || !"true".equalsIgnoreCase((String) isTraining))
+				{
+					for(MultiClassAnomalyOutput multiClassAnomalyOutput : anomalyDetector.isAnomaly(accessEvent)) {
+						if(null != multiClassAnomalyOutput && multiClassAnomalyOutput.getIsAnomaly()) {
+							fraudAccessEvent = new FraudAccessEvent(accessEvent);
+							fraudAccessEvent.getEnvironment().setAttribute("nameOfClassfierThatDetectedAnomaly", multiClassAnomalyOutput.getClassifierName());
+							fraudAccessEvent.getEnvironment().setAttribute("fraud", "true");
+							out.collect(fraudAccessEvent);
+						}
+					}
+					if(null != fraudAccessEvent) {
+						Monitoring.register(fraudAccessEvent);
+					}
+				} else { //This is training event
+					Object isFraud = accessEvent.getEnvironment().getAttribute("fraud");
+					if(isFraud != null) {
+						if(isFraud.equals("true")) {
+							fraudClass = FRAUD_CLASS.ANOMALY;
+						}else {
+							fraudClass = FRAUD_CLASS.NORMAL;
+						}
 					}
 				}
 				anomalyDetector.onlineFit(accessEvent, fraudClass);

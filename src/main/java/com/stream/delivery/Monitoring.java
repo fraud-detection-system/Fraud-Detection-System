@@ -1,6 +1,5 @@
 package com.stream.delivery;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +9,6 @@ import com.stream.fraud.model.FraudAccessEvent;
 
 import io.prometheus.client.CollectorRegistry;
 import io.prometheus.client.Counter;
-import io.prometheus.client.Gauge;
 import io.prometheus.client.exporter.PushGateway;
 
 public class Monitoring {
@@ -70,6 +68,17 @@ public class Monitoring {
 	public static void register(Entity entity) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public static void reset() {
+		accessEventsCounter.clear();
+		fraudEventsCounter.clear();
+
+		try {
+			pg.pushAdd(registry, "streaming-with-flink");
+		} catch (Exception e) {
+			//e.printStackTrace();
+		}
 	}
 	
 	

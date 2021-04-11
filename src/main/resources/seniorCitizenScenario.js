@@ -10,6 +10,7 @@ with (importIt) {
 	.addResource("creationTime", "new java.util.Date()")
 	.addAction("id", "atmWithdrawal");
   if(mode == "training"){
+  	state.addEnvironment("training", "true");
   	state.addEnvironment("fraud", "false");
   }
   state = simulator.defineState("login")
@@ -18,39 +19,60 @@ with (importIt) {
 	.addResource("creationTime", "new java.util.Date()")
 	.addAction("id", "login");
   if(mode == "training"){
-  	state.addEnvironment("fraud", "false");
+  	state.addEnvironment("training", "true");
+  	state.addEnvironment("fraud", "true");
   }
-  simulator.defineState("logout")
+  state = simulator.defineState("logout")
   	.addResource("id", "account")
 	.addResource("desc", "logout")
 	.addResource("creationTime", "new java.util.Date()")
 	.addAction("id", "logout");
-  simulator.defineState("checkBalance")
+  if(mode == "training"){
+  	state.addEnvironment("training", "true");
+  	state.addEnvironment("fraud", "true");
+  }
+  state = simulator.defineState("checkBalance")
   	.addResource("id", "account")
 	.addResource("desc", "check balance")
 	.addResource("creationTime", "new java.util.Date()")
 	.addAction("id", "readBalance");
-  simulator.defineState("transferMoney")
+  if(mode == "training"){
+  	state.addEnvironment("training", "true");
+  	state.addEnvironment("fraud", "true");
+  }
+  state = simulator.defineState("transferMoney")
   	.addResource("id", "account")
 	.addResource("desc", "transfer money")
 	.addResource("amount", "(new java.util.Random()).nextInt(10000-0) + 0")
 	.addResource("payee", "abc")
 	.addResource("creationTime", "new java.util.Date()")
 	.addAction("id", "transferMoney");
-  simulator.defineState("debitMoney")
+  if(mode == "training"){
+  	state.addEnvironment("training", "true");
+  	state.addEnvironment("fraud", "true");
+  }
+  state = simulator.defineState("debitMoney")
   	.addResource("id", "account")
 	.addResource("desc", "debit money")
 	.addResource("amount", "(new java.util.Random()).nextInt(10-0) + 500")
 	.addResource("desc", "from xyz")
 	.addResource("creationTime", "new java.util.Date()")
 	.addAction("id", "debit");
-  simulator.defineState("debitInterest")
+  if(mode == "training"){
+  	state.addEnvironment("training", "true");
+  	state.addEnvironment("fraud", "false");
+  }
+  state = simulator.defineState("debitInterest")
   	.addResource("id", "account")
 	.addResource("desc", "debit interest")
 	.addResource("amount", "(new java.util.Random()).nextInt(10-0) + 500")
 	.addResource("desc", "Interest on FD")
 	.addResource("creationTime", "new java.util.Date()")
 	.addAction("id", "debit");
+  if(mode == "training"){
+  	state.addEnvironment("training", "true");
+  	state.addEnvironment("fraud", "false");
+  }
 
 
   //How do senior citizens transact: FD interest getting deposited, few debits, only ATM - online withdrawl is fishy

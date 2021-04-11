@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.stream.Workflow;
+import com.stream.delivery.Monitoring;
 
 public class OnlineFraudDetectionServer
 {
@@ -21,6 +22,7 @@ public class OnlineFraudDetectionServer
      */
     public static void run() throws Exception {
         logger.info(" Starting!" );
+        Monitoring.reset();
         (new Thread(new Runnable() {
 
 			@Override

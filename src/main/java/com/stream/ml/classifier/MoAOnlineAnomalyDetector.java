@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
 import com.esotericsoftware.minlog.Log;
 import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.AttributeContainer;
-import com.stream.ml.classifier.OnlineAnomalyDetector.FRAUD_CLASS;
 import com.yahoo.labs.samoa.instances.Attribute;
 import com.yahoo.labs.samoa.instances.DenseInstance;
 import com.yahoo.labs.samoa.instances.Instance;
