@@ -115,25 +115,11 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
     	inst.setDataset(getHeader());
         int index = 0;
 	       
-	        for(String [] attribute : attributes) {
-	        	AttributeContainer attributeContainer = null;
-	        	switch(attribute[0]) {
-	        	case "subject":
-	        		attributeContainer = accessEvent.getSubject();
-	        		break;
-	        	case "resource":
-	        		attributeContainer = accessEvent.getResource();
-	        		break;
-	        	case "action":
-	        		attributeContainer = accessEvent.getAction();
-	        		break;
-	        	case "environment":
-	        		attributeContainer = accessEvent.getEnvironment();
-	        		break;
-	        	}
-	        	Object val = attributeContainer.getAttribute(attribute[1]);
-	        	if(attribute.length > 2) {
-	        		if(attribute[2].equals("double")) {
+	        for(String [] attributeNameElements : attributes) {
+	        	
+	        	Object val = accessEvent.get(attributeNameElements);
+	        	if(attributeNameElements.length > 2) {
+	        		if(attributeNameElements[2].equals("double")) {
 	        			if(val instanceof Double) {
 	        				inst.setValue(index, (Double)val);
 	    	        		
@@ -163,10 +149,10 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 	        		inst.setValue(index, (Double)val);
 	        	}
 	        	else if(val instanceof String) {
-	        		inst.setValue(index, getOrdinal(attribute[0], attribute[1], (String)val));
+	        		inst.setValue(index, getOrdinal(attributeNameElements[0], attributeNameElements[1], (String)val));
 	        	}
 	        	else if(val instanceof TextNode) {
-	        		inst.setValue(index, getOrdinal(attribute[0], attribute[1], (String)val));
+	        		inst.setValue(index, getOrdinal(attributeNameElements[0], attributeNameElements[1], (String)val));
 	        		
 	        	}else if(val != null){
 	        		Log.error("ERROR ERROR ERRROR : Did not understand value");

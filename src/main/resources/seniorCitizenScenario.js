@@ -97,7 +97,8 @@ with (importIt) {
   ];
 
   var resourceTemplate = new Resource();
-  resourceTemplate.setAttribute("accountId","(new java.util.Random()).nextInt(10000-0) + 0");
+  //resourceTemplate.setAttribute("accountId","(new java.util.Random()).nextInt(10000-0) + 0");
+  resourceTemplate.setAttribute("accountId","AliceAccountId1234");
   resourceTemplate.setAttribute("simulation","srCitizen");
   var resourcePool = simulator.definePool(1, resourceTemplate);
   var subjectTemplate = new Subject();

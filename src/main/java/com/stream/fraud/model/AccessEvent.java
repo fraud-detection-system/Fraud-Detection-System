@@ -57,4 +57,31 @@ public class AccessEvent extends Event{
 		this.eventId = eventId;
 	}
 
+	public Object get(String[] attributeNameElements) {
+		if(attributeNameElements.length >= 2) {
+			AttributeContainer attributeContainer = null;
+			switch(attributeNameElements[0]) {
+			case "subject":
+        		attributeContainer = getSubject();
+        		break;
+        	case "resource":
+        		attributeContainer = getResource();
+        		break;
+        	case "action":
+        		attributeContainer = getAction();
+        		break;
+        	case "environment":
+        		attributeContainer = getEnvironment();
+        		break;
+			}
+			if(null != attributeContainer) {
+				Object val = attributeContainer.getAttribute(attributeNameElements[1]);
+				return val;
+			}
+		}
+		//We have no clue how to handle this
+		//TODO: log error
+		return null;
+	}
+
 }

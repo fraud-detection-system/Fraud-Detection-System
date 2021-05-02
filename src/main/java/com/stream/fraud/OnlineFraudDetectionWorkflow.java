@@ -50,67 +50,50 @@ public class OnlineFraudDetectionWorkflow extends Workflow {
         //Enrich the object
         stream = stream.process(new EnrichWithReferenceData());
 
-        List<String []> attributes = Arrays.asList(
-     		   //new String[] {"subject", "id", "categorical"}, 
+        //Attributes that are taken as features in ML. Rest are ignored for ML.
+        List<String []> featureAttributes = Arrays.asList(
      		   new String[] {"resource", "id", "categorical"}, 
      		   new String[] {"action","id", "categorical"},
-     		  //new String[] {"resource","desc", "categorical"},
-     		  new String[] {"resource","amount", "double"}
-     		 
-     		   );
-        //OnlineAnomalyDetector anomalyDetector = new OnlineAnomalyDetector(attributes);
-        OnlineAnomalyDetector anomalyDetector = new MoAOnlineAnomalyDetector(attributes);
+     		   new String[] {"resource","amount", "double"}
+     		);
+        
+        //Attributes for swimlane. Each swimlanes analyzes events in it, learns from it and maintains state.
+        List<String []> swimlaneAttributes = Arrays.asList(
+     		   new String[] {"resource", "id"},
+     		   new String[] {"resource","accountId"}
+     		);
+        
+      //Attributes for keeping history
+        List<String []> historyAttributes = Arrays.asList(
+     		   new String[] {"resource", "id", "5"}, 
+     		   new String[] {"subject","id", "5"}
+     		);
 
-        //stream.print();
+		KeyedStream<AccessEvent, Object> txnKeyedStream = stream.keyBy(new KeySelector<AccessEvent, Object>() {
+			private static final long serialVersionUID = 1L;
 
-        /*
-         *
-         * 1.1.1. collect all calls originating from a location
-         * 1.1.2. Window based aggregates on it
-         * 1.1.3. Compare to low and high thresholds, and generate alerts
-         * 1.1.4. Print alerts on stdout and also to a file
-         *
-         *
-         * 1.2.1. collect all calls terminating to a location
-         * 1.2.2. Window based aggregates on it
-         * 1.2.3. Compare to low and high thresholds, and generate alerts
-         * 1.2.4. Print alerts on stdout and also to a file
-         *
-         * 1.3.1. collect all calls originating/terminating from/to a location
-         * 1.3.2. Window based aggregates on it
-         * 1.3.3. Compare to low and high thresholds, and generate alerts
-         * 1.3.4. Print alerts on stdout and also to a file
-         *
-         * 2. Do the above first two per user
-         *
-         * That gives us total 5 streams.
-         *
-         */
-
-        //1.1
-
-		KeyedStream<AccessEvent, Object> txnKeyedStream = stream
-			.keyBy(new KeySelector<AccessEvent, Object>() {
-				private static final long serialVersionUID = 1L;
-
-				@Override
-				   public Object getKey(AccessEvent accessEvent) throws Exception {
-				      return accessEvent.getResource().getAttribute("id");
-				   }
-				});
+			@Override
+			public Object getKey(AccessEvent accessEvent) throws Exception {
+				String key = "";
+				String keySeparator = "#";
+				for(String []swimlaneAttribute: swimlaneAttributes) {
+					Object val = accessEvent.get(swimlaneAttribute);
+					key += keySeparator+val;
+				}
+				return key;
+			}
+		});
 
 		SingleOutputStreamOperator<FraudAccessEvent> fraudDetectionStream =  txnKeyedStream
 			.window(GlobalWindows.create())
 			.trigger(new ValidAccessEventTrigger())
-			.process(new AccessEventFraudAlerter(anomalyDetector));
+			.process(new AccessEventFraudAlerter(featureAttributes));
 
 		fraudDetectionStream
 			.addSink(new FraudAccessEventSink("from current location alert"));
 
 
-
-
-        // env.setParallelism(1);
+        //env.setParallelism(1);
         //env.enableCheckpointing(1000);
 
         env.execute(LocalKafka.class.getCanonicalName());

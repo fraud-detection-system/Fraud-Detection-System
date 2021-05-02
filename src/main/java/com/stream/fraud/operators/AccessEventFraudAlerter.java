@@ -1,5 +1,9 @@
 package com.stream.fraud.operators;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
 import org.apache.flink.streaming.api.windowing.windows.GlobalWindow;
 import org.apache.flink.util.Collector;
@@ -7,6 +11,7 @@ import org.apache.flink.util.Collector;
 import com.stream.delivery.Monitoring;
 import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.FraudAccessEvent;
+import com.stream.ml.classifier.MoAOnlineAnomalyDetector;
 import com.stream.ml.classifier.OnlineAnomalyDetector;
 import com.stream.ml.classifier.OnlineAnomalyDetector.FRAUD_CLASS;
 import com.stream.ml.classifier.OnlineAnomalyDetector.MultiClassAnomalyOutput;
@@ -14,14 +19,27 @@ import com.stream.ml.classifier.OnlineAnomalyDetector.MultiClassAnomalyOutput;
 public class AccessEventFraudAlerter extends ProcessWindowFunction<AccessEvent, FraudAccessEvent, Object, GlobalWindow> {
 	private static final long serialVersionUID = 1L;
 
-	private final OnlineAnomalyDetector anomalyDetector;
+	private final Map<Object, OnlineAnomalyDetector> swimlanedAnomalyDetectorsMap = new HashMap<>();
+	
+	List<String []> featureAttributes = null;
 
-	public AccessEventFraudAlerter(OnlineAnomalyDetector anomalyDetector) {
-		this.anomalyDetector = anomalyDetector;
+	public AccessEventFraudAlerter(List<String []> featureAttributes) {
+		this.featureAttributes = featureAttributes;
 	}
 
 	@Override
-	public void process(Object key, Context context, Iterable<AccessEvent> accessEvents, Collector<FraudAccessEvent> out) {
+	public void process(Object swimlaneKey, Context context, Iterable<AccessEvent> accessEvents, Collector<FraudAccessEvent> out) {
+		OnlineAnomalyDetector anomalyDetector = swimlanedAnomalyDetectorsMap.get(swimlaneKey);
+		if( anomalyDetector == null) {
+			synchronized(this) {
+				anomalyDetector = swimlanedAnomalyDetectorsMap.get(swimlaneKey);
+				if( anomalyDetector == null) {
+					anomalyDetector = new MoAOnlineAnomalyDetector(featureAttributes);
+					swimlanedAnomalyDetectorsMap.put(swimlaneKey, anomalyDetector);
+				}
+			}
+			
+		}
 		for(AccessEvent accessEvent: accessEvents) {
 			try {
 				FraudAccessEvent fraudAccessEvent = null;
