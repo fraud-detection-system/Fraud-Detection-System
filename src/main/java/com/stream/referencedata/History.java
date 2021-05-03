@@ -10,23 +10,24 @@ import org.apache.mahout.math.Arrays;
 import com.stream.fraud.model.AccessEvent;
 
 class CircularBuffer {
-	Object []data;
+	AccessEvent [] accessEvents;
 	int index = 0;
+	
 	public CircularBuffer(int capacity) {
-		this.data = new Object[capacity];
+		this.accessEvents = new AccessEvent[capacity];
 	}
 	
-	public void add(Object obj) {
-		this.data [index%data.length] = obj;
+	public void add(AccessEvent accessEvent) {
+		this.accessEvents [index%accessEvents.length] = accessEvent;
 		index++;
 		//TODO: take care of index overflow
 	}
 	
-	public Object[] getData() {
-		Object [] result = new Object[data.length];
+	public AccessEvent[] getData() {
+		AccessEvent [] result = new AccessEvent[accessEvents.length];
 		int i=0;
-		for(Object obj: data) {
-			result[(data.length + (i-index%data.length) )%data.length] = obj;
+		for(AccessEvent accessEvent: accessEvents) {
+			result[(accessEvents.length + (i-index%accessEvents.length) )%accessEvents.length] = accessEvent;
 			i++;
 		}
 		return result;
@@ -69,21 +70,21 @@ public class History {
 		}
 	}
 	
-	public List<Object> get(AccessEvent event) {
-		ArrayList<Object> result = new ArrayList<>();
+	public List<AccessEvent> get(AccessEvent event) {
+		ArrayList<AccessEvent> result = new ArrayList<>();
 		for(String [] historyAttributeNameElements : historyAttributes) {
 			Object val = event.get(historyAttributeNameElements);
 			switch(historyAttributeNameElements[0]) {
 			case "resource":
 				CircularBuffer cb = resourceHistory.get(val);
 				if(cb != null) {
-					result.add(cb.getData());
+					result.addAll(java.util.Arrays.asList(cb.getData()));
 				}
 				break;
 			case "subject" :
 				cb = subjectHistory.get(val);
 				if(cb != null) {
-					result.add(cb.getData());
+					result.addAll(java.util.Arrays.asList(cb.getData()));
 				}
 				break;
 			}
@@ -95,7 +96,9 @@ public class History {
 		
 		CircularBuffer buf = new CircularBuffer(5);
 		for(int i=0; i<100; i++) {
-			buf.add(i);
+			AccessEvent accessEvent = new AccessEvent();
+			accessEvent.getResource().setAttribute("id", i);
+			buf.add(accessEvent);
 			System.out.println(Arrays.toString(buf.getData()));
 		}
 

@@ -14,9 +14,7 @@ import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.Text
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.esotericsoftware.minlog.Log;
 import com.stream.fraud.model.AccessEvent;
-import com.stream.fraud.model.AttributeContainer;
 import com.yahoo.labs.samoa.instances.Attribute;
 import com.yahoo.labs.samoa.instances.DenseInstance;
 import com.yahoo.labs.samoa.instances.Instance;
@@ -155,7 +153,7 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 	        		inst.setValue(index, getOrdinal(attributeNameElements[0], attributeNameElements[1], (String)val));
 	        		
 	        	}else if(val != null){
-	        		Log.error("ERROR ERROR ERRROR : Did not understand value");
+	        		logger.error("ERROR ERROR ERRROR : Did not understand value");
 	        	}else {
 	        		//NULL is set as 0
 	        		inst.setValue(index, 0);

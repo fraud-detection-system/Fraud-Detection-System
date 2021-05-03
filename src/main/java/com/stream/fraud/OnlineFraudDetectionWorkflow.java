@@ -21,10 +21,9 @@ import com.stream.fraud.operators.AccessEventFraudAlerter;
 import com.stream.fraud.operators.EnrichWithReferenceData;
 import com.stream.fraud.operators.FraudAccessEventSink;
 import com.stream.fraud.operators.JsonToAccessEvent;
+import com.stream.fraud.operators.EnrichAndSaveHistory;
 import com.stream.fraud.operators.ValidAccessEventTrigger;
 import com.stream.integration.LocalKafka;
-import com.stream.ml.classifier.MoAOnlineAnomalyDetector;
-import com.stream.ml.classifier.OnlineAnomalyDetector;
 
 public class OnlineFraudDetectionWorkflow extends Workflow {
 
@@ -32,25 +31,7 @@ public class OnlineFraudDetectionWorkflow extends Workflow {
     @SuppressWarnings("deprecation")
     public void run() throws Exception {
 
-
-        final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-
-        /**
-         * Definition of workflows
-         */
-        LocalKafka kafkaConsumer = new LocalKafka();
-        SourceFunction<ObjectNode> kafkaSource = kafkaConsumer.getAccessEventSourceAsJson();
-
-        env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
-
-        DataStream<AccessEvent> stream = env.addSource(kafkaSource)
-                .returns(ObjectNode.class)
-                .flatMap(new JsonToAccessEvent());
-        
-        //Enrich the object
-        stream = stream.process(new EnrichWithReferenceData());
-
-        //Attributes that are taken as features in ML. Rest are ignored for ML.
+    	 //Attributes that are taken as features in ML. Rest are ignored for ML.
         List<String []> featureAttributes = Arrays.asList(
      		   new String[] {"resource", "id", "categorical"}, 
      		   new String[] {"action","id", "categorical"},
@@ -68,6 +49,34 @@ public class OnlineFraudDetectionWorkflow extends Workflow {
      		   new String[] {"resource", "id", "5"}, 
      		   new String[] {"subject","id", "5"}
      		);
+        
+        List<String []> attributesToDiff = Arrays.asList(
+	     		   new String[] {"resource", "location", "diff", "resource", "location-diff"}, 
+	     		   new String[] {"environment", "time", "diff", "environment", "time-diff"},
+	     		   new String[] {"resource", "amount", "diff", "resource", "amount-diff"}
+	     		);
+        
+        final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+
+        /**
+         * Definition of workflows
+         */
+        LocalKafka kafkaConsumer = new LocalKafka();
+        SourceFunction<ObjectNode> kafkaSource = kafkaConsumer.getAccessEventSourceAsJson();
+
+        env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
+
+        DataStream<AccessEvent> stream = env.addSource(kafkaSource)
+                .returns(ObjectNode.class)
+                .flatMap(new JsonToAccessEvent());
+        
+        //Enrich the object
+        stream = stream.process(new EnrichWithReferenceData());
+        
+      
+        stream = stream.process(new EnrichAndSaveHistory(historyAttributes, attributesToDiff));
+
+       
 
 		KeyedStream<AccessEvent, Object> txnKeyedStream = stream.keyBy(new KeySelector<AccessEvent, Object>() {
 			private static final long serialVersionUID = 1L;

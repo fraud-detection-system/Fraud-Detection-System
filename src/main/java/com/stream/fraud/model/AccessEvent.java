@@ -58,9 +58,12 @@ public class AccessEvent extends Event{
 	}
 
 	public Object get(String[] attributeNameElements) {
-		if(attributeNameElements.length >= 2) {
+		return get(attributeNameElements, 0);
+	}
+	public Object get(String[] attributeNameElements, int startAt) {
+		if(attributeNameElements.length >= 2+startAt) {
 			AttributeContainer attributeContainer = null;
-			switch(attributeNameElements[0]) {
+			switch(attributeNameElements[0+startAt]) {
 			case "subject":
         		attributeContainer = getSubject();
         		break;
@@ -75,13 +78,44 @@ public class AccessEvent extends Event{
         		break;
 			}
 			if(null != attributeContainer) {
-				Object val = attributeContainer.getAttribute(attributeNameElements[1]);
+				Object val = attributeContainer.getAttribute(attributeNameElements[1+startAt]);
 				return val;
 			}
 		}
 		//We have no clue how to handle this
 		//TODO: log error
 		return null;
+	}
+
+	public void set(String[] attributeNameElements, int startAt, Object val) {
+		if(attributeNameElements.length >= 2+startAt) {
+			AttributeContainer attributeContainer = null;
+			switch(attributeNameElements[0+startAt]) {
+			case "subject":
+        		attributeContainer = getSubject();
+        		break;
+        	case "resource":
+        		attributeContainer = getResource();
+        		break;
+        	case "action":
+        		attributeContainer = getAction();
+        		break;
+        	case "environment":
+        		attributeContainer = getEnvironment();
+        		break;
+			}
+			if(null != attributeContainer) {
+				attributeContainer.setAttribute(attributeNameElements[1+startAt], val);
+			}
+		}
+		//We have no clue how to handle this
+		//TODO: log error
+		
+	}
+	
+	public void set(String[] attributeNameElements, Object val) {
+		set(attributeNameElements, 0, val);
+		
 	}
 
 }
