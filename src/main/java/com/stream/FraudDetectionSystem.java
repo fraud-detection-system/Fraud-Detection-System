@@ -10,6 +10,12 @@ public class FraudDetectionSystem {
 	private final static Logger logger = LoggerFactory.getLogger(FraudDetectionSystem.class.getName());
 	
 	private List<String []> featureAttributes = new ArrayList<>();
+	private List<String []> selectorAttributes = new ArrayList<>();
+	private List<String []> ml = new ArrayList<>();
+	private List<String []> swimlaneAttributes = new ArrayList<>();
+	private List<String []> historyKeyAttributes = new ArrayList<>();
+	private List<String []> historyDiffAttributes = new ArrayList<>();
+	
 	/**
 	 * @return the featureAttributes
 	 */
@@ -65,10 +71,6 @@ public class FraudDetectionSystem {
 	public void setHistoryDiffAttributes(List<String[]> historyDiffAttributes) {
 		this.historyDiffAttributes = historyDiffAttributes;
 	}
-
-	private List<String []> swimlaneAttributes = new ArrayList<>();
-	private List<String []> historyKeyAttributes = new ArrayList<>();
-	private List<String []> historyDiffAttributes = new ArrayList<>();
 	
 	public FraudDetectionSystem addFeatureAttribute(String attributeCategory, String attributeName, String attributeType) {
 		featureAttributes.add(new String[] {
@@ -103,6 +105,22 @@ public class FraudDetectionSystem {
 				diffStrategy,
 				diffAttributeCategory,
 				diffAttributeName
+		});
+		return this;
+	}
+	
+	public FraudDetectionSystem addSelectorAttribute(String attributeCategory, String attributeName, String attributeValue) {
+		selectorAttributes.add(new String[] {
+				attributeCategory,
+				attributeName,
+				attributeValue
+		});
+		return this;
+	}
+	
+	public FraudDetectionSystem addML(String mlName) {
+		ml.add(new String[] {
+				mlName
 		});
 		return this;
 	}
