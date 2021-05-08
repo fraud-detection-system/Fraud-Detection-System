@@ -1,6 +1,8 @@
 package com.stream.fraud;
 
 
+import java.util.List;
+
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.flink.streaming.api.TimeCharacteristic;
@@ -27,9 +29,34 @@ public class OnlineFraudDetectionWorkflow extends Workflow {
 
     private static final int WINDOW_SIZE=5;
     private FraudDetectionSystem fraudDetectionSystem = null;
+    
+    private static class SwimlaneKeySelector implements KeySelector<AccessEvent, Object>{
+    	private static final long serialVersionUID = 1L;
+    	private List<String[]> swimlaneAttributes;
+    	
+    	public SwimlaneKeySelector(List<String[]> swimlaneAttributes) {
+    		this.swimlaneAttributes = swimlaneAttributes;
+    	}
+    	
+    	
+
+		@Override
+		public Object getKey(AccessEvent accessEvent) throws Exception {
+			String key = "";
+			String keySeparator = "#";
+			for(String []swimlaneAttribute: swimlaneAttributes) {
+				Object val = accessEvent.get(swimlaneAttribute);
+				key += keySeparator+val;
+			}
+			return key;
+		}
+    	
+    	
+    }
     public OnlineFraudDetectionWorkflow(FraudDetectionSystem fraudDetectionSystem) {
 		this.fraudDetectionSystem = fraudDetectionSystem;
 	}
+    
 	@SuppressWarnings("deprecation")
     public void run() throws Exception {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -54,20 +81,7 @@ public class OnlineFraudDetectionWorkflow extends Workflow {
 
        
 
-		KeyedStream<AccessEvent, Object> txnKeyedStream = stream.keyBy(new KeySelector<AccessEvent, Object>() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public Object getKey(AccessEvent accessEvent) throws Exception {
-				String key = "";
-				String keySeparator = "#";
-				for(String []swimlaneAttribute: fraudDetectionSystem.getSwimlaneAttributes()) {
-					Object val = accessEvent.get(swimlaneAttribute);
-					key += keySeparator+val;
-				}
-				return key;
-			}
-		});
+		KeyedStream<AccessEvent, Object> txnKeyedStream = stream.keyBy(new SwimlaneKeySelector(fraudDetectionSystem.getSwimlaneAttributes()));
 
 		SingleOutputStreamOperator<FraudAccessEvent> fraudDetectionStream =  txnKeyedStream
 			.window(GlobalWindows.create())
