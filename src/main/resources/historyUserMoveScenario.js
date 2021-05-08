@@ -13,13 +13,13 @@ with (importIt) {
 
   var state1 = simulator.defineState("InBengaluru")
   	.addResource("id", "account")
-  	.addResource("amount", "(new java.util.Random()).nextInt(10000-0) + 0")
+  	.addResource("amount", "5000")
 	.addAction("id", "atmWithdrawal")
 	.addEnvironment("location", "bengaluru");
 
   var state2 = simulator.defineState("InLasVegas")
   	.addResource("id", "account")
-  	.addResource("amount", "(new java.util.Random()).nextInt(10000-0) + 0")
+  	.addResource("amount", "50000")
 	.addAction("id", "atmWithdrawal")
 	.addEnvironment("location", "las-vegas");
 
@@ -32,13 +32,12 @@ with (importIt) {
   ];
 
   var resourceTemplate = new Resource();
-  resourceTemplate.setAttribute("accountId","024");
-  resourceTemplate.setAttribute("simulation","denyUser");
+  resourceTemplate.setAttribute("accountId","099");
+  resourceTemplate.setAttribute("simulation","historyUserMove");
   var resourcePool = simulator.definePool(1, resourceTemplate);
   var subjectTemplate = new Subject();
-  subjectTemplate.setAttribute("id","024");
-  subjectTemplate.setAttribute("IPAddress","172.1.1.1");
-  subjectTemplate.setAttribute("simulation","denyUser");
+  subjectTemplate.setAttribute("id","099");
+  subjectTemplate.setAttribute("simulation","historyUserMove");
   var subjectPool = simulator.definePool(1, subjectTemplate);
   var subjectResourcePool = simulator.pair(resourcePool,subjectPool);
   simulator.defineActor("alice").stateTransition("InBengaluru", bengaluruMarkovChain);

@@ -35,7 +35,9 @@ public class OnlineFraudDetectionWorkflow extends Workflow {
         List<String []> featureAttributes = Arrays.asList(
      		   new String[] {"resource", "id", "categorical"}, 
      		   new String[] {"action","id", "categorical"},
-     		   new String[] {"resource","amount", "double"}
+     		   new String[] {"resource","amount", "double"},
+     		   new String[] {"environment","location-diff", "double"},
+     		   new String[] {"resource","amount-diff", "double"}
      		);
         
         //Attributes for swimlane. Each swimlanes analyzes events in it, learns from it and maintains state.
@@ -51,7 +53,7 @@ public class OnlineFraudDetectionWorkflow extends Workflow {
      		);
         
         List<String []> attributesToDiff = Arrays.asList(
-	     		   new String[] {"resource", "location", "diff", "resource", "location-diff"}, 
+	     		   new String[] {"environment", "location", "diff", "environment", "location-diff"}, 
 	     		   new String[] {"environment", "time", "diff", "environment", "time-diff"},
 	     		   new String[] {"resource", "amount", "diff", "resource", "amount-diff"}
 	     		);

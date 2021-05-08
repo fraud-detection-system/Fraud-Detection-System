@@ -116,15 +116,21 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 	        for(String [] attributeNameElements : attributes) {
 	        	
 	        	Object val = accessEvent.get(attributeNameElements);
+	        	
+	        	//Type of the attribute value is specified?
 	        	if(attributeNameElements.length > 2) {
 	        		if(attributeNameElements[2].equals("double")) {
-	        			if(val instanceof Double) {
-	        				inst.setValue(index, (Double)val);
-	    	        		
+	        			if(val == null) {
+	        				if(attributeNameElements.length > 3) {
+	        					Double defaultValue = (Double)Double.parseDouble(attributeNameElements[3]);
+	        					inst.setValue(index, defaultValue);
+	        				} else {
+	        					//When no default 0 is the default
+	        					inst.setValue(index, 0);
+	        				}
+	        			} else if(val instanceof Double) {
+	        				inst.setValue(index, (Double)val);	
 	    	        	}
-	        			else if(val == null){
-	        				inst.setValue(index, 0);
-    	        		}
 	    	        	else {
 	    	        		String strValue = null;
 	    	        		if(val instanceof String) {
@@ -164,7 +170,7 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 	        return inst;
     }
     
-    public void onlineFit(AccessEvent accessEvent, FRAUD_CLASS fraudClass) {
+    public void createClassifiersIfNotCreated() {
 
 	
 		if (null == classifiers) {
@@ -236,6 +242,11 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 				}
 			}
 		}
+	}
+		
+	public void onlineFit(AccessEvent accessEvent, FRAUD_CLASS fraudClass) {
+		
+		createClassifiersIfNotCreated();
 		
 		Instance instance = convertToInstance(accessEvent, fraudClass == FRAUD_CLASS.ANOMALY? 1: 0);
 		if(FRAUD_CLASS.UNKNOWN != fraudClass) {
@@ -257,6 +268,8 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
     }
     
     public MultiClassAnomalyOutput [] isAnomaly(AccessEvent accessEvent) {
+    	createClassifiersIfNotCreated();
+    	
     	if(null == classifiers && null == clusterers) {
     		MultiClassAnomalyOutput [] result = new MultiClassAnomalyOutput[] {
     				new MultiClassAnomalyOutput("Null Classifier", true)
