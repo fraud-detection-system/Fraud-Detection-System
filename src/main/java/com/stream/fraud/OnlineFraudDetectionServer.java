@@ -3,6 +3,7 @@ package com.stream.fraud;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.stream.FraudDetectionSystem;
 import com.stream.Workflow;
 import com.stream.delivery.Monitoring;
 
@@ -12,7 +13,7 @@ public class OnlineFraudDetectionServer
 	
     public static void main( String[] args ) throws Exception
     {
-        run();
+        run(args);
     }
     
     /**
@@ -20,9 +21,11 @@ public class OnlineFraudDetectionServer
      * 
      * @throws Exception
      */
-    public static void run() throws Exception {
+    public static void run(String[] args) throws Exception {
         logger.info(" Starting!" );
         Monitoring.reset();
+        FraudDetectionSystemConfiguration.run(args);
+        FraudDetectionSystem fraudDetectionSystem = FraudDetectionSystemConfiguration.run(args);
         (new Thread(new Runnable() {
 
 			@Override
@@ -36,7 +39,7 @@ public class OnlineFraudDetectionServer
 				}
 				
 			}})).start();
-        Workflow workflow = new OnlineFraudDetectionWorkflow();
+        Workflow workflow = new OnlineFraudDetectionWorkflow(fraudDetectionSystem);
         workflow.run();
         logger.info(" Done");
     }
