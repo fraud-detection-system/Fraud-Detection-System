@@ -24,7 +24,6 @@ public class OnlineFraudDetectionServer
     public static void run(String[] args) throws Exception {
         logger.info(" Starting!" );
         Monitoring.reset();
-        FraudDetectionSystemConfiguration.run(args);
         FraudDetectionSystem fraudDetectionSystem = FraudDetectionSystemConfiguration.run(args);
         (new Thread(new Runnable() {
 

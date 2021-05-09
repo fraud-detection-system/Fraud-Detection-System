@@ -15,6 +15,78 @@ public class FraudDetectionSystem {
 	private List<String []> swimlaneAttributes = new ArrayList<>();
 	private List<String []> historyKeyAttributes = new ArrayList<>();
 	private List<String []> historyDiffAttributes = new ArrayList<>();
+	private List<String []> enrichments = new ArrayList<>();
+	private List<String []> postProcessingEnrichments = new ArrayList<>();
+	private List<String []> securityProcessings = new ArrayList<>();
+	/**
+	 * @return the selectorAttributes
+	 */
+	public List<String[]> getSelectorAttributes() {
+		return selectorAttributes;
+	}
+
+	/**
+	 * @param selectorAttributes the selectorAttributes to set
+	 */
+	public void setSelectorAttributes(List<String[]> selectorAttributes) {
+		this.selectorAttributes = selectorAttributes;
+	}
+
+	/**
+	 * @return the ml
+	 */
+	public List<String[]> getMl() {
+		return ml;
+	}
+
+	/**
+	 * @param ml the ml to set
+	 */
+	public void setMl(List<String[]> ml) {
+		this.ml = ml;
+	}
+
+	/**
+	 * @return the enrichments
+	 */
+	public List<String[]> getEnrichments() {
+		return enrichments;
+	}
+
+	/**
+	 * @param enrichments the enrichments to set
+	 */
+	public void setEnrichments(List<String[]> enrichments) {
+		this.enrichments = enrichments;
+	}
+
+	/**
+	 * @return the postProcessingEnrichments
+	 */
+	public List<String[]> getPostProcessingEnrichments() {
+		return postProcessingEnrichments;
+	}
+
+	/**
+	 * @param postProcessingEnrichments the postProcessingEnrichments to set
+	 */
+	public void setPostProcessingEnrichments(List<String[]> postProcessingEnrichments) {
+		this.postProcessingEnrichments = postProcessingEnrichments;
+	}
+
+	/**
+	 * @return the securityProcessings
+	 */
+	public List<String[]> getSecurityProcessings() {
+		return securityProcessings;
+	}
+
+	/**
+	 * @param securityProcessings the securityProcessings to set
+	 */
+	public void setSecurityProcessings(List<String[]> securityProcessings) {
+		this.securityProcessings = securityProcessings;
+	}
 	
 	/**
 	 * @return the featureAttributes
@@ -114,6 +186,35 @@ public class FraudDetectionSystem {
 				attributeCategory,
 				attributeName,
 				attributeValue
+		});
+		return this;
+	}
+	
+	public FraudDetectionSystem addEnrichment(String attributeCategory, String attributeName, String referenceDataType, String referenceDataKey) {
+		enrichments.add(new String[] {
+				attributeCategory,
+				attributeName,
+				referenceDataType,
+				referenceDataKey
+		});
+		return this;
+	}
+	
+	public FraudDetectionSystem addPostProcessingEnrichments(String attributeCategory, String attributeName, String referenceDataType, String referenceDataKey) {
+		postProcessingEnrichments.add(new String[] {
+				attributeCategory,
+				attributeName,
+				referenceDataType,
+				referenceDataKey
+		});
+		return this;
+	}
+	
+	public FraudDetectionSystem addSecurityProcessing(String attributeCategory, String attributeName, String typeOfProcessing) {
+		securityProcessings.add(new String[] {
+				attributeCategory,
+				attributeName,
+				typeOfProcessing
 		});
 		return this;
 	}
