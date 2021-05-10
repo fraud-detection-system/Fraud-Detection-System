@@ -3,17 +3,18 @@ package com.stream.fraud;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.stream.FraudDetectionSystem;
-import com.stream.Workflow;
+import com.stream.FraudDetectionStreamProcessing;
+import com.stream.Server;
+import com.stream.StreamingDataFlow;
 import com.stream.delivery.Monitoring;
 
-public class OnlineFraudDetectionServer
+public class FraudDetectionServer extends Server
 {
-	private final static Logger logger = LoggerFactory.getLogger(OnlineFraudDetectionServer.class.getName());
+	private final static Logger logger = LoggerFactory.getLogger(FraudDetectionServer.class.getName());
 	
     public static void main( String[] args ) throws Exception
     {
-        run(args);
+        (new FraudDetectionServer()).run(args);
     }
     
     /**
@@ -21,15 +22,15 @@ public class OnlineFraudDetectionServer
      * 
      * @throws Exception
      */
-    public static void run(String[] args) throws Exception {
+    public void run(String[] args) throws Exception {
         logger.info(" Starting!" );
         Monitoring.reset();
-        FraudDetectionSystem fraudDetectionSystem = FraudDetectionSystemConfiguration.run(args);
+        FraudDetectionStreamProcessing fraudDetectionSystem = FraudDetectionDataFlowConfiguration.run(args);
         (new Thread(new Runnable() {
 
 			@Override
 			public void run() {
-				Workflow workflow = new OnlineReferenceDataWorkflow();
+				StreamingDataFlow workflow = new ReferenceDataStreamingDataFlow();
 		        try {
 					workflow.run();
 				} catch (Exception e) {
@@ -38,7 +39,7 @@ public class OnlineFraudDetectionServer
 				}
 				
 			}})).start();
-        Workflow workflow = new OnlineFraudDetectionWorkflow(fraudDetectionSystem);
+        StreamingDataFlow workflow = new FraudDetectionStreamingDataFlow(fraudDetectionSystem);
         workflow.run();
         logger.info(" Done");
     }

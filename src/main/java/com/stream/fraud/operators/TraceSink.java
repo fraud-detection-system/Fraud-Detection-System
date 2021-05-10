@@ -1,9 +1,7 @@
-package com.stream.telecom.operators;
-
+package com.stream.fraud.operators;
 
 import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 
-import com.stream.telecom.TelecomSystem;
 
 
 public class TraceSink<T> implements SinkFunction<T> {
@@ -30,7 +28,7 @@ public class TraceSink<T> implements SinkFunction<T> {
 		StringBuffer sb = new StringBuffer();
     	sb
     	   .append("--------     system=")
-    	   .append(TelecomSystem.SYSTEM_NAME)
+    	   .append("FraudSystem")
     	   .append(",")
     	   .append("src=")
     	   .append(logSource)

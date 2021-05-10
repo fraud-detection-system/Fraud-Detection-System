@@ -6,21 +6,21 @@ import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.stream.FraudDetectionSystem;
+import com.stream.FraudDetectionStreamProcessing;
 
-public class FraudDetectionSystemConfiguration extends AbstractScriptingEngine{
+public class FraudDetectionDataFlowConfiguration extends AbstractScriptingEngine{
 	private final static Logger logger = LoggerFactory.getLogger(
-			   FraudDetectionSystemConfiguration.class.getName());
+			   FraudDetectionDataFlowConfiguration.class.getName());
 	
-	public FraudDetectionSystemConfiguration() {
+	public FraudDetectionDataFlowConfiguration() {
 	}
 	
-public static FraudDetectionSystem run(String []args) throws FileNotFoundException {
+public static FraudDetectionStreamProcessing run(String []args) throws FileNotFoundException {
 		
 		AbstractScriptingEngine engine = new AbstractScriptingEngine();
 		HashMap inputParameters = new HashMap();
-		FraudDetectionSystem fraudDetectionSystem =  new FraudDetectionSystem();
-		inputParameters.put("fraudDetectionSystem", fraudDetectionSystem);
+		FraudDetectionStreamProcessing fraudDetectionSystem =  new FraudDetectionStreamProcessing();
+		inputParameters.put("fraudDetectionStreamProcessing", fraudDetectionSystem);
 		for(String arg: args) {
 			Object result = engine.run(arg, "result", inputParameters); //TODO: read from classpath
 			if(result != null) {

@@ -13,8 +13,8 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 import org.apache.flink.streaming.api.windowing.assigners.GlobalWindows;
 
-import com.stream.FraudDetectionSystem;
-import com.stream.Workflow;
+import com.stream.FraudDetectionStreamProcessing;
+import com.stream.StreamingDataFlow;
 import com.stream.fraud.model.AccessEvent;
 import com.stream.fraud.model.FraudAccessEvent;
 import com.stream.fraud.operators.AccessEventFraudAlerter;
@@ -25,10 +25,10 @@ import com.stream.fraud.operators.JsonToAccessEvent;
 import com.stream.fraud.operators.ValidAccessEventTrigger;
 import com.stream.integration.LocalKafka;
 
-public class OnlineFraudDetectionWorkflow extends Workflow {
+public class FraudDetectionStreamingDataFlow extends StreamingDataFlow {
 
     private static final int WINDOW_SIZE=5;
-    private FraudDetectionSystem fraudDetectionSystem = null;
+    private FraudDetectionStreamProcessing fraudDetectionSystem = null;
     
     private static class SwimlaneKeySelector implements KeySelector<AccessEvent, Object>{
     	private static final long serialVersionUID = 1L;
@@ -53,7 +53,7 @@ public class OnlineFraudDetectionWorkflow extends Workflow {
     	
     	
     }
-    public OnlineFraudDetectionWorkflow(FraudDetectionSystem fraudDetectionSystem) {
+    public FraudDetectionStreamingDataFlow(FraudDetectionStreamProcessing fraudDetectionSystem) {
 		this.fraudDetectionSystem = fraudDetectionSystem;
 	}
     

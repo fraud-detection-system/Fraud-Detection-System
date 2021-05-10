@@ -7,13 +7,13 @@ import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 
-import com.stream.Workflow;
+import com.stream.StreamingDataFlow;
 import com.stream.fraud.model.Entity;
 import com.stream.fraud.operators.EntitySink;
 import com.stream.fraud.operators.JsonToEntity;
 import com.stream.integration.LocalKafka;
 
-public class OnlineReferenceDataWorkflow extends Workflow {
+public class ReferenceDataStreamingDataFlow extends StreamingDataFlow {
 
     public void run() throws Exception {
 

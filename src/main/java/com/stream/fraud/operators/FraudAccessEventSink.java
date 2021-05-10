@@ -5,7 +5,6 @@ import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 
 import com.stream.fraud.model.FraudAccessEvent;
 import com.stream.simulation.Publisher;
-import com.stream.telecom.operators.TraceSink;
 
 
 public class FraudAccessEventSink implements SinkFunction<FraudAccessEvent> {

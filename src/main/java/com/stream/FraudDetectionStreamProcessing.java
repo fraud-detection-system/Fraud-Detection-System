@@ -6,8 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class FraudDetectionSystem {
-	private final static Logger logger = LoggerFactory.getLogger(FraudDetectionSystem.class.getName());
+public class FraudDetectionStreamProcessing {
+	private final static Logger logger = LoggerFactory.getLogger(FraudDetectionStreamProcessing.class.getName());
 	
 	private List<String []> featureAttributes = new ArrayList<>();
 	private List<String []> selectorAttributes = new ArrayList<>();
@@ -144,7 +144,7 @@ public class FraudDetectionSystem {
 		this.historyDiffAttributes = historyDiffAttributes;
 	}
 	
-	public FraudDetectionSystem addFeatureAttribute(String attributeCategory, String attributeName, String attributeType) {
+	public FraudDetectionStreamProcessing addFeatureAttribute(String attributeCategory, String attributeName, String attributeType) {
 		featureAttributes.add(new String[] {
 				attributeCategory,
 				attributeName,
@@ -153,7 +153,7 @@ public class FraudDetectionSystem {
 		return this;
 	}
 	
-	public FraudDetectionSystem addSwimlaneAttribute(String attributeCategory, String attributeName) {
+	public FraudDetectionStreamProcessing addSwimlaneAttribute(String attributeCategory, String attributeName) {
 		swimlaneAttributes.add(new String[] {
 				attributeCategory,
 				attributeName
@@ -161,7 +161,7 @@ public class FraudDetectionSystem {
 		return this;
 	}
 	
-	public FraudDetectionSystem addHistoryKeyAttribute(String attributeCategory, String attributeName, String historySize) {
+	public FraudDetectionStreamProcessing addHistoryKeyAttribute(String attributeCategory, String attributeName, String historySize) {
 		historyKeyAttributes.add(new String[] {
 				attributeCategory,
 				attributeName,
@@ -170,7 +170,7 @@ public class FraudDetectionSystem {
 		return this;
 	}
 	
-	public FraudDetectionSystem addHistoryDiffAttribute(String attributeCategory, String attributeName, String diffStrategy, String diffAttributeCategory, String diffAttributeName) {
+	public FraudDetectionStreamProcessing addHistoryDiffAttribute(String attributeCategory, String attributeName, String diffStrategy, String diffAttributeCategory, String diffAttributeName) {
 		historyDiffAttributes.add(new String[] {
 				attributeCategory,
 				attributeName,
@@ -181,7 +181,7 @@ public class FraudDetectionSystem {
 		return this;
 	}
 	
-	public FraudDetectionSystem addSelectorAttribute(String attributeCategory, String attributeName, String attributeValue) {
+	public FraudDetectionStreamProcessing addSelectorAttribute(String attributeCategory, String attributeName, String attributeValue) {
 		selectorAttributes.add(new String[] {
 				attributeCategory,
 				attributeName,
@@ -190,7 +190,7 @@ public class FraudDetectionSystem {
 		return this;
 	}
 	
-	public FraudDetectionSystem addEnrichment(String attributeCategory, String attributeName, String referenceDataType, String referenceDataKey) {
+	public FraudDetectionStreamProcessing addEnrichment(String attributeCategory, String attributeName, String referenceDataType, String referenceDataKey) {
 		enrichments.add(new String[] {
 				attributeCategory,
 				attributeName,
@@ -200,7 +200,7 @@ public class FraudDetectionSystem {
 		return this;
 	}
 	
-	public FraudDetectionSystem addPostProcessingEnrichments(String attributeCategory, String attributeName, String referenceDataType, String referenceDataKey) {
+	public FraudDetectionStreamProcessing addPostProcessingEnrichments(String attributeCategory, String attributeName, String referenceDataType, String referenceDataKey) {
 		postProcessingEnrichments.add(new String[] {
 				attributeCategory,
 				attributeName,
@@ -210,7 +210,7 @@ public class FraudDetectionSystem {
 		return this;
 	}
 	
-	public FraudDetectionSystem addSecurityProcessing(String attributeCategory, String attributeName, String typeOfProcessing) {
+	public FraudDetectionStreamProcessing addSecurityProcessing(String attributeCategory, String attributeName, String typeOfProcessing) {
 		securityProcessings.add(new String[] {
 				attributeCategory,
 				attributeName,
@@ -219,7 +219,7 @@ public class FraudDetectionSystem {
 		return this;
 	}
 	
-	public FraudDetectionSystem addML(String mlName) {
+	public FraudDetectionStreamProcessing addML(String mlName) {
 		ml.add(new String[] {
 				mlName
 		});

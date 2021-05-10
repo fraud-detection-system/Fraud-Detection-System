@@ -1,6 +1,6 @@
 package com.stream;
 
-public class Workflow {
+public class StreamingDataFlow {
 
 	public void run() throws Exception{
 	}

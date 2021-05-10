@@ -2,7 +2,6 @@ package com.stream.fraud.operators;
 
 
 import com.stream.fraud.model.FraudTxn;
-import com.stream.telecom.operators.TraceSink;
 import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 
 
