@@ -1,0 +1,23 @@
+//Define a fraud detection system
+var systemName = "Random Fraud Detection Stream Processing"
+logger.info("setting up "+systemName)
+
+var importIt = new JavaImporter(java.lang.String,java.util,java.io,java.time,com.stream);  
+with (importIt) {  
+  logger.info("setting up "+systemName)
+
+  fraudDetectionStreamProcessing
+
+      //The attributes based on which events will be selected. Rest of the events will be ignored.
+      .addSelectorAttribute("resource", "tenant", "Random")
+
+      //Attributes for swimlane. Each swimlanes analyzes events in it, learns from it and maintains state.
+      .addSwimlaneAttribute("resource", "id")
+
+      //The attributes that will be taken as features for ML. Rest will be ignored.
+      .addML("RandomBinaryClassifier");
+        
+}  
+logger.info("Done setup of "+systemName)
+result=fraudDetectionStreamProcessing;
+

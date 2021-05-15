@@ -16,8 +16,26 @@ public class FraudDetectionStreamProcessing {
 	private List<String []> historyKeyAttributes = new ArrayList<>();
 	private List<String []> historyDiffAttributes = new ArrayList<>();
 	private List<String []> enrichments = new ArrayList<>();
-	private List<String []> postProcessingEnrichments = new ArrayList<>();
+	private List<String []> preDeliveryEnrichments = new ArrayList<>();
 	private List<String []> securityProcessings = new ArrayList<>();
+	private boolean monitoring = true;
+	
+	/**
+	 * @return the monitoring
+	 */
+	public boolean isMonitoring() {
+		return monitoring;
+	}
+
+	/**
+	 * @param monitoring the monitoring to set
+	 * @return 
+	 */
+	public FraudDetectionStreamProcessing setMonitoring(boolean monitoring) {
+		this.monitoring = monitoring;
+		return this;
+	}
+
 	/**
 	 * @return the selectorAttributes
 	 */
@@ -63,15 +81,15 @@ public class FraudDetectionStreamProcessing {
 	/**
 	 * @return the postProcessingEnrichments
 	 */
-	public List<String[]> getPostProcessingEnrichments() {
-		return postProcessingEnrichments;
+	public List<String[]> getPreDeliveryEnrichments() {
+		return preDeliveryEnrichments;
 	}
 
 	/**
 	 * @param postProcessingEnrichments the postProcessingEnrichments to set
 	 */
-	public void setPostProcessingEnrichments(List<String[]> postProcessingEnrichments) {
-		this.postProcessingEnrichments = postProcessingEnrichments;
+	public void setPreDeliveryEnrichments(List<String[]> postProcessingEnrichments) {
+		this.preDeliveryEnrichments = postProcessingEnrichments;
 	}
 
 	/**
@@ -144,7 +162,7 @@ public class FraudDetectionStreamProcessing {
 		this.historyDiffAttributes = historyDiffAttributes;
 	}
 	
-	public FraudDetectionStreamProcessing addFeatureAttribute(String attributeCategory, String attributeName, String attributeType) {
+	public FraudDetectionStreamProcessing addFeature(String attributeCategory, String attributeName, String attributeType) {
 		featureAttributes.add(new String[] {
 				attributeCategory,
 				attributeName,
@@ -153,7 +171,7 @@ public class FraudDetectionStreamProcessing {
 		return this;
 	}
 	
-	public FraudDetectionStreamProcessing addSwimlaneAttribute(String attributeCategory, String attributeName) {
+	public FraudDetectionStreamProcessing addSwimlane(String attributeCategory, String attributeName) {
 		swimlaneAttributes.add(new String[] {
 				attributeCategory,
 				attributeName
@@ -161,7 +179,7 @@ public class FraudDetectionStreamProcessing {
 		return this;
 	}
 	
-	public FraudDetectionStreamProcessing addHistoryKeyAttribute(String attributeCategory, String attributeName, String historySize) {
+	public FraudDetectionStreamProcessing addHistoryKey(String attributeCategory, String attributeName, String historySize) {
 		historyKeyAttributes.add(new String[] {
 				attributeCategory,
 				attributeName,
@@ -170,7 +188,7 @@ public class FraudDetectionStreamProcessing {
 		return this;
 	}
 	
-	public FraudDetectionStreamProcessing addHistoryDiffAttribute(String attributeCategory, String attributeName, String diffStrategy, String diffAttributeCategory, String diffAttributeName) {
+	public FraudDetectionStreamProcessing addHistoryDiff(String attributeCategory, String attributeName, String diffStrategy, String diffAttributeCategory, String diffAttributeName) {
 		historyDiffAttributes.add(new String[] {
 				attributeCategory,
 				attributeName,
@@ -181,7 +199,7 @@ public class FraudDetectionStreamProcessing {
 		return this;
 	}
 	
-	public FraudDetectionStreamProcessing addSelectorAttribute(String attributeCategory, String attributeName, String attributeValue) {
+	public FraudDetectionStreamProcessing addSelector(String attributeCategory, String attributeName, String attributeValue) {
 		selectorAttributes.add(new String[] {
 				attributeCategory,
 				attributeName,
@@ -200,8 +218,8 @@ public class FraudDetectionStreamProcessing {
 		return this;
 	}
 	
-	public FraudDetectionStreamProcessing addPostProcessingEnrichments(String attributeCategory, String attributeName, String referenceDataType, String referenceDataKey) {
-		postProcessingEnrichments.add(new String[] {
+	public FraudDetectionStreamProcessing addPreDeliveryEnrichment(String attributeCategory, String attributeName, String referenceDataType, String referenceDataKey) {
+		preDeliveryEnrichments.add(new String[] {
 				attributeCategory,
 				attributeName,
 				referenceDataType,

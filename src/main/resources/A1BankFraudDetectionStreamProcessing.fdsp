@@ -1,0 +1,70 @@
+//Define a fraud detection system
+var systemName = "A1 Bank Fraud Detection Stream Processing"
+logger.info("setting up "+systemName)
+
+//Load all other specification files
+load("src/main/resources/A1BankFraudDetectionStreamProcessingAlerts.fdsp");
+
+var importIt = new JavaImporter(java.lang.String,java.util,java.io,java.time,com.stream);  
+with (importIt) {  
+  logger.info("setting up "+systemName)
+
+  fraudDetectionStreamProcessing
+
+      //The attributes based on which events will be selected. Rest of the events will be ignored.
+      .addSelector("resource", "tenant", "A1Bank")
+
+      //Enable monitoring through prometheus
+      //TODO: also specify which events to be monitored.
+      .setMonitoring(true)
+
+      //Add enrichments. Reference data corresponding to this will be used to enhance the event.
+      .addEnrichment("subject", "id", "denyUsers", "id")
+      .addEnrichment("subject", "id", "user", "id")
+      .addEnrichment("subject", "id", "userConfiguration", "id")
+      .addEnrichment("subject", "IPAddress", "denyIPAddress", "id")
+      .addEnrichment("resource", "accountId", "account", "id")
+
+      //Security handling
+      .addSecurityProcessing("subject", "social-security-number", "remove")
+      .addSecurityProcessing("subject", "employeeId", "anonymize")
+      .addSecurityProcessing("subject", "credit-card", "mask-till-last-four")
+
+      //Attributes for swimlane. Each swimlanes analyzes events in it, learns from it and maintains state.
+      .addSwimlane("resource", "id")
+      .addSwimlane("resource", "accountId")
+        
+      //Attributes for keeping history. These keys decide the identity of the event. Same event may have two histories based on two keys.
+      .addHistoryKey("resource", "id", "5")
+      .addHistoryKey("subject", "id", "5")
+        
+      //Attributes for keeping history. These keys decide the identity of the event. Same event may have two histories based on two keys.
+      .addHistoryDiff("environment", "location", "diff", "environment", "location-diff")
+      .addHistoryDiff("environment", "time", "diff", "environment", "time-diff")
+      .addHistoryDiff("resource", "amount", "diff", "resource", "amount-diff")
+
+      //The attributes that will be taken as features for ML. Rest will be ignored.
+      .addFeature("resource", "id", "categorical")
+      .addFeature("action","id", "categorical")
+      .addFeature("resource","amount", "double")
+      .addFeature("environment","location-diff", "double")
+      .addFeature("resource","amount-diff", "double")
+
+      //The attributes that will be taken as features for ML. Rest will be ignored.
+      .addML("HoeffdingTree")
+      .addML("HoeffdingAdaptiveTree")
+      .addML("NaiveBayes")
+      .addML("DecisionStump")
+      .addML("AdaHoeffdingOptionTree")
+      .addML("ExactSTORM")
+      .addML("ApproxSTORM")
+      .addML("MCOD")
+      .addML("SimpleCOD")
+      .addML("AbstractC")
+
+      //Add post procesing enrichments. Reference data corresponding to this will be used to enhance the event.
+      .addPreDeliveryEnrichment("subject", "id", "denyUsers", "id")
+      .addPreDeliveryEnrichment("subject", "id", "user", "id");
+}  
+logger.info("Done setup of "+systemName)
+result=fraudDetectionStreamProcessing;

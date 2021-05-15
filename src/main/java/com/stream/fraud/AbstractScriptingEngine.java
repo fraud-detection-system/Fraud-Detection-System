@@ -71,6 +71,7 @@ public class AbstractScriptingEngine {
 	              "ScriptException encountered trying to write arbitrary JavaScript '"
 	            + jsFileName + "': "
 	            + scriptException.toString());
+	         System.exit(1);
 	      }
 	      return result;
 	}
