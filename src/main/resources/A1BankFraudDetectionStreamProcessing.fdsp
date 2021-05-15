@@ -3,7 +3,7 @@ var systemName = "A1 Bank Fraud Detection Stream Processing"
 logger.info("setting up "+systemName)
 
 //Load all other specification files
-load("src/main/resources/A1BankFraudDetectionStreamProcessingAlerts.fdsp");
+load("src/main/resources/A1BankFraudDetectionStreamProcessingAlerts.fdspi");
 
 var importIt = new JavaImporter(java.lang.String,java.util,java.io,java.time,com.stream);  
 with (importIt) {  
@@ -35,13 +35,13 @@ with (importIt) {
       .addSwimlane("resource", "accountId")
         
       //Attributes for keeping history. These keys decide the identity of the event. Same event may have two histories based on two keys.
-      .addHistoryKey("resource", "id", "5")
-      .addHistoryKey("subject", "id", "5")
+      .addHistory("resource", "id", "5")
+      .addHistory("subject", "id", "5")
         
-      //Attributes for keeping history. These keys decide the identity of the event. Same event may have two histories based on two keys.
-      .addHistoryDiff("environment", "location", "diff", "environment", "location-diff")
-      .addHistoryDiff("environment", "time", "diff", "environment", "time-diff")
-      .addHistoryDiff("resource", "amount", "diff", "resource", "amount-diff")
+      //How to use history with current event to enrich. Simplest approach is to diff with last state.
+      .addHistoryEnrichment("environment", "location", "diff", "environment", "location-diff")
+      .addHistoryEnrichment("environment", "time", "diff", "environment", "time-diff")
+      .addHistoryEnrichment("resource", "amount", "diff", "resource", "amount-diff")
 
       //The attributes that will be taken as features for ML. Rest will be ignored.
       .addFeature("resource", "id", "categorical")

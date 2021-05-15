@@ -179,7 +179,7 @@ public class FraudDetectionStreamProcessing {
 		return this;
 	}
 	
-	public FraudDetectionStreamProcessing addHistoryKey(String attributeCategory, String attributeName, String historySize) {
+	public FraudDetectionStreamProcessing addHistory(String attributeCategory, String attributeName, String historySize) {
 		historyKeyAttributes.add(new String[] {
 				attributeCategory,
 				attributeName,
@@ -188,7 +188,7 @@ public class FraudDetectionStreamProcessing {
 		return this;
 	}
 	
-	public FraudDetectionStreamProcessing addHistoryDiff(String attributeCategory, String attributeName, String diffStrategy, String diffAttributeCategory, String diffAttributeName) {
+	public FraudDetectionStreamProcessing addHistoryEnrichment(String attributeCategory, String attributeName, String diffStrategy, String diffAttributeCategory, String diffAttributeName) {
 		historyDiffAttributes.add(new String[] {
 				attributeCategory,
 				attributeName,

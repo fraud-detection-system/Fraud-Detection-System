@@ -9,10 +9,10 @@ with (importIt) {
   fraudDetectionStreamProcessing
 
       //The attributes based on which events will be selected. Rest of the events will be ignored.
-      .addSelectorAttribute("resource", "tenant", "Random")
+      .addSelector("resource", "tenant", "Random")
 
       //Attributes for swimlane. Each swimlanes analyzes events in it, learns from it and maintains state.
-      .addSwimlaneAttribute("resource", "id")
+      .addSwimlane("resource", "id")
 
       //The attributes that will be taken as features for ML. Rest will be ignored.
       .addML("RandomBinaryClassifier");

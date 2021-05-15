@@ -1,5 +1,8 @@
 package com.stream.fraud;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +28,20 @@ public class FraudDetectionServer extends Server
     public void run(String[] args) throws Exception {
         logger.info(" Starting!" );
         Monitoring.reset();
-        FraudDetectionStreamProcessing fraudDetectionSystem = FraudDetectionDataFlowConfiguration.run(args);
+        
+        ArrayList<FraudDetectionStreamProcessing> fraudDetectionSystemList = new ArrayList<>();
+        
+        File f = new File(args[0]);
+
+        // For each pathname in the pathnames array
+        for (String pathname : f.list()) {
+           if(pathname.endsWith(".fdsp")) {
+        	   logger.info("Starting Fraud Detection Stream Processing : "+pathname);
+        	   fraudDetectionSystemList.add( FraudDetectionDataFlowConfiguration.run(new String[] {args[0] + File.separator+pathname}) );
+           }
+        }
+        
+        
         (new Thread(new Runnable() {
 
 			@Override
@@ -39,8 +55,21 @@ public class FraudDetectionServer extends Server
 				}
 				
 			}})).start();
-        StreamingDataFlow workflow = new FraudDetectionStreamingDataFlow(fraudDetectionSystem);
-        workflow.run();
+        for(FraudDetectionStreamProcessing fraudDetectionSystem : fraudDetectionSystemList) {
+        	(new Thread(new Runnable() {
+
+    			@Override
+    			public void run() {
+    				StreamingDataFlow workflow = new FraudDetectionStreamingDataFlow(fraudDetectionSystem);
+    		        try {
+    					workflow.run();
+    				} catch (Exception e) {
+    					logger.error("Error running reference data", e);
+    					System.exit(1);
+    				}
+    				
+    			}})).start();
+        }
         logger.info(" Done");
     }
 }
