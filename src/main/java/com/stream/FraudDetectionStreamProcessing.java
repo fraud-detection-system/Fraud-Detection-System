@@ -243,6 +243,14 @@ public class FraudDetectionStreamProcessing {
 		});
 		return this;
 	}
+	
+	public FraudDetectionStreamProcessing addML(String mlName, String MLConfig) {
+		ml.add(new String[] {
+				mlName,
+				MLConfig
+		});
+		return this;
+	}
 
 	public static void main(String[] args) {
 

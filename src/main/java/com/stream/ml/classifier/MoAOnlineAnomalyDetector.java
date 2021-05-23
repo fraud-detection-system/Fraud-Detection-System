@@ -14,6 +14,7 @@ import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.Text
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.stream.fraud.AbstractScriptingEngine;
 import com.stream.fraud.model.AccessEvent;
 import com.yahoo.labs.samoa.instances.Attribute;
 import com.yahoo.labs.samoa.instances.DenseInstance;
@@ -49,10 +50,12 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
     public transient Map<String, Clusterer> clusterers = null;
 
     private List<String[]> attributes;
+    private List<String[]> ML ;
 
-    public MoAOnlineAnomalyDetector(List<String[]> attributes) {
+    public MoAOnlineAnomalyDetector(List<String[]> attributes, List<String[]> ML) {
     	super(attributes);
         this.attributes = attributes;
+        this.ML = ML;
     }
     
     private int getOrdinal(String entity, String attribute, String val) {
@@ -179,63 +182,157 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 					classifiers = new HashMap<>();
 					clusterers = new HashMap<>();
 					
-					Classifier classifier = new HoeffdingTree();
-					classifier.setModelContext(getHeader());
-					classifier.prepareForUse();
-					classifiers.put("HoeffdingTree", classifier);
-					classifier = new HoeffdingAdaptiveTree();
-					classifier.setModelContext(getHeader());
-					classifier.prepareForUse();
-					classifiers.put("HoeffdingAdaptiveTree", classifier);
-					classifier = new NaiveBayes();
-					classifier.setModelContext(getHeader());
-					classifier.prepareForUse();
-					classifiers.put("NaiveBayes", classifier);
-					classifier = new DecisionStump();
-					classifier.setModelContext(getHeader());
-					classifier.prepareForUse();
-					classifiers.put("DecisionStump", classifier);
-					classifier = new AdaHoeffdingOptionTree();
-					classifier.setModelContext(getHeader());
-					classifier.prepareForUse();
-					classifiers.put("AdaHoeffdingOptionTree", classifier);
-					classifier = new RandomBinaryClassifier();
-					classifier.setModelContext(getHeader());
-					classifier.prepareForUse();
-					//classifiers.put("RandomBinaryClassifier", classifier);
-
-					ExactSTORM myOutlierDetector= new ExactSTORM();
-			        myOutlierDetector.queryFreqOption.setValue(1);
-			        myOutlierDetector.kOption.setValue(2);
-			        myOutlierDetector.radiusOption.setValue(100);
-			        myOutlierDetector.setModelContext(getHeader());
-			        myOutlierDetector.prepareForUse();
-			        clusterers.put("ExactSTORM", myOutlierDetector);
-			        ApproxSTORM myOutlierDetector1= new ApproxSTORM();
-			        myOutlierDetector1.queryFreqOption.setValue(1);
-			        myOutlierDetector1.kOption.setValue(2);
-			        myOutlierDetector1.radiusOption.setValue(100);
-			        myOutlierDetector1.setModelContext(getHeader());
-			        myOutlierDetector1.prepareForUse();
-			        clusterers.put("ApproxSTORM", myOutlierDetector1);
-			        MCOD mcod = new MCOD();
-			        mcod.kOption.setValue(2);
-			        mcod.radiusOption.setValue(100);
-			        mcod.setModelContext(getHeader());
-			        mcod.prepareForUse();
-			        clusterers.put("MCOD", mcod);
-			        SimpleCOD simplecod = new SimpleCOD();
-			        simplecod.kOption.setValue(2);
-			        simplecod.radiusOption.setValue(100);
-			        simplecod.setModelContext(getHeader());
-			        simplecod.prepareForUse();
-			        clusterers.put("SimpleCOD", simplecod);
-			        AbstractC abstractC = new AbstractC();
-			        abstractC.kOption.setValue(2);
-			        abstractC.radiusOption.setValue(100);
-			        abstractC.setModelContext(getHeader());
-			        abstractC.prepareForUse();
-			        clusterers.put("AbstractC", abstractC);
+					if(ML != null) {
+						for(String [] aML : ML) {
+							switch(aML[0]) {
+							case "HoeffdingTree":
+								Classifier classifier = new HoeffdingTree();
+								classifier.setModelContext(getHeader());
+								classifier.prepareForUse();
+								classifiers.put("HoeffdingTree", classifier);
+								break;
+							case "HoeffdingAdaptiveTree":
+								classifier = new HoeffdingAdaptiveTree();
+								classifier.setModelContext(getHeader());
+								classifier.prepareForUse();
+								classifiers.put("HoeffdingAdaptiveTree", classifier);
+								break;
+							case "NaiveBayes":
+								classifier = new NaiveBayes();
+								classifier.setModelContext(getHeader());
+								classifier.prepareForUse();
+								classifiers.put("NaiveBayes", classifier);
+								break;
+							case "DecisionStump":
+								classifier = new DecisionStump();
+								classifier.setModelContext(getHeader());
+								classifier.prepareForUse();
+								classifiers.put("DecisionStump", classifier);
+								break;
+							case "AdaHoeffdingOptionTree":
+								classifier = new AdaHoeffdingOptionTree();
+								classifier.setModelContext(getHeader());
+								classifier.prepareForUse();
+								classifiers.put("AdaHoeffdingOptionTree", classifier);
+								break;
+							case "RandomBinaryClassifier":
+								classifier = new RandomBinaryClassifier();
+								classifier.setModelContext(getHeader());
+								classifier.prepareForUse();
+								classifiers.put("RandomBinaryClassifier", classifier);
+								break;
+							case "ExactSTORM":
+								ExactSTORM myOutlierDetector= new ExactSTORM();
+						        myOutlierDetector.queryFreqOption.setValue(1);
+						        myOutlierDetector.kOption.setValue(2);
+						        myOutlierDetector.radiusOption.setValue(100);
+						        myOutlierDetector.setModelContext(getHeader());
+						        myOutlierDetector.prepareForUse();
+						        clusterers.put("ExactSTORM", myOutlierDetector);
+						        break;
+							case "ApproxSTORM":
+						        ApproxSTORM myOutlierDetector1= new ApproxSTORM();
+						        myOutlierDetector1.queryFreqOption.setValue(1);
+						        myOutlierDetector1.kOption.setValue(2);
+						        myOutlierDetector1.radiusOption.setValue(100);
+						        myOutlierDetector1.setModelContext(getHeader());
+						        myOutlierDetector1.prepareForUse();
+						        clusterers.put("ApproxSTORM", myOutlierDetector1);
+						        break;
+							case "MCOD":
+						        MCOD mcod = new MCOD();
+						        mcod.kOption.setValue(2);
+						        mcod.radiusOption.setValue(100);
+						        mcod.setModelContext(getHeader());
+						        mcod.prepareForUse();
+						        clusterers.put("MCOD", mcod);
+						        break;
+							case "SimpleCOD":
+						        SimpleCOD simplecod = new SimpleCOD();
+						        simplecod.kOption.setValue(2);
+						        simplecod.radiusOption.setValue(100);
+						        simplecod.setModelContext(getHeader());
+						        simplecod.prepareForUse();
+						        clusterers.put("SimpleCOD", simplecod);
+						        break;
+							case "AbstractC":
+						        AbstractC abstractC = new AbstractC();
+						        abstractC.kOption.setValue(2);
+						        abstractC.radiusOption.setValue(100);
+						        abstractC.setModelContext(getHeader());
+						        abstractC.prepareForUse();
+						        clusterers.put("AbstractC", abstractC);
+						        break;
+							case "python":
+								String scriptName = aML[1];
+								try {
+									(new AbstractScriptingEngine()).run(scriptName, "result", null);
+								} catch (FileNotFoundException e) {
+									e.printStackTrace();
+								}
+								break;
+							}
+							
+						}
+					} else {
+						Classifier classifier = new HoeffdingTree();
+						classifier.setModelContext(getHeader());
+						classifier.prepareForUse();
+						classifiers.put("HoeffdingTree", classifier);
+						classifier = new HoeffdingAdaptiveTree();
+						classifier.setModelContext(getHeader());
+						classifier.prepareForUse();
+						classifiers.put("HoeffdingAdaptiveTree", classifier);
+						classifier = new NaiveBayes();
+						classifier.setModelContext(getHeader());
+						classifier.prepareForUse();
+						classifiers.put("NaiveBayes", classifier);
+						classifier = new DecisionStump();
+						classifier.setModelContext(getHeader());
+						classifier.prepareForUse();
+						classifiers.put("DecisionStump", classifier);
+						classifier = new AdaHoeffdingOptionTree();
+						classifier.setModelContext(getHeader());
+						classifier.prepareForUse();
+						classifiers.put("AdaHoeffdingOptionTree", classifier);
+						classifier = new RandomBinaryClassifier();
+						classifier.setModelContext(getHeader());
+						classifier.prepareForUse();
+						//classifiers.put("RandomBinaryClassifier", classifier);
+	
+						ExactSTORM myOutlierDetector= new ExactSTORM();
+				        myOutlierDetector.queryFreqOption.setValue(1);
+				        myOutlierDetector.kOption.setValue(2);
+				        myOutlierDetector.radiusOption.setValue(100);
+				        myOutlierDetector.setModelContext(getHeader());
+				        myOutlierDetector.prepareForUse();
+				        clusterers.put("ExactSTORM", myOutlierDetector);
+				        ApproxSTORM myOutlierDetector1= new ApproxSTORM();
+				        myOutlierDetector1.queryFreqOption.setValue(1);
+				        myOutlierDetector1.kOption.setValue(2);
+				        myOutlierDetector1.radiusOption.setValue(100);
+				        myOutlierDetector1.setModelContext(getHeader());
+				        myOutlierDetector1.prepareForUse();
+				        clusterers.put("ApproxSTORM", myOutlierDetector1);
+				        MCOD mcod = new MCOD();
+				        mcod.kOption.setValue(2);
+				        mcod.radiusOption.setValue(100);
+				        mcod.setModelContext(getHeader());
+				        mcod.prepareForUse();
+				        clusterers.put("MCOD", mcod);
+				        SimpleCOD simplecod = new SimpleCOD();
+				        simplecod.kOption.setValue(2);
+				        simplecod.radiusOption.setValue(100);
+				        simplecod.setModelContext(getHeader());
+				        simplecod.prepareForUse();
+				        clusterers.put("SimpleCOD", simplecod);
+				        AbstractC abstractC = new AbstractC();
+				        abstractC.kOption.setValue(2);
+				        abstractC.radiusOption.setValue(100);
+				        abstractC.setModelContext(getHeader());
+				        abstractC.prepareForUse();
+				        clusterers.put("AbstractC", abstractC);
+					}
 			           
 					// we removed this one because of license issues
 					// classifier = new HoeffdingTreeNG();
@@ -337,7 +434,7 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 
        List<String []> attributes = Arrays.asList(
     		   new String[] {"subject", "id", "double"}, new String[] {"resource", "id", "categorical"}, new String[] {"action", "id", "categorical"});
-       MoAOnlineAnomalyDetector detector = new MoAOnlineAnomalyDetector( attributes);
+       MoAOnlineAnomalyDetector detector = new MoAOnlineAnomalyDetector( attributes, null);
        
 
        //Train

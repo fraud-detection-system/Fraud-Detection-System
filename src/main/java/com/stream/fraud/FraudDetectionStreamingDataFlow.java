@@ -22,6 +22,7 @@ import com.stream.fraud.operators.EnrichAndSaveHistory;
 import com.stream.fraud.operators.EnrichWithReferenceData;
 import com.stream.fraud.operators.FraudAccessEventSink;
 import com.stream.fraud.operators.JsonToAccessEvent;
+import com.stream.fraud.operators.Selector;
 import com.stream.fraud.operators.ValidAccessEventTrigger;
 import com.stream.integration.LocalKafka;
 
@@ -73,7 +74,8 @@ public class FraudDetectionStreamingDataFlow extends StreamingDataFlow {
                 .returns(ObjectNode.class)
                 .flatMap(new JsonToAccessEvent());
         
-        //Enrich the object
+        //Filter and Enrich the object
+        stream = stream.process(new Selector(fraudDetectionSystem.getSelectorAttributes()));
         stream = stream.process(new EnrichWithReferenceData());
         
       
@@ -86,7 +88,7 @@ public class FraudDetectionStreamingDataFlow extends StreamingDataFlow {
 		SingleOutputStreamOperator<FraudAccessEvent> fraudDetectionStream =  txnKeyedStream
 			.window(GlobalWindows.create())
 			.trigger(new ValidAccessEventTrigger())
-			.process(new AccessEventFraudAlerter(fraudDetectionSystem.getFeatureAttributes()));
+			.process(new AccessEventFraudAlerter(fraudDetectionSystem.getFeatureAttributes(), fraudDetectionSystem.getMl()));
 
 		fraudDetectionStream
 			.addSink(new FraudAccessEventSink("from current location alert"));

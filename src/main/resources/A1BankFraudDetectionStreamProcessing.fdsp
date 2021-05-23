@@ -12,7 +12,7 @@ with (importIt) {
   fraudDetectionStreamProcessing
 
       //The attributes based on which events will be selected. Rest of the events will be ignored.
-      .addSelector("resource", "tenant", "A1Bank")
+      //.addSelector("resource", "tenant", "A1Bank")
 
       //Enable monitoring through prometheus
       //TODO: also specify which events to be monitored.

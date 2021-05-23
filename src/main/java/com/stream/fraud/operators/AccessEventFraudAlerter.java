@@ -21,10 +21,12 @@ public class AccessEventFraudAlerter extends ProcessWindowFunction<AccessEvent, 
 
 	private final Map<Object, OnlineAnomalyDetector> swimlanedAnomalyDetectorsMap = new HashMap<>();
 	
-	List<String []> featureAttributes = null;
+	private List<String []> featureAttributes = null;
+	private List<String []> ML = null;
 
-	public AccessEventFraudAlerter(List<String []> featureAttributes) {
+	public AccessEventFraudAlerter(List<String []> featureAttributes, List<String []> ML) {
 		this.featureAttributes = featureAttributes;
+		this.ML = ML;
 	}
 
 	@Override
@@ -34,7 +36,7 @@ public class AccessEventFraudAlerter extends ProcessWindowFunction<AccessEvent, 
 			synchronized(this) {
 				anomalyDetector = swimlanedAnomalyDetectorsMap.get(swimlaneKey);
 				if( anomalyDetector == null) {
-					anomalyDetector = new MoAOnlineAnomalyDetector(featureAttributes);
+					anomalyDetector = new MoAOnlineAnomalyDetector(featureAttributes, ML);
 					swimlanedAnomalyDetectorsMap.put(swimlaneKey, anomalyDetector);
 				}
 			}
