@@ -85,6 +85,12 @@ Run following commands to bring these systems up
  
  	mvn eclipse:clean eclipse:eclipse  
   
+If you use vim, set this in .vimrc
+
+	
+	autocmd BufNewFile,BufRead *.fdsp set syntax=javascript
+	
+	autocmd BufNewFile,BufRead *.sim set syntax=javascript
 ## Details of implementation
 
    * Focus on com.stream.telecom package
