@@ -1,5 +1,5 @@
 mode = "evaluation";
-load("src/main/resources/historyUserMoveScenario.js");
+load("src/main/resources/historyUserMoveScenario.sim");
 
 simulator.startActors("trudy", subjectResourcePool, 100, 100);
 simulator.pauseAndPrompt("End the simulation?");

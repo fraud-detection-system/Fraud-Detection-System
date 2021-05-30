@@ -1,5 +1,5 @@
 mode = "evaluation";
-load("src/main/resources/seniorCitizenScenario.js");
+load("src/main/resources/seniorCitizenScenario.sim");
 
 simulator.startActors("aliceGrandMa", subjectResourcePool, 100, 100);
 simulator.pauseAndPrompt("End the simulation?");

@@ -18,7 +18,10 @@ public class FraudDetectionStreamProcessing {
 	private List<String []> enrichments = new ArrayList<>();
 	private List<String []> preDeliveryEnrichments = new ArrayList<>();
 	private List<String []> securityProcessings = new ArrayList<>();
+	private List<String []> delivery = new ArrayList<>();
 	private boolean monitoring = true;
+	
+	private String name ;
 	
 	/**
 	 * @return the monitoring
@@ -254,6 +257,30 @@ public class FraudDetectionStreamProcessing {
 
 	public static void main(String[] args) {
 
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public FraudDetectionStreamProcessing setName(String name) {
+		this.name = name;
+		return this;
+	}
+
+	public List<String []> getDelivery() {
+		return delivery;
+	}
+
+	public void setDelivery(List<String []> delivery) {
+		this.delivery = delivery;
+	}
+	
+	public FraudDetectionStreamProcessing addDelivery(String deliveryName) {
+		this.delivery.add(new String[] {
+				deliveryName
+		});
+		return this;
 	}
 
 }

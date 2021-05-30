@@ -48,6 +48,7 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
     
     public transient Map<String, Classifier> classifiers = null;
     public transient Map<String, Clusterer> clusterers = null;
+    public transient Map<String, PMMLEvaluator> pmmlEvaluators = null;
 
     private List<String[]> attributes;
     private List<String[]> ML ;
@@ -181,6 +182,7 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 				if (classifiers == null) {
 					classifiers = new HashMap<>();
 					clusterers = new HashMap<>();
+					pmmlEvaluators = new HashMap<>();
 					
 					if(ML != null) {
 						for(String [] aML : ML) {
@@ -270,6 +272,11 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 								} catch (FileNotFoundException e) {
 									e.printStackTrace();
 								}
+								break;
+							case "PMML":
+								String modelName = aML[1];
+								PMMLEvaluator evaluator = new PMMLEvaluator(modelName);
+								pmmlEvaluators.put("PMML-"+modelName, evaluator);
 								break;
 							}
 							
@@ -376,7 +383,7 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
     	Instance instance = convertToInstance(accessEvent, 1);
     	int ruleBasedML = 1;
     	
-    	MultiClassAnomalyOutput [] result = new MultiClassAnomalyOutput[classifiers.size()+clusterers.size()+ruleBasedML];
+    	MultiClassAnomalyOutput [] result = new MultiClassAnomalyOutput[classifiers.size()+clusterers.size()+ruleBasedML+pmmlEvaluators.size()];
     	int index = 0;
     	StringBuffer sb = new StringBuffer();
     	sb.append("isAnamoly: ");
@@ -394,6 +401,14 @@ public class MoAOnlineAnomalyDetector extends OnlineAnomalyDetector{
 	    	sb.append(multiClassAnomalyOutput + " : "+String.format("%,.4f", votes[0])+", ");
 	    	result[index++] = multiClassAnomalyOutput;
 		}
+    	
+    	for(Entry<String, PMMLEvaluator> pmmlEvaluatorEntry: pmmlEvaluators.entrySet()) {
+			boolean isAnamoly = pmmlEvaluatorEntry.getValue().isAnomaly(accessEvent);
+			
+			MultiClassAnomalyOutput multiClassAnomalyOutput = new MultiClassAnomalyOutput(pmmlEvaluatorEntry.getKey(), isAnamoly);;
+	    	result[index++] = multiClassAnomalyOutput;
+		}
+    	
     	for(Entry<String, Clusterer> clustererEntry: clusterers.entrySet()) {
 			double []votes = clustererEntry.getValue().getVotesForInstance(instance);
 			

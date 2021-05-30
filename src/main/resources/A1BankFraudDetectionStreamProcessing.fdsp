@@ -11,6 +11,8 @@ with (importIt) {
 
   fraudDetectionStreamProcessing
 
+      .setName(systemName)
+
       //The attributes based on which events will be selected. Rest of the events will be ignored.
       //.addSelector("resource", "tenant", "A1Bank")
 
@@ -65,6 +67,9 @@ with (importIt) {
       //Add post procesing enrichments. Reference data corresponding to this will be used to enhance the event.
       .addPreDeliveryEnrichment("subject", "id", "denyUsers", "id")
       .addPreDeliveryEnrichment("subject", "id", "user", "id");
+
+      .addDelivery("SMS")
+      .addDelivert("email")
 }  
 logger.info("Done setup of "+systemName)
 result=fraudDetectionStreamProcessing;
