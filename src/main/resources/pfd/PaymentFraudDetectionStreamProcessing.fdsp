@@ -1,0 +1,22 @@
+//Define a fraud detection system
+var systemName = "Charu Fraud Detection Stream Processing"
+logger.info("setting up "+systemName)
+
+var importIt = new JavaImporter(java.lang.String,java.util,java.io,java.time,com.stream);  
+with (importIt) {  
+  logger.info("setting up "+systemName)
+
+  fraudDetectionStreamProcessing
+
+      .setName(systemName)
+
+      //Attributes for swimlane. Each swimlanes analyzes events in it, learns from it and maintains state.
+      .addSwimlane("resource", "id")
+
+      //The attributes that will be taken as features for ML. Rest will be ignored.
+      .addML("PMML", "src/main/resources/DecisionTree.pmml");
+        
+}  
+logger.info("Done setup of "+systemName)
+result=fraudDetectionStreamProcessing;
+
