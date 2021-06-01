@@ -132,5 +132,11 @@
 			<name>maven public repo</name>
 			<url>https://mvnrepository.com/artifact/</url>
 		</repository>
+		<repository>
+			<id>my-repo5</id>
+			<name>repo for dsol</name>
+			<url>https://simulation.tudelft.nl/maven//</url>
+		</repository>
+		
 	</repositories>
 </project>
