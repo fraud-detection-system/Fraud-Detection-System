@@ -1,3 +1,24 @@
+# Fraud Detection System
+
+A new PAIR architecture for fraud detection system for new age internet economy that takes us from following from to to,
+
+
+| From|to |
+|----|---|
+| *Large delay txns, online txns by privileged few, a small percentage of fraud* | *Instant txns, sophisticated attacks (OTP stealing), adversarial attacks and ultra-scale, online txns by non-tech savvy people* |
+| *“Write off approach”, after the fact, actor focussed approach* | *Realtime, streaming, online learning with Human In the Loop* |
+| *Single well-tuned algorithm* | *Multiple algorithms - potentially weak learners* |
+| *Siloed, difficult to change and integrate* | *Modular, Integrative* |
+
+
+## Abstract
+
+Key Words: Fraud, Realtime, Streaming, Scale, PAIR, MASSES, Simulator, SBE, Modularity, XACML, EAV, Markov-chain
+
+*A fast, adaptive and effective fraud detection system architecture, PAIR, is proposed and demonstrated. It allows multiple transactional data streams and supporting reference data streams with information fusion support. An ensemble of ML algorithms, with a combination of supervised/unsupervised, stream learning/offline learning and rule based are supported. The output is actionable, with multiple delivery mechanisms, to bring human in the loop. The system is responsive in reacting before the transaction completes and also in adapting to evolving situations. Later is enabled by modularity in the design to allow changes on the fly. New stream processing can be defined in a newly designed language. System provides for a set of integrative approaches, ability to define features, maintain history, compare with it and allow multiple separate processing at the same time. System is designed for scale at runtime and scale of development. A MASSES Simulator was built to validate the system from functional and non-functional (scale, response time etc.) point of view. A language for creating multiple simultaneous simulations, on the philosophy of specification by example, was built.*
+
+[A modular, scalable and realtime fraud detection system](https://github.com/fraud-detection-system/Fraud-Detection-System/blob/main/docs/A%20modular%2C%20scalable%20and%20realtime%20fraud%20detection%20system.pdf) - a MTech Dissertation outlining the system's objectives and design.
+
 # Streaming with Flink
 
 Read the medium article - [Streaming system tutorial with Flink and Kafka](https://medium.com/@bala.dutt/streaming-system-tutorial-with-flink-and-kafka-9c445e4daa6c)
