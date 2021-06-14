@@ -1,9 +1,9 @@
 # Fraud Detection System
 
-A new PAIR architecture for fraud detection system for new age internet economy that takes us from following from to to,
+A new PAIR architecture for fraud detection system for new age internet economy that transforms,
 
 
-| From|to |
+| From|To |
 |----|---|
 | *Large delay txns, online txns by privileged few, a small percentage of fraud* | *Instant txns, sophisticated attacks (OTP stealing), adversarial attacks and ultra-scale, online txns by non-tech savvy people* |
 | *“Write off approach”, after the fact, actor focussed approach* | *Realtime, streaming, online learning with Human In the Loop* |
